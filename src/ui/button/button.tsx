@@ -34,7 +34,9 @@ const ButtonWrapper = styled.button<{
   all: unset;
   cursor: pointer;
   border-radius: 4px;
-  padding: 5px 10px;
+  padding: 10px 10px;
+  text-align: center;
+  font-weight: 500;
   width: ${({ $fitContent }) => {
     return $fitContent ? 'fit-content' : 'calc(100% - 20px)';
   }};

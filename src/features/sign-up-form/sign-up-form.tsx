@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Input } from '#ui/input/input';
 import { Button } from '#ui/button';
+import { Link } from '#ui/link/link';
+import { Span } from '#ui/span/span';
 
 export const SignUpForm: React.FC = () => {
   const [name, setName] = useState('');
@@ -14,12 +16,14 @@ export const SignUpForm: React.FC = () => {
       <Input
         type="text"
         labelText="Name"
+        placeholder='Name'
         value={name}
         onChange={({ currentTarget }) => setName(currentTarget.value)}
       />
       <Input
         type="email"
         labelText="Email"
+        placeholder='Email'
         value={email}
         onChange={({ currentTarget }) => setEmail(currentTarget.value)}
         error={email ? undefined : `Email shoudn't be empty`}
@@ -27,12 +31,14 @@ export const SignUpForm: React.FC = () => {
       <Input
         type="password"
         labelText="Password"
+        placeholder='Password'
         value={password}
         onChange={({ currentTarget }) => setPassword(currentTarget.value)}
       />
       <Input
         type="password"
         labelText="Confirm password"
+        placeholder='Confirm password'
         value={confirmedPassword}
         onChange={({ currentTarget }) =>
           setConfirmedPassword(currentTarget.value)
@@ -41,6 +47,10 @@ export const SignUpForm: React.FC = () => {
       <Button variant="primary" onClick={() => null}>
         Sign Up
       </Button>
+      <div style={{textAlign: 'center', marginTop: '10px'}}>
+        <Span>Lorem ipsum dolor sit </Span>
+        <Link url='#'>Sign in</Link>
+      </div>
     </form>
   );
 };

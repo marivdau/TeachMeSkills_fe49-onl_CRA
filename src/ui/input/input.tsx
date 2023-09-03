@@ -23,12 +23,20 @@ const Label = styled.label`
 
 const LabelText = styled.div`
   text-align: start;
+  line-height: 24px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #535252;
 `;
 
 const InputWrapper = styled.input<{ $borderColor?: string }>`
   all: unset;
+  width: 50vh;
+  padding: 10px;
+  margin-bottom: 10px;
   box-sizing: border-box;
-  border: 1px solid ${({ $borderColor }) => $borderColor || 'black'};
+  background-color: white;
+  border: 1px solid ${({ $borderColor }) => $borderColor || 'transparent'};
 
   &:focus-visible {
     border: 1px solid ${({ $borderColor }) => $borderColor || '#CCCCCCCC'};

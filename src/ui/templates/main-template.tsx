@@ -1,3 +1,5 @@
+import { Span } from '#ui/span/span';
+import { Children } from 'react';
 import styled from 'styled-components';
 
 type Props = {
@@ -68,9 +70,12 @@ const TitleContainer = styled.div`
 `;
 
 const BodyContainer = styled.div`
-  width: 100%;
+  width: 40%;
   display: flex;
   justify-content: center;
+  border: 1px solid gray;
+  padding: 20px 10px;
+  margin: auto;
 `;
 
 const Footer = styled.footer`
