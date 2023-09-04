@@ -1,5 +1,3 @@
-import { Span } from '#ui/span/span';
-import { Children } from 'react';
 import styled from 'styled-components';
 
 type Props = {
