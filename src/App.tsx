@@ -1,6 +1,7 @@
 import './App.css';
 import { ConfirmRegistration } from './pages/confirm-registration';
-import { SelectedPost } from './pages/selected-form';
+import { ListOfPosts } from './pages/list-of-posts';
+import { SelectedPost } from './pages/selected-post';
 import { SignIn } from './pages/sign-in';
 import { SignUp } from './pages/sign-up';
 import { Success } from './pages/success';
@@ -8,7 +9,7 @@ import { Success } from './pages/success';
 function App() {
   return (
     <div className="App">
-      <SelectedPost />
+      <ListOfPosts />
     </div>
   );
 }

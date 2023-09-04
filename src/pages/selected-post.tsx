@@ -1,4 +1,3 @@
-import { Title } from '#ui/title/title';
 import { BackLink } from '#features/back-link/back-link';
 import { SelectedPostForm } from '#features/selected-post/selected-post-form';
 import { MainPostTemplate } from '#ui/templates/main-post-template';
