@@ -2,10 +2,12 @@
   --background-primary-color: #eeeeeeee;
   --text-primary-color: black;
   --text-secondary-color: gray;
-  
+  --border-accent-color: dimgray;
+
   &.dark {
     --background-primary-color: black;
     --text-primary-color: white;
     --text-secondary-color: gray;
+    --border-accent-color: white;
   }
 }

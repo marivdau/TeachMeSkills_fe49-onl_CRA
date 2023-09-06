@@ -1,25 +1,12 @@
+import { IPostCard } from '../../../interfaces/post-interface';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-type Props = {
-  id: number;
-  image?: string;
-  text: string;
-  date: string;
-  lesson_num: number;
-  title: string;
-  author: number;
+type PropsCard = {
+  card: IPostCard;
 };
 
-export const ShortPostcard: React.FC<Props> = ({
-  id,
-  image,
-  text,
-  date,
-  lesson_num,
-  title,
-  author,
-}) => {
+export const ShortPostcard: React.FC<PropsCard> = (props: PropsCard) => {
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {
       year: 'numeric',
@@ -33,28 +20,28 @@ export const ShortPostcard: React.FC<Props> = ({
   const [voteDown, setVoteDown] = useState(0);
 
   return (
-    <ShortPostcardWrapper key={id}>
+    <ShortPostcardWrapper key={props.card.id}>
       <ShortFirstLine>
         <ShortCardFirstLine>
-          <ShortDate>{formatDate(date)}</ShortDate>
-          <ShortTitle>{title}</ShortTitle>
+          <ShortDate>{formatDate(props.card.date)}</ShortDate>
+          <ShortTitle>{props.card.title}</ShortTitle>
         </ShortCardFirstLine>
         <ShortImageParentDiv>
-          <Image src={image} />
+          <Image src={props.card.image} />
         </ShortImageParentDiv>
       </ShortFirstLine>
       <ShortSecondLine>
         <ShortLikeDiv>
-          <VoteButton type='button' onClick={() => setVoteUp(voteUp + 1)}>
+          <VoteButton type="button" onClick={() => setVoteUp(voteUp + 1)}>
             <ShortActionImage
-              alt='like'
+              alt="like"
               src={require('../../../images/like-svgrepo-com.svg').default}
             />
           </VoteButton>
           <ShortActionCounter>{voteUp}</ShortActionCounter>
-          <VoteButton type='button' onClick={() => setVoteDown(voteDown + 1)}>
+          <VoteButton type="button" onClick={() => setVoteDown(voteDown + 1)}>
             <ShortActionImage
-              alt='dislike'
+              alt="dislike"
               src={require('../../../images/dislike-svgrepo-com.svg').default}
             />
           </VoteButton>
@@ -62,11 +49,11 @@ export const ShortPostcard: React.FC<Props> = ({
         </ShortLikeDiv>
         <div>
           <ShortActionImage
-            alt='bookmark'
+            alt="bookmark"
             src={require('../../../images/bookmark-svgrepo-com.svg').default}
           />
           <ShortActionImage
-            alt='dots'
+            alt="dots"
             src={
               require('../../../images/dots-horizontal-svgrepo-com.svg').default
             }
@@ -78,8 +65,9 @@ export const ShortPostcard: React.FC<Props> = ({
 };
 
 const ShortPostcardWrapper = styled.div`
-  padding: 20px;
-  background-color: #e8e8e8;
+  padding: 10px;
+  background-color: var(--background-primary-color);
+  width: 350px;
 
   &:after {
     content: '';
@@ -94,9 +82,8 @@ const ShortPostcardWrapper = styled.div`
 
 const ShortFirstLine = styled.div`
   display: flex;
-  margin: auto;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 10px;
 `;
 
 const ShortCardFirstLine = styled.div`
@@ -104,27 +91,27 @@ const ShortCardFirstLine = styled.div`
   flex-direction: column;
   margin-right: 10px;
   justify-content: space-between;
-  width: 80%;
+  width: 60%;
 `;
 
 const ShortDate = styled.span`
   all: unset;
-  font-size: 18px;
+  font-size: 14px;
   color: gray;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `;
 
 const ShortTitle = styled.h2`
   all: unset;
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 700;
-  line-height: 36px;
+  line-height: 18px;
   margin-bottom: 10px;
 `;
 
 const ShortImageParentDiv = styled.div`
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
 `;
 
 const Image = styled.img`

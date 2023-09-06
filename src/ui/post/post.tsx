@@ -1,31 +1,18 @@
 import styled from 'styled-components';
+import { IPostCard } from '../../interfaces/post-interface';
 
-type Props = {
-  id: number;
-  image?: string;
-  text: string;
-  date: string;
-  lesson_num: number;
-  title: string;
-  author: number;
+type PropsCard = {
+  card: IPostCard;
 };
 
-export const Post: React.FC<Props> = ({
-  id,
-  image,
-  text,
-  date,
-  lesson_num,
-  title,
-  author,
-}) => {
+export const Post: React.FC<PropsCard> = (props: PropsCard) => {
   return (
-    <PostWrapper key={id}>
-      <Title>{title}</Title>
+    <PostWrapper key={props.card.id}>
+      <Title>{props.card.title}</Title>
       <Imgdiv>
-        <Image src={image} />
+        <Image src={props.card.image} />
       </Imgdiv>
-      <Text>{text}</Text>
+      <Text>{props.card.text}</Text>
     </PostWrapper>
   );
 };

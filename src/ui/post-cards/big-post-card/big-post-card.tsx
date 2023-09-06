@@ -1,25 +1,11 @@
-import { useState } from 'react';
+import { IPostCard } from '../../../interfaces/post-interface';
 import styled from 'styled-components';
 
-type Props = {
-  id: number;
-  image?: string;
-  text: string;
-  date: string;
-  lesson_num: number;
-  title: string;
-  author: number;
+type PropsCard = {
+  card: IPostCard;
 };
 
-export const Postcard: React.FC<Props> = ({
-  id,
-  image,
-  text,
-  date,
-  lesson_num,
-  title,
-  author,
-}) => {
+export const Postcard: React.FC<PropsCard> = (props: PropsCard) => {
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {
       year: 'numeric',
@@ -29,51 +15,18 @@ export const Postcard: React.FC<Props> = ({
     return new Date(dateString).toLocaleDateString([], options);
   };
 
-  const [voteUp, setVoteUp] = useState(0);
-  const [voteDown, setVoteDown] = useState(0);
-
   return (
-    <PostcardWrapper key={id}>
+    <PostcardWrapper key={props.card.id}>
       <FirstLineDiv>
         <CardInfo>
-          <DateDiv>{formatDate(date)}</DateDiv>
-          <Title>{title}</Title>
-          <Text>{text}</Text>
+          <DateDiv>{formatDate(props.card.date)}</DateDiv>
+          <Title>{props.card.title}</Title>
+          <Text>{props.card.text}</Text>
         </CardInfo>
         <ImageParentDiv>
-          <Image src={image} />
+          <Image src={props.card.image} />
         </ImageParentDiv>
       </FirstLineDiv>
-      <SecondLineDiv>
-        <LikeDiv>
-          <VoteButton type='button' onClick={() => setVoteUp(voteUp + 1)}>
-            <ActionImg
-              alt='like'
-              src={require('../../../images/like-svgrepo-com.svg').default}
-            />
-          </VoteButton>
-          <ActionCounter>{voteUp}</ActionCounter>
-          <VoteButton type='button' onClick={() => setVoteDown(voteDown + 1)}>
-            <ActionImg
-              alt='dislike'
-              src={require('../../../images/dislike-svgrepo-com.svg').default}
-            />
-          </VoteButton>
-          <ActionCounter>{voteDown}</ActionCounter>
-        </LikeDiv>
-        <div>
-          <ActionImg
-            alt='bookmark'
-            src={require('../../../images/bookmark-svgrepo-com.svg').default}
-          />
-          <ActionImg
-            alt='dots'
-            src={
-              require('../../../images/dots-horizontal-svgrepo-com.svg').default
-            }
-          />
-        </div>
-      </SecondLineDiv>
     </PostcardWrapper>
   );
 };
@@ -139,34 +92,4 @@ const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-`;
-
-const LikeDiv = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const VoteButton = styled.button`
-  border: none;
-  background-color: transparent;
-`;
-
-const SecondLineDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 20px;
-`;
-
-const ActionImg = styled.img`
-  width: 20px;
-  height: 20px;
-  object-fit: cover;
-  margin-right: 10px;
-  cursor: pointer;
-`;
-
-const ActionCounter = styled.span`
-  margin-right: 10px;
-  font-weight: 600;
 `;

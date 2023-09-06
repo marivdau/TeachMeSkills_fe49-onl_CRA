@@ -1,25 +1,12 @@
+import { IPostCard } from '../../../interfaces/post-interface';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-type Props = {
-  id: number;
-  image?: string;
-  text: string;
-  date: string;
-  lesson_num: number;
-  title: string;
-  author: number;
+type PropsCard = {
+  card: IPostCard;
 };
 
-export const MediumPostcard: React.FC<Props> = ({
-  id,
-  image,
-  text,
-  date,
-  lesson_num,
-  title,
-  author,
-}) => {
+export const MediumPostcard: React.FC<PropsCard> = (props: PropsCard) => {
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {
       year: 'numeric',
@@ -33,28 +20,28 @@ export const MediumPostcard: React.FC<Props> = ({
   const [voteDown, setVoteDown] = useState(0);
 
   return (
-    <MediumPostcardWrapper key={id}>
+    <MediumPostcardWrapper key={props.card.id}>
       <MediumFirstLine>
         <MediumImageParentDiv>
-          <Image src={image} />
+          <Image src={props.card.image} />
         </MediumImageParentDiv>
         <MediumCardFirstLine>
-          <MediumDate>{formatDate(date)}</MediumDate>
-          <MediumTitle>{title}</MediumTitle>
+          <MediumDate>{formatDate(props.card.date)}</MediumDate>
+          <MediumTitle>{props.card.title}</MediumTitle>
         </MediumCardFirstLine>
       </MediumFirstLine>
       <MediumSecondLine>
         <MediumLikeDiv>
-          <VoteButton type='button' onClick={() => setVoteUp(voteUp + 1)}>
+          <VoteButton type="button" onClick={() => setVoteUp(voteUp + 1)}>
             <MediumActionImage
-              alt='like'
+              alt="like"
               src={require('../../../images/like-svgrepo-com.svg').default}
             />
           </VoteButton>
           <MediumActionCounter>{voteUp}</MediumActionCounter>
-          <VoteButton type='button' onClick={() => setVoteDown(voteDown + 1)}>
+          <VoteButton type="button" onClick={() => setVoteDown(voteDown + 1)}>
             <MediumActionImage
-              alt='dislike'
+              alt="dislike"
               src={require('../../../images/dislike-svgrepo-com.svg').default}
             />
           </VoteButton>
@@ -62,11 +49,11 @@ export const MediumPostcard: React.FC<Props> = ({
         </MediumLikeDiv>
         <div>
           <MediumActionImage
-            alt='bookmark'
+            alt="bookmark"
             src={require('../../../images/bookmark-svgrepo-com.svg').default}
           />
           <MediumActionImage
-            alt='dots'
+            alt="dots"
             src={
               require('../../../images/dots-horizontal-svgrepo-com.svg').default
             }
@@ -78,14 +65,14 @@ export const MediumPostcard: React.FC<Props> = ({
 };
 
 const MediumPostcardWrapper = styled.div`
-  background-color: #e8e8e8;
-  width: 100%;
+  background-color: var(--background-primary-color);
+  width: 350px;
 
   &:after {
     content: '';
     display: block;
     margin: auto;
-    margin: 34px auto;
+    margin: 10px auto;
     width: 98%;
     height: 2px;
     background-color: lightgray;
@@ -95,34 +82,33 @@ const MediumPostcardWrapper = styled.div`
 const MediumFirstLine = styled.div`
   display: flex;
   flex-direction: column;
-  margin: auto;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 const MediumCardFirstLine = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 20px;
+  margin: 10px;
 `;
 
 const MediumDate = styled.span`
   all: unset;
-  font-size: 18px;
+  font-size: 14px;
   color: gray;
   margin-bottom: 10px;
 `;
 
 const MediumTitle = styled.h2`
   all: unset;
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 700;
-  line-height: 36px;
+  line-height: 18px;
 `;
 
 const MediumImageParentDiv = styled.div`
-  width: 500px;
-  height: 500px;
+  width: 320px;
+  height: 200px;
   margin: 20px;
 `;
 
@@ -137,7 +123,6 @@ const MediumSecondLine = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 20px;
 `;
 
 const MediumLikeDiv = styled.div`
