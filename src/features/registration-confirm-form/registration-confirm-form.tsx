@@ -1,5 +1,5 @@
 import { Button } from '#ui/button';
-import { Span } from '#ui/span/span';
+import { Span } from '#ui/span-for-form/span-for-form';
 
 export const RegistrationConfirmationForm: React.FC = () => {
   return (
@@ -16,7 +16,7 @@ export const RegistrationConfirmationForm: React.FC = () => {
         <Span>Lorem ipsum dolor sit </Span>
         <Span>Lorem ipsum </Span>
       </div>
-      <div style={{width: '400px'}}>
+      <div style={{ width: '400px' }}>
         <Button variant="primary" onClick={() => null}>
           Success Confirmation
         </Button>

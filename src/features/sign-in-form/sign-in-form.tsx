@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Input } from '#ui/input/input';
 import { Button } from '#ui/button';
 import { Link } from '#ui/link/link';
-import { Span } from '#ui/span/span';
+import { Span } from '#ui/span-for-form/span-for-form';
 
 export const SignInForm: React.FC = () => {
   const [email, setEmail] = useState('');

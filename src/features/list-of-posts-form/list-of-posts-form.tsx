@@ -1,4 +1,4 @@
-import { TabDefault } from '#features/tabs/tabs-with-content/tabs';
+import { TabDefault } from '#ui/tabs/tabs-with-content/tabs';
 import { Postcard } from '#ui/post-cards/big-post-card/big-post-card';
 import { IPostCard } from '../../interfaces/post-interface';
 import styled from 'styled-components';

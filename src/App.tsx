@@ -1,4 +1,3 @@
-import { SuccessForm } from '#features/success-form/success-form';
 import './App.css';
 import { postCardsListMockArray } from './mock-data/mock-data-posts';
 import { ConfirmRegistration } from './pages/confirm-registration';

@@ -1,16 +1,16 @@
-import { TabPanel } from '../interfaces/tab-panel-interface';
+import { ITab } from '../interfaces/tab-inerface';
 
-export const BlogTabsMockArray: TabPanel[] = [
+export const BlogTabsMockArray: ITab[] = [
   {
-    id: '1',
+    id: 1,
     title: 'All',
   },
   {
-    id: '2',
-    title: 'Next',
+    id: 2,
+    title: 'My Favourites',
   },
   {
-    id: '3',
-    title: 'Other',
+    id: 3,
+    title: 'Popular',
   },
 ];

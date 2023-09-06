@@ -1,15 +1,11 @@
-import { BackLink } from '#features/back-link/back-link';
-import { ListOfPostsForm } from '#features/list-of-posts-form/list-of-posts-form';
-import { Postcard } from '#ui/post-cards/big-post-card/big-post-card';
 import { Title } from '#ui/title/title';
-import { props } from 'cypress/types/bluebird';
 import styled from 'styled-components';
 import { IPostCard } from '../interfaces/post-interface';
 import { MediumPostcard } from '#ui/post-cards/medium-post-card/medium-post-card';
 import { postCardsListMockArray } from '../mock-data/mock-data-posts';
 import { ShortPostcard } from '#ui/post-cards/short-post-card/short-post-card';
-import { TabPanel } from '#features/tabs/tab-panel/tab-panel';
 import { BlogTabsMockArray } from '../mock-data/mock-data-tabs';
+import { MyTabPanel } from '#ui/tabs/tab-panel/tab-panel';
 
 type PropsListOfPosts = {
   cards: IPostCard[];
@@ -26,7 +22,8 @@ export const ListOfPosts: React.FC<PropsListOfPosts> = (
         <div>Header</div>
         <Main>
           <Title>Blog</Title>
-          <TabPanel items={BlogTabsMockArray} activeId='1' onTabClick={onClick}></TabPanel>
+          <MyTabPanel tabItems={BlogTabsMockArray}></MyTabPanel>
+          <PostDelimiter />
           <PostsDiv>
             <LeftSide>
               <MediumPostcard card={postCardsListMockArray[0]} />
@@ -46,8 +43,8 @@ export const ListOfPosts: React.FC<PropsListOfPosts> = (
               <ShortPostcard card={postCardsListMockArray[8]} />
             </RightSide>
           </PostsDiv>
-
           <PostDelimiter />
+
           <PagePagination>
             <Left>
               <ArrowImg
@@ -59,7 +56,12 @@ export const ListOfPosts: React.FC<PropsListOfPosts> = (
               </LeftPagination>
             </Left>
             <JumperDiv>
-              <span>1 2 3 ... 10</span>
+              <JumpButton type="button">1</JumpButton>
+              <JumpButton type="button">2</JumpButton>
+              <JumpButton type="button">3</JumpButton>
+              <JumpButton type="button">4</JumpButton>
+              <JumpButton>...</JumpButton>
+              <JumpButton type="button">12</JumpButton>
             </JumperDiv>
             <Right>
               <RightPagination>
@@ -140,6 +142,13 @@ const Left = styled.div`
 
 const JumperDiv = styled.div`
   color: var(--text-primary-color);
+`;
+
+const JumpButton = styled.button`
+  all: unset;
+  cursor: pointer;
+  padding: 10px;
+  margin: 5px;
 `;
 
 const Right = styled.div`
