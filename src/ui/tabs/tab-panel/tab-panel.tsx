@@ -1,26 +1,29 @@
 import styled from 'styled-components';
-import { useState } from 'react';
-import { ITab } from '../../../interfaces/tab-inerface';
 
-type TabItems = {
+export interface ITab {
+  id: string;    
+  title: string;
+}
+
+type MyTabPanelProps = {
   tabItems: ITab[];
+  selectedTab: string;
+  setSelectedTab: (id: string) => void;
 };
 
-export const MyTabPanel: React.FC<TabItems> = (props: TabItems) => {
-  const [selectedTab, setSelectedTab] = useState(1);
-
-  const handleClick = (index: number) => {
-    setSelectedTab(index);
+export const MyTabPanel: React.FC<MyTabPanelProps> = (props: MyTabPanelProps) => {
+  const handleClick = (index: string) => {
+    props.setSelectedTab(index);
   };
 
   return (
     <TabPanelWrapper>
       {props.tabItems.map((item, index) => (
         <TabWrapper key={index}>
-          <TabButton            
+          <TabButton
             type="button"
             onClick={() => handleClick(item.id)}
-            className={selectedTab === item.id ? 'active' : 'inactive'}
+            className={props.selectedTab === item.id ? 'active' : 'inactive'}
           >
             {props.tabItems[index].title}
           </TabButton>

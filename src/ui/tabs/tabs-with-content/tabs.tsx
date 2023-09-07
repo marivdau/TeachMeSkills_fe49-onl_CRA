@@ -5,7 +5,7 @@ interface Props {
   id: number;
   tabTitle: string;
   title?: string;
-  content: string;
+  content?: string;
   disabled?: boolean;
 }
 

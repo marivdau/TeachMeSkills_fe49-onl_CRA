@@ -1,4 +1,4 @@
-import { IPostCard } from '../../../interfaces/post-interface';
+import { IPostCard } from '../../../types/post-card';
 import { useState } from 'react';
 import styled from 'styled-components';
 

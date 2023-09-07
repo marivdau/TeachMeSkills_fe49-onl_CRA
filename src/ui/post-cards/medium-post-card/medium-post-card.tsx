@@ -1,4 +1,4 @@
-import { IPostCard } from '../../../interfaces/post-interface';
+import { IPostCard } from '../../../types/post-card';
 import { useState } from 'react';
 import styled from 'styled-components';
 
@@ -66,7 +66,7 @@ export const MediumPostcard: React.FC<PropsCard> = (props: PropsCard) => {
 
 const MediumPostcardWrapper = styled.div`
   background-color: var(--background-primary-color);
-  width: 350px;
+  width: 310px;
 
   &:after {
     content: '';
@@ -107,7 +107,7 @@ const MediumTitle = styled.h2`
 `;
 
 const MediumImageParentDiv = styled.div`
-  width: 320px;
+  width: 280px;
   height: 200px;
   margin: 20px;
 `;

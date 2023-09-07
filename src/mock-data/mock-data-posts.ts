@@ -1,4 +1,4 @@
-import { IPostCard } from '../interfaces/post-interface';
+import { IPostCard } from '../types/post-card';
 
 export const postCardsListMockArray: IPostCard[] = [
   {
@@ -96,8 +96,7 @@ export const postCardsListMockArray: IPostCard[] = [
     text: 'Astronauts Kayla Barron and Raja Chari floated out of the International Space Station airlock for a spacewalk Tuesday, installing brackets and struts to support new solar arrays to upgrade the research lab’s power system on the same day that crewmate Mark Vande Hei marked his 341st day in orbit, a U.S. record for a single spaceflight.',
     date: '2023-08-27',
     lesson_num: 1,
-    title:
-      'Astronauts prep for new solar arrays ',
+    title: 'Astronauts prep for new solar arrays ',
     author: 1,
   },
   {
@@ -107,8 +106,7 @@ export const postCardsListMockArray: IPostCard[] = [
     text: 'Astronauts Kayla Barron and Raja Chari floated out of the International Space Station airlock for a spacewalk Tuesday, installing brackets and struts to support new solar arrays to upgrade the research lab’s power system on the same day that crewmate Mark Vande Hei marked his 341st day in orbit, a U.S. record for a single spaceflight. Astronauts Kayla Barron and Raja Chari floated out of the International Space Station airlock for a spacewalk Tuesday, installing brackets and struts to support new solar arrays to upgrade the research lab’s power system on the same day that crewmate Mark Vande Hei markd his 341st day in orbit, a U.S. record for a single spaceflight.  Astronauts Kayla Barron and Raja Chari floated out of the International Space Station airlock for a spacewalk Tuesday, installing brackets and struts to support new solar arrays to upgrade the research lab’s power system on the same day that crewmate Mark Vande Hei marked his 341st day in orbit, a U.S. record for a single spaceflight.  Astronauts Kayla Barron and Raja Chari floated out of the International Space Station airlock for a spacewalk Tuesday, installing brackets and struts to support new solar arrays to upgrade the research lab’s power system on the same day that crewmate Mark Vande Hei marked his 341st day in orbit, a U.S. record for a single spaceflight.',
     date: '2023-08-27',
     lesson_num: 1,
-    title:
-      'Astronauts arrays on nearly seven-hour spacewalk',
+    title: 'Astronauts arrays on nearly seven-hour spacewalk',
     author: 1,
   },
 ];

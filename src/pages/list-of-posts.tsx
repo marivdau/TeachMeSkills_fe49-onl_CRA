@@ -1,11 +1,10 @@
 import { Title } from '#ui/title/title';
 import styled from 'styled-components';
-import { IPostCard } from '../interfaces/post-interface';
+import { IPostCard } from '../types/post-card';
 import { MediumPostcard } from '#ui/post-cards/medium-post-card/medium-post-card';
 import { postCardsListMockArray } from '../mock-data/mock-data-posts';
 import { ShortPostcard } from '#ui/post-cards/short-post-card/short-post-card';
-import { BlogTabsMockArray } from '../mock-data/mock-data-tabs';
-import { MyTabPanel } from '#ui/tabs/tab-panel/tab-panel';
+import { ITab, MyTabPanel } from '#ui/tabs/tab-panel/tab-panel';
 import { useState, useEffect } from 'react';
 
 type PropsListOfPosts = {
@@ -25,31 +24,55 @@ export const ListOfPosts: React.FC<PropsListOfPosts> = (
     };
   }, []);
 
+  const [selectedTab, setSelectedTab] = useState('all');
+
+  const BlogTabsMockArray: ITab[] = [
+    {
+      id: 'all',
+      title: 'All',
+    },
+    {
+      id: 'my-favourites',
+      title: 'My Favourites',
+    },
+    {
+      id: 'popular',
+      title: 'Popular',
+    },
+  ];
+
   return (
     <MainWrapper>
       <ContentWithPaddings>
         <div>Header</div>
         <Main>
           <Title>Blog</Title>
-          <MyTabPanel tabItems={BlogTabsMockArray}></MyTabPanel>
+          <MyTabPanel
+            tabItems={BlogTabsMockArray}
+            selectedTab={selectedTab}
+            setSelectedTab={setSelectedTab}
+          ></MyTabPanel>
+
           <PostDelimiter />
           <PostsDiv>
             <LeftSide>
-              <MediumPostcard card={postCardsListMockArray[0]} />
-              <MediumPostcard card={postCardsListMockArray[1]} />
-              <MediumPostcard card={postCardsListMockArray[2]} />
-              <MediumPostcard card={postCardsListMockArray[3]} />
-              <MediumPostcard card={postCardsListMockArray[4]} />
-              <MediumPostcard card={postCardsListMockArray[5]} />
+              {postCardsListMockArray.flatMap((item) => {
+                const needToShow =
+                  selectedTab !== 'my-favourites' || [2, 5].includes(item.id);
+                return needToShow ? (
+                  <MediumPostcard key={item.id} card={item} />
+                ) : (
+                  []
+                );
+              })}
             </LeftSide>
             <RightSide>
-              <ShortPostcard card={postCardsListMockArray[6]} />
-              <ShortPostcard card={postCardsListMockArray[7]} />
-              <ShortPostcard card={postCardsListMockArray[8]} />
-              <ShortPostcard card={postCardsListMockArray[1]} />
-              <ShortPostcard card={postCardsListMockArray[2]} />
-              <ShortPostcard card={postCardsListMockArray[8]} />
-              <ShortPostcard card={postCardsListMockArray[8]} />
+              {postCardsListMockArray.map((item) => (
+                <ShortPostcard
+                  key={item.id}
+                  card={item}
+                />
+              ))}
             </RightSide>
           </PostsDiv>
           <PostDelimiter />
