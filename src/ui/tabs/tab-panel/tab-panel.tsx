@@ -16,9 +16,8 @@ export const MyTabPanel: React.FC<TabItems> = (props: TabItems) => {
   return (
     <TabPanelWrapper>
       {props.tabItems.map((item, index) => (
-        <TabWrapper>
-          <TabButton
-            key={index}
+        <TabWrapper key={index}>
+          <TabButton            
             type="button"
             onClick={() => handleClick(item.id)}
             className={selectedTab === item.id ? 'active' : 'inactive'}

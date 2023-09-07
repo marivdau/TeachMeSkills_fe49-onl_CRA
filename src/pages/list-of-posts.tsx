@@ -6,6 +6,7 @@ import { postCardsListMockArray } from '../mock-data/mock-data-posts';
 import { ShortPostcard } from '#ui/post-cards/short-post-card/short-post-card';
 import { BlogTabsMockArray } from '../mock-data/mock-data-tabs';
 import { MyTabPanel } from '#ui/tabs/tab-panel/tab-panel';
+import { useState, useEffect } from 'react';
 
 type PropsListOfPosts = {
   cards: IPostCard[];
@@ -14,7 +15,15 @@ type PropsListOfPosts = {
 export const ListOfPosts: React.FC<PropsListOfPosts> = (
   props: PropsListOfPosts
 ) => {
-  const onClick = () => console.log('Button clicked!');
+  const [apiModels, setApiModels] = useState<IPostCard[] | null>(null);
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setApiModels(postCardsListMockArray);
+    }, 3000);
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, []);
 
   return (
     <MainWrapper>
