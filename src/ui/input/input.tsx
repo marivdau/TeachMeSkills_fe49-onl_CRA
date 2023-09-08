@@ -3,13 +3,22 @@ import styled from 'styled-components';
 type Props = React.InputHTMLAttributes<HTMLInputElement> & {
   labelText: string;
   error?: string;
+  disabled?: boolean;
 };
 
-export const Input: React.FC<Props> = ({ labelText, error, ...restProps }) => {
+export const Input: React.FC<Props> = ({ labelText, disabled, error, ...restProps }) => {
   return (
     <Label>
       <LabelText>{labelText}</LabelText>
-      <InputWrapper $borderColor={error ? 'red' : undefined} {...restProps} />
+      <InputWrapper
+        type='text'
+        name='name'
+        disabled={disabled}
+        placeholder='Placeholder'
+        maxLength={100}
+        $borderColor={error ? 'red' : undefined}
+        {...restProps}
+      />
       <Error>{error}</Error>
     </Label>
   );
@@ -36,14 +45,31 @@ const InputWrapper = styled.input<{ $borderColor?: string }>`
   margin-bottom: 10px;
   box-sizing: border-box;
   background-color: white;
-  border: 1px solid ${({ $borderColor }) => $borderColor || 'transparent'};
+  border: 1px solid ${({ $borderColor }) => $borderColor || 'gray'};
 
   &:focus-visible {
     border: 1px solid ${({ $borderColor }) => $borderColor || '#CCCCCCCC'};
+  }
+
+  &:focus {
+    border: 3px solid ${({ $borderColor }) => $borderColor || 'gray'};
+  }
+
+  &:active {
+    border: 3px solid ${({ $borderColor }) => $borderColor || 'transparent'};
+  }
+
+  &:disabled {
+    cursor: none;
+    opacity: 0.67;
+    background: lightgray;
+    color: gray;
   }
 `;
 
 const Error = styled.div`
   height: 20px;
   color: red;
+  font-size: 18px;
+  line-height: 30px;
 `;

@@ -37,13 +37,13 @@ const TabPanelWrapper = styled.ul`
   all: unset;
   display: flex;
   justify-content: flex-start;
-  border: 1px solid var(--border-primary-color);
+  border-bottom: 1px solid var(--border-primary-color);
 `;
 
 const TabWrapper = styled.li`
   display: block;
   box-sizing: border-box;
-  margin-right: 10px;
+  margin-right: 30px;
 `;
 
 const TabButton = styled.button`

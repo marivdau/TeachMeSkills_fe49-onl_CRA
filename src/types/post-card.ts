@@ -6,5 +6,7 @@ export interface IPostCard {
     lesson_num: number;
     title: string;
     author: number;
+    votedUpNum?: number;
+    votedDownNum?: number;
   }
   

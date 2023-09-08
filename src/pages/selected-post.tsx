@@ -4,9 +4,13 @@ import styled from 'styled-components';
 import { useState } from 'react';
 
 export const SelectedPost: React.FC = () => {
-  const [voteUp, setVoteUp] = useState(0);
-  const [voteDown, setVoteDown] = useState(0);
-  const [addBookmark, setAddBookmark] = useState(0);
+  const amountUp = 10;
+  const amountDown = 2;
+  const [voteUp, setVoteUp] = useState(amountUp);
+  const [voteDown, setVoteDown] = useState(amountDown);
+  const [userVotedLike, setUserVotedLike] = useState(false);
+  const [userVotedDislike, setUserVotedDislike] = useState(false);
+  const [addBookmark, setAddBookmark] = useState(false);
 
   return (
     <MainTemplateWrapper>
@@ -20,7 +24,22 @@ export const SelectedPost: React.FC = () => {
           <ActionLineDiv>
             <VoteDiv>
               <LikeDiv>
-                <VoteButton type="button" onClick={() => setVoteUp(voteUp + 1)}>
+                <VoteButton
+                  type="button"
+                  onClick={() => {
+                    setUserVotedLike(!userVotedLike);
+                    if (!userVotedLike && userVotedDislike === true) {
+                      setVoteUp(voteUp + 1);
+                      setVoteDown(voteDown - 1);
+                      setUserVotedDislike(!userVotedDislike);
+                    } else if (!userVotedLike && userVotedDislike === false) {
+                      setVoteUp(voteUp + 1);
+                    } else {
+                      setVoteUp(voteUp - 1);
+                    }
+                  }}
+                  className={userVotedLike ? 'votedUp' : 'unvotedDwn'}
+                >
                   <ActionImg
                     alt="like"
                     src={require('../images/like-svgrepo-com.svg').default}
@@ -31,7 +50,19 @@ export const SelectedPost: React.FC = () => {
               <DislikeDiv>
                 <VoteButton
                   type="button"
-                  onClick={() => setVoteDown(voteDown + 1)}
+                  onClick={() => {
+                    setUserVotedDislike(!userVotedDislike);
+                    if (!userVotedDislike && userVotedLike === true) {
+                      setVoteDown(voteDown + 1);
+                      setVoteUp(voteUp - 1);
+                      setUserVotedLike(!userVotedLike);
+                    } else if (!userVotedDislike && userVotedLike === false) {
+                      setVoteDown(voteDown + 1);
+                    } else {
+                      setVoteDown(voteDown - 1);
+                    }
+                  }}
+                  className={userVotedDislike ? 'disVotedUp' : 'disVotedDwn'}
                 >
                   <ActionImg
                     alt="dislike"
@@ -41,12 +72,17 @@ export const SelectedPost: React.FC = () => {
                 <ActionCounter>{voteDown}</ActionCounter>
               </DislikeDiv>
             </VoteDiv>
-            <Bookmark type="button" onClick={() => setAddBookmark(addBookmark)}>
-              <ActionImg
+
+            <Bookmark
+              type="button"
+              onClick={() => setAddBookmark(!addBookmark)}
+              className={addBookmark ? 'selected' : 'unselected'}
+            >
+              <BookmarkImg
                 alt="bookmark"
                 src={require('../images/bookmark-svgrepo-com.svg').default}
               />
-              <BookmarkSpan>Add to bookmarks</BookmarkSpan>
+              Add to favorites
             </Bookmark>
           </ActionLineDiv>
 
@@ -127,7 +163,6 @@ const BodyContainer = styled.div`
 const LikeDiv = styled.div`
   display: flex;
   align-items: center;
-  background-color: lightgray;
   border-radius: 5px;
   margin-right: 10px;
 `;
@@ -135,13 +170,31 @@ const LikeDiv = styled.div`
 const VoteButton = styled.button`
   border: none;
   background-color: transparent;
+  margin-right: 2px;
+
+  &.votedUp {
+    background-color: lightgray;
+    border-radius: 10%;
+  }
+
+  &.unvotedDwn {
+    background-color: transparent;
+  }
+
+  &.disVotedUp {
+    background-color: lightgray;
+    border-radius: 10%;
+  }
+
+  &.disVotedDwn {
+    background-color: transparent;
+  }
 `;
 
 const ActionImg = styled.img`
   width: 20px;
   height: 20px;
   object-fit: cover;
-  margin-right: 10px;
   cursor: pointer;
 `;
 
@@ -162,22 +215,31 @@ const VoteDiv = styled.div`
 const DislikeDiv = styled.div`
   display: flex;
   align-items: center;
-  background-color: lightgray;
   border-radius: 5px;
 `;
 
 const Bookmark = styled.button`
-  display: flex;
-  align-items: center;
-  background-color: lightgray;
-  border-color: transparent;
+  all: unset;
+  font-size: 14px;
   border-radius: 5px;
-  padding: 5px;
+  text-align: center;
+  padding: 3px 7px 7px 5px;
   cursor: pointer;
+
+  &.selected {
+    background-color: lightgray;
+  }
+
+  &.unselected {
+    background-color: transparent;
+  }
 `;
 
-const BookmarkSpan = styled.span`
-  color: var(--text-primary-color);
+const BookmarkImg = styled.img`
+  position: relative;
+  margin-right: 10px;
+  top: 4px;
+  width: 20px;
 `;
 
 const ActionCounter = styled.span`

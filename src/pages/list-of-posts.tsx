@@ -53,7 +53,6 @@ export const ListOfPosts: React.FC<PropsListOfPosts> = (
             setSelectedTab={setSelectedTab}
           ></MyTabPanel>
 
-          <PostDelimiter />
           <PostsDiv>
             <LeftSide>
               {postCardsListMockArray.flatMap((item) => {
@@ -75,7 +74,6 @@ export const ListOfPosts: React.FC<PropsListOfPosts> = (
               ))}
             </RightSide>
           </PostsDiv>
-          <PostDelimiter />
 
           <PagePagination>
             <Left>
@@ -91,9 +89,8 @@ export const ListOfPosts: React.FC<PropsListOfPosts> = (
               <JumpButton type="button">1</JumpButton>
               <JumpButton type="button">2</JumpButton>
               <JumpButton type="button">3</JumpButton>
-              <JumpButton type="button">4</JumpButton>
               <JumpButton>...</JumpButton>
-              <JumpButton type="button">12</JumpButton>
+              <JumpButton type="button">6</JumpButton>
             </JumperDiv>
             <Right>
               <RightPagination>
@@ -145,7 +142,6 @@ const PostsDiv = styled.div`
   flex-direction: row;
   width: 100%;
   justify-content: center;
-  /* padding: 20px 10px; */
   margin: auto;
 `;
 
@@ -207,11 +203,6 @@ const ArrowImg = styled.img`
   object-fit: cover;
   margin: 0 10px;
   cursor: pointer;
-`;
-
-const PostDelimiter = styled.hr`
-  width: 100%;
-  margin-top: 30px;
 `;
 
 const Footer = styled.footer`

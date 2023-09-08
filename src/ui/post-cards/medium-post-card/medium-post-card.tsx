@@ -16,8 +16,13 @@ export const MediumPostcard: React.FC<PropsCard> = (props: PropsCard) => {
     return new Date(dateString).toLocaleDateString([], options);
   };
 
-  const [voteUp, setVoteUp] = useState(0);
-  const [voteDown, setVoteDown] = useState(0);
+  const amountUp = 10;
+  const amountDown = 2;
+  const [voteUp, setVoteUp] = useState(amountUp);
+  const [voteDown, setVoteDown] = useState(amountDown);
+  const [userVotedLike, setUserVotedLike] = useState(false);
+  const [userVotedDislike, setUserVotedDislike] = useState(false);
+  const [addBookmark, setAddBookmark] = useState(false);
 
   return (
     <MediumPostcardWrapper key={props.card.id}>
@@ -32,14 +37,44 @@ export const MediumPostcard: React.FC<PropsCard> = (props: PropsCard) => {
       </MediumFirstLine>
       <MediumSecondLine>
         <MediumLikeDiv>
-          <VoteButton type="button" onClick={() => setVoteUp(voteUp + 1)}>
+          <VoteButton
+            type="button"
+            onClick={() => {
+              setUserVotedLike(!userVotedLike);
+              if (!userVotedLike && userVotedDislike === true) {
+                setVoteUp(voteUp + 1);
+                setVoteDown(voteDown - 1);
+                setUserVotedDislike(!userVotedDislike);
+              } else if (!userVotedLike && userVotedDislike === false) {
+                setVoteUp(voteUp + 1);
+              } else {
+                setVoteUp(voteUp - 1);
+              }
+            }}
+            className={userVotedLike ? 'votedUp' : 'unvotedDwn'}
+          >
             <MediumActionImage
               alt="like"
               src={require('../../../images/like-svgrepo-com.svg').default}
             />
           </VoteButton>
           <MediumActionCounter>{voteUp}</MediumActionCounter>
-          <VoteButton type="button" onClick={() => setVoteDown(voteDown + 1)}>
+          <VoteButton
+            type="button"
+            onClick={() => {
+              setUserVotedDislike(!userVotedDislike);
+              if (!userVotedDislike && userVotedLike === true) {
+                setVoteDown(voteDown + 1);
+                setVoteUp(voteUp - 1);
+                setUserVotedLike(!userVotedLike);
+              } else if (!userVotedDislike && userVotedLike === false) {
+                setVoteDown(voteDown + 1);
+              } else {
+                setVoteDown(voteDown - 1);
+              }
+            }}
+            className={userVotedDislike ? 'disVotedUp' : 'disVotedDwn'}
+          >
             <MediumActionImage
               alt="dislike"
               src={require('../../../images/dislike-svgrepo-com.svg').default}
@@ -48,10 +83,16 @@ export const MediumPostcard: React.FC<PropsCard> = (props: PropsCard) => {
           <MediumActionCounter>{voteDown}</MediumActionCounter>
         </MediumLikeDiv>
         <div>
-          <MediumActionImage
-            alt="bookmark"
-            src={require('../../../images/bookmark-svgrepo-com.svg').default}
-          />
+          <Bookmark
+            type="button"
+            onClick={() => setAddBookmark(!addBookmark)}
+            className={addBookmark ? 'selected' : 'unselected'}
+          >
+            <ActionImg
+              alt="bookmark"
+              src={require('../../../images/bookmark-svgrepo-com.svg').default}
+            />
+          </Bookmark>
           <MediumActionImage
             alt="dots"
             src={
@@ -66,7 +107,7 @@ export const MediumPostcard: React.FC<PropsCard> = (props: PropsCard) => {
 
 const MediumPostcardWrapper = styled.div`
   background-color: var(--background-primary-color);
-  width: 310px;
+  width: 350px;
 
   &:after {
     content: '';
@@ -107,7 +148,7 @@ const MediumTitle = styled.h2`
 `;
 
 const MediumImageParentDiv = styled.div`
-  width: 280px;
+  width: 320px;
   height: 200px;
   margin: 20px;
 `;
@@ -130,9 +171,51 @@ const MediumLikeDiv = styled.div`
   align-items: center;
 `;
 
+const Bookmark = styled.button`
+  border-color: transparent;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+
+  &.selected {
+    background-color: lightgray;
+  }
+
+  &.unselected {
+    background-color: transparent;
+  }
+`;
+
+const ActionImg = styled.img`
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  cursor: pointer;
+`;
+
 const VoteButton = styled.button`
   border: none;
   background-color: transparent;
+  margin-right: 2px;
+
+  &.votedUp {
+    background-color: lightgray;
+    border-radius: 10%;
+  }
+
+  &.unvotedDwn {
+    background-color: transparent;
+  }
+
+  &.disVotedUp {
+    background-color: lightgray;
+    border-radius: 10%;
+  }
+
+  &.disVotedDwn {
+    background-color: transparent;
+  }
 `;
 
 const MediumActionImage = styled.img`

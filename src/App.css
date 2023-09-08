@@ -3,6 +3,7 @@
   --text-primary-color: black;
   --text-secondary-color: gray;
   --border-accent-color: dimgray;
+  --border-primary-color: gray;
 
   &.dark {
     --background-primary-color: black;
