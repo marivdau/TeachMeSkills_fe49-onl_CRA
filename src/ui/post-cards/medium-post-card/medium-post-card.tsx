@@ -16,10 +16,8 @@ export const MediumPostcard: React.FC<PropsCard> = (props: PropsCard) => {
     return new Date(dateString).toLocaleDateString([], options);
   };
 
-  const amountUp = 10;
-  const amountDown = 2;
-  const [voteUp, setVoteUp] = useState(amountUp);
-  const [voteDown, setVoteDown] = useState(amountDown);
+  const [voteUp, setVoteUp] = useState(props.card.votedUpNum!);
+  const [voteDown, setVoteDown] = useState(props.card.votedDownNum!);
   const [userVotedLike, setUserVotedLike] = useState(false);
   const [userVotedDislike, setUserVotedDislike] = useState(false);
   const [addBookmark, setAddBookmark] = useState(false);
