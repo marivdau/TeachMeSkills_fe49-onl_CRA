@@ -46,6 +46,7 @@ const HumburgerWrapper = styled.div`
   all: unset;
   width: 70px;
   height: 70px;
+  cursor: pointer;
 `;
 
 const ListWrapper = styled.ul`
