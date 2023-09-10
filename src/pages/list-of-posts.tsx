@@ -6,6 +6,7 @@ import { postCardsListMockArray } from '../mock-data/mock-data-posts';
 import { ShortPostcard } from '#ui/post-cards/short-post-card/short-post-card';
 import { ITab, MyTabPanel } from '#ui/tabs/tab-panel/tab-panel';
 import { useState, useEffect } from 'react';
+import { Header } from '#features/header/header';
 
 type PropsListOfPosts = {
   cards: IPostCard[];
@@ -43,9 +44,8 @@ export const ListOfPosts: React.FC<PropsListOfPosts> = (
 
   return (
     <MainWrapper>
+      <Header />
       <ContentWithPaddings>
-        <div>Header</div>
-
         {apiModels ? (
           <Main>
             <Title>Blog</Title>
@@ -76,15 +76,15 @@ export const ListOfPosts: React.FC<PropsListOfPosts> = (
 
             <PagePagination>
               <Left>
-                <ArrowImg
-                  src={
-                    require('../images/arrow-sm-left-svgrepo-com.svg').default
-                  }
-                  alt="#"
-                />
-                <LeftPagination>
-                  <span>Back</span>
-                </LeftPagination>
+                <PaginationButton type="button">
+                  <ArrowImg
+                    src={
+                      require('../images/arrow-sm-left-svgrepo-com.svg').default
+                    }
+                    alt="#"
+                  />{' '}
+                  Back
+                </PaginationButton>
               </Left>
               <JumperDiv>
                 <JumpButton type="button">1</JumpButton>
@@ -94,15 +94,17 @@ export const ListOfPosts: React.FC<PropsListOfPosts> = (
                 <JumpButton type="button">6</JumpButton>
               </JumperDiv>
               <Right>
-                <RightPagination>
-                  <span>Next</span>
-                </RightPagination>
-                <ArrowImg
-                  src={
-                    require('../images/arrow-sm-right-svgrepo-com.svg').default
-                  }
-                  alt="#"
-                />
+                <PaginationButton>
+                  {' '}
+                  Next
+                  <ArrowImg
+                    src={
+                      require('../images/arrow-sm-right-svgrepo-com.svg')
+                        .default
+                    }
+                    alt="#"
+                  />
+                </PaginationButton>
               </Right>
             </PagePagination>
           </Main>
@@ -118,20 +120,21 @@ export const ListOfPosts: React.FC<PropsListOfPosts> = (
 };
 
 const MainWrapper = styled.div`
-  width: 100%;
-  height: 100%;
+  /* width: 100%; */
+  /* height: 100%; */
 
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
 
-  background-color: var(--background-primary-color);
+  background-color: var(--background-color-extra-light);
 `;
 
 const ContentWithPaddings = styled.div`
   width: 60%;
   display: flex;
   flex-direction: column;
+  margin: auto;
   flex-grow: 1;
 `;
 
@@ -180,6 +183,13 @@ const JumpButton = styled.button`
   cursor: pointer;
   padding: 10px;
   margin: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+
+  &:hover {
+    color: var(--system-primary-color);
+  }
 `;
 
 const Right = styled.div`
@@ -188,24 +198,24 @@ const Right = styled.div`
   align-items: center;
 `;
 
-const RightPagination = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-`;
+const PaginationButton = styled.button`
+  all: unset;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
 
-const LeftPagination = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  &:hover {
+    color: var(--system-primary-color);
+  }
 `;
 
 const ArrowImg = styled.img`
   width: 20px;
   height: 20px;
   object-fit: cover;
-  margin: 0 10px;
-  cursor: pointer;
+  position: relative;
+  top: 5px;
 `;
 
 const Footer = styled.footer`

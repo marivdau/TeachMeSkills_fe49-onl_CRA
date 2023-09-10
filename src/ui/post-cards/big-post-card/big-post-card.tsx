@@ -105,7 +105,7 @@ export const Postcard: React.FC<PropsCard> = (props: PropsCard) => {
 };
 
 const PostcardWrapper = styled.div`
-  background-color: #e8e8e8;
+  background-color: var(--background-color-extra-light);
   width: 100%;
 
   &:after {

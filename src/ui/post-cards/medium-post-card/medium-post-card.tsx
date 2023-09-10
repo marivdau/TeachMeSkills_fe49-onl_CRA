@@ -104,7 +104,7 @@ export const MediumPostcard: React.FC<PropsCard> = (props: PropsCard) => {
 };
 
 const MediumPostcardWrapper = styled.div`
-  background-color: var(--background-primary-color);
+  background-color: var(--background-color-extra-light);
   width: 350px;
 
   &:after {

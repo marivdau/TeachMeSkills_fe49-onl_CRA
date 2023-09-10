@@ -28,7 +28,7 @@ export const Post: React.FC<PropsCard> = (props: PropsCard) => {
       <ActionLineDiv>
         <VoteDiv>
           <LikeDiv>
-            <VoteButton
+            <VoteButtonUp
               type="button"
               onClick={() => {
                 setUserVotedLike(!userVotedLike);
@@ -48,11 +48,11 @@ export const Post: React.FC<PropsCard> = (props: PropsCard) => {
                 alt="like"
                 src={require('../../images/like-svgrepo-com.svg').default}
               />
-            </VoteButton>
+            </VoteButtonUp>
             {/* <ActionCounter>{voteUp}</ActionCounter> */}
           </LikeDiv>
           <DislikeDiv>
-            <VoteButton
+            <VoteButtonDown
               type="button"
               onClick={() => {
                 setUserVotedDislike(!userVotedDislike);
@@ -72,7 +72,7 @@ export const Post: React.FC<PropsCard> = (props: PropsCard) => {
                 alt="dislike"
                 src={require('../../images/dislike-svgrepo-com.svg').default}
               />
-            </VoteButton>
+            </VoteButtonDown>
             {/* <ActionCounter>{voteDown}</ActionCounter> */}
           </DislikeDiv>
         </VoteDiv>
@@ -152,27 +152,43 @@ const LikeDiv = styled.div`
   margin-right: 10px;
 `;
 
-const VoteButton = styled.button`
+const VoteButtonUp = styled.button`
   border: none;
   width: 88px;
   height: 56px;
-  background-color: transparent;
+  background-color: var(--contextual-light-color);
   margin-right: 2px;
 
   &.votedUp {
-    background-color: lightgray;
+    background-color: var(--system-primary2-color);
   }
 
   &.unvotedDwn {
-    background-color: transparent;
+    background-color: var(--contextual-light-color);
   }
 
+  &:hover {
+    background-color: var(--system-primary2-color);
+  }
+`;
+
+const VoteButtonDown = styled.button`
+  border: none;
+  width: 88px;
+  height: 56px;
+  background-color: var(--contextual-light-color);
+  margin-right: 2px;
+
   &.disVotedUp {
-    background-color: lightgray;
+    background-color: var(--contextual-error-color);
   }
 
   &.disVotedDwn {
-    background-color: transparent;
+    background-color: var(--contextual-light-color);
+  }
+
+  &:hover {
+    background-color: var(--contextual-error-color);
   }
 `;
 
@@ -213,11 +229,16 @@ const Bookmark = styled.button`
   cursor: pointer;
 
   &.selected {
-    background-color: lightgray;
+    background-color: var(--system-primary2-color);
+    color: var(--contextual-white-color);
   }
 
   &.unselected {
-    background-color: transparent;
+    background-color: var(--contextual-light-color);
+  }
+
+  &:hover {
+    background-color: var(--system-primary2-color);
   }
 `;
 

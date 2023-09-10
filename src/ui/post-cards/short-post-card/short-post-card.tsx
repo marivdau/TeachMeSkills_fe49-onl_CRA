@@ -105,7 +105,7 @@ export const ShortPostcard: React.FC<PropsCard> = (props: PropsCard) => {
 
 const ShortPostcardWrapper = styled.div`
   padding: 10px;
-  background-color: var(--background-primary-color);
+  background-color: var(--background-color-extra-light);
   width: 350px;
 
   &:after {

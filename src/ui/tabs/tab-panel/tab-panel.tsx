@@ -2,13 +2,14 @@ import styled from 'styled-components';
 
 export interface ITab {
   id: string;    
-  title: string;
+  title: string;  
+  disabled?: boolean;
 }
 
 type MyTabPanelProps = {
   tabItems: ITab[];
   selectedTab: string;
-  setSelectedTab: (id: string) => void;
+  setSelectedTab: (id: string) => void;  
 };
 
 export const MyTabPanel: React.FC<MyTabPanelProps> = (props: MyTabPanelProps) => {
@@ -24,6 +25,7 @@ export const MyTabPanel: React.FC<MyTabPanelProps> = (props: MyTabPanelProps) =>
             type="button"
             onClick={() => handleClick(item.id)}
             className={props.selectedTab === item.id ? 'active' : 'inactive'}
+            disabled={item.disabled}
           >
             {props.tabItems[index].title}
           </TabButton>
@@ -50,9 +52,13 @@ const TabButton = styled.button`
   all: unset;
   cursor: pointer;
   padding: 10px 20px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
 
   &:hover {
     background-color: transparent;
+    color: var(--system-primary-color);
   }
 
   &.active {
@@ -61,5 +67,11 @@ const TabButton = styled.button`
 
   &.inactive {
     border-bottom: 2px solid transparent;
+  }
+
+  &:disabled {
+    cursor: none;
+    opacity: 0.67;
+    color: gray;
   }
 `;

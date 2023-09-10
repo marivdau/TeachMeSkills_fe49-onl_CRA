@@ -1,5 +1,17 @@
 .App {
-  --background-primary-color: #eeeeeeee;
+  --background-color-gray: #8D8E97;
+  --background-color-medium-gray: #DADADA;
+  --background-color-extra-light: #F3F3F3;
+
+  --system-primary-color: #2231AA;
+  --system-primary2-color: #5360CD;
+  --system-secondary-color: #313037;
+
+  --contextual-error-color: #FD3419;
+  --contextual-white-color: #FFFFFF;
+  --contextual-light-color: #E8E8E8;
+
+  --background-primary-color: ##F3F3F3;
   --text-primary-color: black;
   --text-secondary-color: gray;
   --border-accent-color: dimgray;
