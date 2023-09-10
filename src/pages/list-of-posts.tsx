@@ -45,66 +45,69 @@ export const ListOfPosts: React.FC<PropsListOfPosts> = (
     <MainWrapper>
       <ContentWithPaddings>
         <div>Header</div>
-        <Main>
-          <Title>Blog</Title>
-          <MyTabPanel
-            tabItems={BlogTabsMockArray}
-            selectedTab={selectedTab}
-            setSelectedTab={setSelectedTab}
-          ></MyTabPanel>
 
-          <PostsDiv>
-            <LeftSide>
-              {postCardsListMockArray.flatMap((item) => {
-                const needToShow =
-                  selectedTab !== 'my-favourites' || [2, 5].includes(item.id);
-                return needToShow ? (
-                  <MediumPostcard key={item.id} card={item} />
-                ) : (
-                  []
-                );
-              })}
-            </LeftSide>
-            <RightSide>
-              {postCardsListMockArray.map((item) => (
-                <ShortPostcard
-                  key={item.id}
-                  card={item}
+        {apiModels ? (
+          <Main>
+            <Title>Blog</Title>
+            <MyTabPanel
+              tabItems={BlogTabsMockArray}
+              selectedTab={selectedTab}
+              setSelectedTab={setSelectedTab}
+            ></MyTabPanel>
+
+            <PostsDiv>
+              <LeftSide>
+                {postCardsListMockArray.flatMap((item) => {
+                  const needToShow =
+                    selectedTab !== 'my-favourites' || [2, 5].includes(item.id);
+                  return needToShow ? (
+                    <MediumPostcard key={item.id} card={item} />
+                  ) : (
+                    []
+                  );
+                })}
+              </LeftSide>
+              <RightSide>
+                {postCardsListMockArray.map((item) => (
+                  <ShortPostcard key={item.id} card={item} />
+                ))}
+              </RightSide>
+            </PostsDiv>
+
+            <PagePagination>
+              <Left>
+                <ArrowImg
+                  src={
+                    require('../images/arrow-sm-left-svgrepo-com.svg').default
+                  }
+                  alt="#"
                 />
-              ))}
-            </RightSide>
-          </PostsDiv>
+                <LeftPagination>
+                  <span>Back</span>
+                </LeftPagination>
+              </Left>
+              <JumperDiv>
+                <JumpButton type="button">1</JumpButton>
+                <JumpButton type="button">2</JumpButton>
+                <JumpButton type="button">3</JumpButton>
+                <JumpButton>...</JumpButton>
+                <JumpButton type="button">6</JumpButton>
+              </JumperDiv>
+              <Right>
+                <RightPagination>
+                  <span>Next</span>
+                </RightPagination>
+                <ArrowImg
+                  src={
+                    require('../images/arrow-sm-right-svgrepo-com.svg').default
+                  }
+                  alt="#"
+                />
+              </Right>
+            </PagePagination>
+          </Main>
+        ) : null}
 
-          <PagePagination>
-            <Left>
-              <ArrowImg
-                src={require('../images/arrow-sm-left-svgrepo-com.svg').default}
-                alt="#"
-              />
-              <LeftPagination>
-                <span>Back</span>
-              </LeftPagination>
-            </Left>
-            <JumperDiv>
-              <JumpButton type="button">1</JumpButton>
-              <JumpButton type="button">2</JumpButton>
-              <JumpButton type="button">3</JumpButton>
-              <JumpButton>...</JumpButton>
-              <JumpButton type="button">6</JumpButton>
-            </JumperDiv>
-            <Right>
-              <RightPagination>
-                <span>Next</span>
-              </RightPagination>
-              <ArrowImg
-                src={
-                  require('../images/arrow-sm-right-svgrepo-com.svg').default
-                }
-                alt="#"
-              />
-            </Right>
-          </PagePagination>
-        </Main>
         <Footer>
           <FooterDelimiter />
           <Year>{new Date().getFullYear()}</Year>
