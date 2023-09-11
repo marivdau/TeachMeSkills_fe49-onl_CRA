@@ -1,3 +1,4 @@
+import { ThemeSwitcher } from '#features/theme-switcher/theme-switcher';
 import './App.css';
 import { postCardsListMockArray } from './mock-data/mock-data-posts';
 import { ConfirmRegistration } from './pages/confirm-registration';
@@ -11,7 +12,7 @@ import { Success } from './pages/success-screen';
 function App() {
   return (
     <div className="App">
-      {/* <ListOfPosts cards={postCardsListMockArray}></ListOfPosts> */}
+      <ThemeSwitcher />
       <SearchResults cards={postCardsListMockArray}></SearchResults>
     </div>
   );

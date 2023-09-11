@@ -60,7 +60,7 @@ const HeaderWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: #283ca4;
+  background-color: var(--system-primary-color);
   height: 70px;
 `;
 
@@ -84,17 +84,17 @@ const SearchInput = styled.input`
   color: white;
   border: none;
   padding: 0 20px;
-  background-color: #5864c4;
+  background-color: var(--system-primary2-color);
 
   &::placeholder {
-    color: lightgray;
+    color: var(--contextual-light-color);
     font-size: 18px;
   }
 `;
 
 const CloseButton = styled.button`
   border: none;
-  background-color: #5864c4;
+  background-color: var(--system-primary2-color);
   width: 70px;
   height: 70px;
   cursor: pointer;

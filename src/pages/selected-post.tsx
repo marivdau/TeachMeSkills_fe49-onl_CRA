@@ -109,6 +109,7 @@ const LeftPagination = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  color: var(--text-secondary-color);
 `;
 
 const PrevNextSpan = styled.span`

@@ -15,11 +15,11 @@ export const Initials: React.FC<Props> = ({ firstName, secondName }) => {
 };
 
 const InitialsWrapper = styled.span`
-  color: white;
+  color: var(--text-primary-color);
   padding: 10px;
   width: 48px;
   height: 48px;
-  background: #4755a2;
+  background: var(--system-primary2-color);
   margin-right: 10px;
   font-weight: 600;
   font-size: 16px;

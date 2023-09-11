@@ -204,6 +204,7 @@ const PaginationButton = styled.button`
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
+  color: var(--text-secondary-color);
 
   &:hover {
     color: var(--system-primary-color);

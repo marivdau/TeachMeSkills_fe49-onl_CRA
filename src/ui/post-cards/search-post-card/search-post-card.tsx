@@ -1,6 +1,10 @@
 import { IPostCard } from '../../../types/post-card';
 import { useState } from 'react';
 import styled from 'styled-components';
+import { ReactComponent as VoteUpImg } from '../../../images/like-svgrepo-com.svg';
+import { ReactComponent as VoteDwnImg } from '../../../images/dislike-svgrepo-com.svg';
+import { ReactComponent as BookmarkImg } from '../../../images/bookmark-svgrepo-com.svg';
+import { ReactComponent as DotsImg } from '../../../images/dots-horizontal-svgrepo-com.svg';
 
 type PropsCard = {
   card: IPostCard;
@@ -51,9 +55,16 @@ export const SearchPostcard: React.FC<PropsCard> = (props: PropsCard) => {
             }}
             className={userVotedLike ? 'votedUp' : 'unvotedDwn'}
           >
-            <SearchActionImage
-              alt="like"
-              src={require('../../../images/like-svgrepo-com.svg').default}
+            <VoteUpImg
+              fill="var(--svg-image-fill-color)"
+              stroke="var(--text-primary-color)"
+              style={{
+                width: '20px',
+                height: '20px',
+                objectFit: 'cover',
+                position: 'relative',
+                top: '1px',
+              }}
             />
           </VoteButton>
           <SearchActionCounter>{voteUp}</SearchActionCounter>
@@ -73,9 +84,16 @@ export const SearchPostcard: React.FC<PropsCard> = (props: PropsCard) => {
             }}
             className={userVotedDislike ? 'disVotedUp' : 'disVotedDwn'}
           >
-            <SearchActionImage
-              alt="dislike"
-              src={require('../../../images/dislike-svgrepo-com.svg').default}
+            <VoteDwnImg
+              fill="var(--svg-image-fill-color)"
+              stroke="var(--text-primary-color)"
+              style={{
+                width: '20px',
+                height: '20px',
+                objectFit: 'cover',
+                position: 'relative',
+                top: '1px',
+              }}
             />
           </VoteButton>
           <SearchActionCounter>{voteDown}</SearchActionCounter>
@@ -86,16 +104,28 @@ export const SearchPostcard: React.FC<PropsCard> = (props: PropsCard) => {
             onClick={() => setAddBookmark(!addBookmark)}
             className={addBookmark ? 'selected' : 'unselected'}
           >
-            <ActionImg
-              alt="bookmark"
-              src={require('../../../images/bookmark-svgrepo-com.svg').default}
+            <BookmarkImg
+              fill="transparent"
+              stroke="var(--text-primary-color)"
+              style={{
+                width: '20px',
+                height: '20px',
+                objectFit: 'cover',
+                position: 'relative',
+                top: '1px',
+              }}
             />
           </Bookmark>
-          <SearchActionImage
-            alt="dots"
-            src={
-              require('../../../images/dots-horizontal-svgrepo-com.svg').default
-            }
+          <DotsImg
+            fill="transparent"
+            stroke="var(--text-primary-color)"
+            style={{
+              width: '20px',
+              height: '20px',
+              objectFit: 'cover',
+              position: 'relative',
+              top: '1px',
+            }}
           />
         </div>
       </SearchSecondLine>
@@ -148,7 +178,7 @@ const SearchDate = styled.span`
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
-  color: gray;
+  color: var(--text-secondary-color);
   margin-bottom: 5px;
 `;
 
@@ -158,9 +188,8 @@ const SearchTitle = styled.h2`
   font-weight: 600;
   line-height: 28px;
   margin-bottom: 10px;
+  color: var(--text-primary-color);
 `;
-
-
 
 const SearchSecondLine = styled.div`
   display: flex;
@@ -180,7 +209,7 @@ const VoteButton = styled.button`
   margin-right: 2px;
 
   &.votedUp {
-    background-color: lightgray;
+    background-color: var(--background-color-medium-gray);
     border-radius: 10%;
   }
 
@@ -189,7 +218,7 @@ const VoteButton = styled.button`
   }
 
   &.disVotedUp {
-    background-color: lightgray;
+    background-color: var(--background-color-medium-gray);
     border-radius: 10%;
   }
 
@@ -206,7 +235,7 @@ const Bookmark = styled.button`
   margin-right: 10px;
 
   &.selected {
-    background-color: lightgray;
+    background-color: var(--background-color-medium-gray);
   }
 
   &.unselected {
@@ -214,21 +243,8 @@ const Bookmark = styled.button`
   }
 `;
 
-const ActionImg = styled.img`
-  width: 20px;
-  height: 20px;
-  object-fit: cover;
-  cursor: pointer;
-`;
-
-const SearchActionImage = styled.img`
-  width: 20px;
-  height: 20px;
-  object-fit: cover;
-  cursor: pointer;
-`;
-
 const SearchActionCounter = styled.span`
   margin-right: 10px;
   font-weight: 600;
+  color: var(--text-primary-color);
 `;

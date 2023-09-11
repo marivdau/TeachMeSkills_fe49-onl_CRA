@@ -146,6 +146,7 @@ const Title = styled.h2`
   line-height: 48px;
   margin-bottom: 10px;
   max-width: 100%;
+  color: var(--text-primary-color);
 `;
 
 const Text = styled.p`
@@ -237,4 +238,5 @@ const ActionImage = styled.img`
 const ActionCounter = styled.span`
   margin-right: 10px;
   font-weight: 600;
+  color: var(--text-primary-color);
 `;

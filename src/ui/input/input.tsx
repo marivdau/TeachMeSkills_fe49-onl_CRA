@@ -42,7 +42,6 @@ const InputWrapper = styled.input<{ $borderColor?: string }>`
   all: unset;
   width: 50vh;
   padding: 10px;
-  margin-bottom: 10px;
   box-sizing: border-box;
   background-color: white;
   border: 1px solid ${({ $borderColor }) => $borderColor || 'gray'};

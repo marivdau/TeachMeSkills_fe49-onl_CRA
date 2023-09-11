@@ -11,6 +11,6 @@ export const Link: React.FC<Props> = ({ children }) => (
 
 const LinkWrapper = styled.a`
   cursor: pointer;
-  color: blue;
+  color: var(--system-primary2-color);
   font-weight: 500;
 `;

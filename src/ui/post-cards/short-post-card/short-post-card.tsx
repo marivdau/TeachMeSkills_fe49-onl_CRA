@@ -146,6 +146,7 @@ const ShortTitle = styled.h2`
   font-weight: 700;
   line-height: 18px;
   margin-bottom: 10px;
+  color: var(--text-primary-color);
 `;
 
 const ShortImageParentDiv = styled.div`
@@ -229,4 +230,5 @@ const ShortActionImage = styled.img`
 const ShortActionCounter = styled.span`
   margin-right: 10px;
   font-weight: 600;
+  color: var(--text-primary-color);
 `;

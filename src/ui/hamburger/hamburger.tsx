@@ -58,7 +58,7 @@ const ListWrapper = styled.ul`
   width: 250px;
   height: 100px;
   border-radius: 0;
-  background-color: #283ca4;
+  background-color: var(--system-primary-color);
 `;
 
 const ListLineWrapper = styled.li`
@@ -66,7 +66,7 @@ const ListLineWrapper = styled.li`
   display: flex;
   flex-direction: column;
   margin: 10px 20px;
-  background-color: #283ca4;
+  background-color: var(--system-primary-color);
   color: white;
 `;
 

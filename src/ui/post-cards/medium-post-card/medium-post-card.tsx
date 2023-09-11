@@ -143,6 +143,7 @@ const MediumTitle = styled.h2`
   font-size: 16px;
   font-weight: 700;
   line-height: 18px;
+  color: var(--text-primary-color);
 `;
 
 const MediumImageParentDiv = styled.div`
@@ -227,4 +228,5 @@ const MediumActionImage = styled.img`
 const MediumActionCounter = styled.span`
   margin-right: 10px;
   font-weight: 600;
+  color: var(--text-primary-color);
 `;

@@ -4,6 +4,8 @@ import { Header } from '#features/header/header';
 import { Title } from '#ui/title/title';
 import { postCardsListMockArray } from '../mock-data/mock-data-posts';
 import { SearchPostcard } from '#ui/post-cards/search-post-card/search-post-card';
+import { ReactComponent as ArrowImageLeft } from '../images/arrow-sm-left-svgrepo-com.svg';
+import { ReactComponent as ArrowImageRight } from '../images/arrow-sm-right-svgrepo-com.svg';
 
 type PropsSearchResultPosts = {
   cards: IPostCard[];
@@ -28,12 +30,17 @@ export const SearchResults: React.FC<PropsSearchResultPosts> = (
           <PagePagination>
             <Left>
               <PaginationButton type="button">
-                <ArrowImg
-                  src={
-                    require('../images/arrow-sm-left-svgrepo-com.svg').default
-                  }
-                  alt="#"
-                />{' '}
+                <ArrowImageLeft
+                  fill="white"
+                  stroke="var(--text-primary-color)"
+                  style={{
+                    width: '20px',
+                    height: '20px',
+                    objectFit: 'cover',
+                    position: 'relative',
+                    top: '5px',
+                  }}
+                />
                 Back
               </PaginationButton>
             </Left>
@@ -46,13 +53,17 @@ export const SearchResults: React.FC<PropsSearchResultPosts> = (
             </JumperDiv>
             <Right>
               <PaginationButton>
-                {' '}
                 Next
-                <ArrowImg
-                  src={
-                    require('../images/arrow-sm-right-svgrepo-com.svg').default
-                  }
-                  alt="#"
+                <ArrowImageRight
+                  fill="white"
+                  stroke="var(--text-primary-color)"
+                  style={{
+                    width: '20px',
+                    height: '20px',
+                    objectFit: 'cover',
+                    position: 'relative',
+                    top: '5px',
+                  }}
                 />
               </PaginationButton>
             </Right>
@@ -136,6 +147,7 @@ const PaginationButton = styled.button`
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
+  color: var(--text-secondary-color);
 
   &:hover {
     color: var(--system-primary-color);

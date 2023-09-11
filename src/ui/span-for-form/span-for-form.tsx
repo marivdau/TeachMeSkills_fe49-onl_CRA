@@ -9,6 +9,6 @@ export const Span: React.FC<Props> = ({ children }) => (
 );
 
 const SpanWrapper = styled.a`
-  color: gray;
+  color: var(--text-secondary-color);
   font-weight: 400;
 `;

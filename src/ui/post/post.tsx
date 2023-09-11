@@ -100,7 +100,7 @@ const PostWrapper = styled.div`
 
 const BreadcrambsDiv = styled.div`
   text-align: left;
-  color: gray;
+  color: var(--text-secondary-color);
 `;
 
 const HomeButton = styled.button`
@@ -109,7 +109,7 @@ const HomeButton = styled.button`
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: black;
+  color: var(--text-primary-color);
 `;
 
 const PostNum = styled.span`

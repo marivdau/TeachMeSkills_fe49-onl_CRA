@@ -25,7 +25,13 @@ export const SignInForm: React.FC = () => {
         onChange={({ currentTarget }) => setPassword(currentTarget.value)}
       />
       <div style={{ marginBottom: '25px' }}>
-        <a href="#" style={{ textDecoration: 'none', color: '#535252' }}>
+        <a
+          href="#"
+          style={{
+            textDecoration: 'none',
+            color: 'var(--system-secondary-color)',
+          }}
+        >
           Forgot password?
         </a>
       </div>
