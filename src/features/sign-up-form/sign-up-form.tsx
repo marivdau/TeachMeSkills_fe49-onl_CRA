@@ -1,10 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Input } from '#ui/input/input';
 import { Button } from '#ui/button';
 import { Link } from '#ui/link/link';
 import { Span } from '#ui/span-for-form/span-for-form';
+import { AuthorizedContext } from '../../AuthorizedContext';
 
 export const SignUpForm: React.FC = () => {
+  const isAutorized = useContext(AuthorizedContext);
+
+  console.log('SignUpForm', { isAutorized });
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
