@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { IPostCard } from '../../../types/post-card';
 import styled from 'styled-components';
+import { ReactComponent as VoteUpImg } from '../../../images/like-svgrepo-com.svg';
+import { ReactComponent as VoteDwnImg } from '../../../images/dislike-svgrepo-com.svg';
+import { ReactComponent as BookmarkImg } from '../../../images/bookmark-svgrepo-com.svg';
+import { ReactComponent as DotsImg } from '../../../images/dots-horizontal-svgrepo-com.svg';
 
 type PropsCard = {
   card: IPostCard;
@@ -52,9 +56,16 @@ export const Postcard: React.FC<PropsCard> = (props: PropsCard) => {
             }}
             className={userVotedLike ? 'votedUp' : 'unvotedDwn'}
           >
-            <ActionImage
-              alt="like"
-              src={require('../../../images/like-svgrepo-com.svg').default}
+            <VoteUpImg
+              fill="var(--svg-image-fill-color)"
+              stroke="var(--text-primary-color)"
+              style={{
+                width: '20px',
+                height: '20px',
+                objectFit: 'cover',
+                position: 'relative',
+                top: '1px',
+              }}
             />
           </VoteButton>
           <ActionCounter>{voteUp}</ActionCounter>
@@ -74,9 +85,16 @@ export const Postcard: React.FC<PropsCard> = (props: PropsCard) => {
             }}
             className={userVotedDislike ? 'disVotedUp' : 'disVotedDwn'}
           >
-            <ActionImage
-              alt="dislike"
-              src={require('../../../images/dislike-svgrepo-com.svg').default}
+            <VoteDwnImg
+              fill="var(--svg-image-fill-color)"
+              stroke="var(--text-primary-color)"
+              style={{
+                width: '20px',
+                height: '20px',
+                objectFit: 'cover',
+                position: 'relative',
+                top: '1px',
+              }}
             />
           </VoteButton>
           <ActionCounter>{voteDown}</ActionCounter>
@@ -87,16 +105,28 @@ export const Postcard: React.FC<PropsCard> = (props: PropsCard) => {
             onClick={() => setAddBookmark(!addBookmark)}
             className={addBookmark ? 'selected' : 'unselected'}
           >
-            <ActionImg
-              alt="bookmark"
-              src={require('../../../images/bookmark-svgrepo-com.svg').default}
+            <BookmarkImg
+              fill="transparent"
+              stroke="var(--text-primary-color)"
+              style={{
+                width: '20px',
+                height: '20px',
+                objectFit: 'cover',
+                position: 'relative',
+                top: '1px',
+              }}
             />
           </Bookmark>
-          <ActionImage
-            alt="dots"
-            src={
-              require('../../../images/dots-horizontal-svgrepo-com.svg').default
-            }
+          <DotsImg
+            fill="transparent"
+            stroke="var(--text-primary-color)"
+            style={{
+              width: '20px',
+              height: '20px',
+              objectFit: 'cover',
+              position: 'relative',
+              top: '1px',
+            }}
           />
         </div>
       </SecondLine>

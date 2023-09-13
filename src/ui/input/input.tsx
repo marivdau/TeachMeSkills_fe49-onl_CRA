@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & {
@@ -6,15 +7,33 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
   disabled?: boolean;
 };
 
-export const Input: React.FC<Props> = ({ labelText, disabled, error, ...restProps }) => {
+export const Input: React.FC<Props> = ({
+  labelText,
+  disabled,
+  error,
+  ...restProps
+}) => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+  const onChange = (e: any) => {
+    setValue(e.target.value);
+  };
+
   return (
     <Label>
       <LabelText>{labelText}</LabelText>
       <InputWrapper
-        type='text'
-        name='name'
+        ref={inputRef}
+        type="text"
+        name="name"
+        onChange={onChange}
+        value={value}
         disabled={disabled}
-        placeholder='Placeholder'
+        placeholder="Placeholder"
         maxLength={100}
         $borderColor={error ? 'red' : undefined}
         {...restProps}

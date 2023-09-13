@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import { IPostCard } from '../../types/post-card';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 type PropsCard = {
   card: IPostCard;
+  homeLink: React.ReactNode;
 };
 
 export const Post: React.FC<PropsCard> = (props: PropsCard) => {
-
   const [voteUp, setVoteUp] = useState(props.card.votedUpNum!);
   const [voteDown, setVoteDown] = useState(props.card.votedDownNum!);
   const [userVotedLike, setUserVotedLike] = useState(false);
@@ -17,13 +18,15 @@ export const Post: React.FC<PropsCard> = (props: PropsCard) => {
   return (
     <PostWrapper key={props.card.id}>
       <BreadcrambsDiv>
-        <HomeButton>Home</HomeButton> | <PostNum>Post {props.card.lesson_num}</PostNum>
+        {props.homeLink}| <PostNum>Post {props.card.lesson_num}</PostNum>
       </BreadcrambsDiv>
       <Title>{props.card.title}</Title>
       <Imgdiv>
         <Image src={props.card.image} />
       </Imgdiv>
-      {props.card.text.split('\n').map((item, index) => <Text key={index}>{item}</Text>)}
+      {props.card.text.split('\n').map((item, index) => (
+        <Text key={index}>{item}</Text>
+      ))}
 
       <ActionLineDiv>
         <VoteDiv>

@@ -17,7 +17,9 @@
     "jsx": "react-jsx",
     "paths": {
       "#features/*": ["./src/features/*"],
-      "#ui/*": ["./src/ui/*"]
+      "#ui/*": ["./src/ui/*"],
+      "#images/*": ["./src/images/*"]
+
     }
   },
   "include": ["src"]

@@ -15,7 +15,7 @@ export const Initials: React.FC<Props> = ({ firstName, secondName }) => {
 };
 
 const InitialsWrapper = styled.span`
-  color: var(--text-primary-color);
+  color: var(--contextual-white-color);
   padding: 10px;
   width: 48px;
   height: 48px;

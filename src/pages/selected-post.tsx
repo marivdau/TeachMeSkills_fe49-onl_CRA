@@ -1,43 +1,43 @@
 import { postCardsListMockArray } from '../mock-data/mock-data-posts';
-import { Post } from '#ui/post/post';
+import { Post } from '#ui/single-post/single-post';
 import styled from 'styled-components';
+import { Link, Navigate, useParams } from 'react-router-dom';
+import { Pagination } from '#features/pagination/pagination-selected-post/pagination-selected-post';
 
 export const SelectedPost: React.FC = () => {
+  const { postId } = useParams();
+  const numericPostId = Number(postId);
+
+  if (!Number.isFinite(numericPostId)) {
+    return <Navigate to={'/'} />;
+  }
+  
+  const selectedPost = postCardsListMockArray.find(
+    (element) => element.id === numericPostId
+  );
+  if (!selectedPost) {
+    return <Navigate to={'/'} />;
+  }
+
   return (
     <MainTemplateWrapper>
       <div>Header</div>
       <ContentWithPaddings>
         <Main>
           <BodyContainer>
-            <Post card={postCardsListMockArray[0]} />
+            <Post
+              homeLink={
+                <Link to="/">
+                  <HomeButton>Home</HomeButton>
+                </Link>
+              }
+              card={selectedPost}
+            />
           </BodyContainer>
 
           <PostDelimiter />
 
-          <PagePagination>
-            <Left>
-              <ArrowImg
-                src={require('../images/arrow-sm-left-svgrepo-com.svg').default}
-                alt="#"
-              />
-              <LeftPagination>
-                <PrevNextSpan>Prev</PrevNextSpan>
-                <PrevNextPostNameSpan>10 Things to Know About Salvador Dalí</PrevNextPostNameSpan>
-              </LeftPagination>
-            </Left>
-            <Right>
-              <RightPagination>
-                <PrevNextSpan>Next</PrevNextSpan>
-                <PrevNextPostNameSpan>8 Beautiful Villas Belonging to Artists You Need to See</PrevNextPostNameSpan>
-              </RightPagination>
-              <ArrowImg
-                src={
-                  require('../images/arrow-sm-right-svgrepo-com.svg').default
-                }
-                alt="#"
-              />
-            </Right>
-          </PagePagination>
+          <Pagination />
         </Main>
 
         <Footer>
@@ -80,58 +80,13 @@ const BodyContainer = styled.div`
   margin: auto;
 `;
 
-const PagePagination = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 50px 0;
-`;
-
-const Left = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const Right = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const RightPagination = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-`;
-
-const LeftPagination = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  color: var(--text-secondary-color);
-`;
-
-const PrevNextSpan = styled.span`
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  color: var(--text-primary-color)
-`;
-
-const PrevNextPostNameSpan = styled.span`
+const HomeButton = styled.button`
+  all: unset;
+  cursor: pointer;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: var(--text-secondary-color);
-`;
-
-const ArrowImg = styled.img`
-  width: 20px;
-  height: 20px;
-  object-fit: cover;
-  margin: 0 10px;
-  cursor: pointer;
+  color: var(--text-primary-color);
 `;
 
 const PostDelimiter = styled.hr`

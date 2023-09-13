@@ -7,14 +7,15 @@ import { ShortPostcard } from '#ui/post-cards/short-post-card/short-post-card';
 import { ITab, MyTabPanel } from '#ui/tabs/tab-panel/tab-panel';
 import { useState, useEffect } from 'react';
 import { Header } from '#features/header/header';
+import { Navigate, useParams } from 'react-router-dom';
+import { ReactComponent as ArrowLeft } from '../images/arrow-sm-left-svgrepo-com.svg';
+import { ReactComponent as ArrowRight } from '../images/arrow-sm-right-svgrepo-com.svg';
 
 type PropsListOfPosts = {
   cards: IPostCard[];
 };
 
-export const ListOfPosts: React.FC<PropsListOfPosts> = (
-  props: PropsListOfPosts
-) => {
+export const ListOfPosts: React.FC = () => {
   const [apiModels, setApiModels] = useState<IPostCard[] | null>(null);
   useEffect(() => {
     const timerId = setTimeout(() => {
@@ -24,6 +25,7 @@ export const ListOfPosts: React.FC<PropsListOfPosts> = (
       clearTimeout(timerId);
     };
   }, []);
+
 
   const [selectedTab, setSelectedTab] = useState('all');
 
@@ -41,6 +43,12 @@ export const ListOfPosts: React.FC<PropsListOfPosts> = (
       title: 'Popular',
     },
   ];
+
+  const posts = useParams();
+
+  if (!posts) {
+    return <Navigate to={'/'} />;
+  }
 
   return (
     <MainWrapper>
@@ -77,12 +85,18 @@ export const ListOfPosts: React.FC<PropsListOfPosts> = (
             <PagePagination>
               <Left>
                 <PaginationButton type="button">
-                  <ArrowImg
-                    src={
-                      require('../images/arrow-sm-left-svgrepo-com.svg').default
-                    }
-                    alt="#"
-                  />{' '}
+                <ArrowLeft
+          fill="white"
+          stroke="var(--text-primary-color)"
+          width="20"
+          height="20"
+          style={{
+            objectFit: 'cover',
+            position: 'relative',
+            top: '5px',
+            cursor: 'pointer',
+          }}
+        />{' '}
                   Back
                 </PaginationButton>
               </Left>
@@ -97,13 +111,18 @@ export const ListOfPosts: React.FC<PropsListOfPosts> = (
                 <PaginationButton>
                   {' '}
                   Next
-                  <ArrowImg
-                    src={
-                      require('../images/arrow-sm-right-svgrepo-com.svg')
-                        .default
-                    }
-                    alt="#"
-                  />
+                  <ArrowRight
+          fill="white"
+          stroke="var(--text-primary-color)"
+          width="20"
+          height="20"
+          style={{
+            objectFit: 'cover',
+            position: 'relative',
+            top: '5px',
+            cursor: 'pointer',
+          }}
+        />
                 </PaginationButton>
               </Right>
             </PagePagination>
