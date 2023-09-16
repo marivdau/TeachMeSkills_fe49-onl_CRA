@@ -31,8 +31,8 @@ export const Postcard: React.FC<PropsCard> = (props: PropsCard) => {
       <FirstLineDiv>
         <CardInfo>
           <DateDiv>{formatDate(props.card.date)}</DateDiv>
-          <Title>{props.card.title}</Title>
-          <Text>{props.card.text}</Text>
+          <Title>{props.card.title.substring(0, 50) + '...'}</Title>
+          <Text>{props.card.text.substring(0, 400) + '...'}</Text>
         </CardInfo>
         <ImageParentDiv>
           <Image src={props.card.image} />
@@ -137,6 +137,7 @@ export const Postcard: React.FC<PropsCard> = (props: PropsCard) => {
 const PostcardWrapper = styled.div`
   background-color: var(--background-color-extra-light);
   width: 100%;
+  padding: 5px;
 
   &:after {
     content: '';
@@ -171,9 +172,9 @@ const DateDiv = styled.span`
 
 const Title = styled.h2`
   all: unset;
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 700;
-  line-height: 48px;
+  line-height: 44px;
   margin-bottom: 10px;
   max-width: 100%;
   color: var(--text-primary-color);
@@ -181,15 +182,15 @@ const Title = styled.h2`
 
 const Text = styled.p`
   all: unset;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 32px;
   color: gray;
   max-width: 100%;
 `;
 
 const ImageParentDiv = styled.div`
-  width: 400px;
-  height: 400px;
+  width: 256px;
+  height: 244px;
 `;
 
 const Image = styled.img`

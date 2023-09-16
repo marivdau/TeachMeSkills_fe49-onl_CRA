@@ -1,31 +1,15 @@
-import { Title } from '#ui/title/title';
+import { Postcard } from '#ui/post-cards/big-post-card/big-post-card';
 import styled from 'styled-components';
-import { IPostCard } from '../types/post-card';
-import { MediumPostcard } from '#ui/post-cards/medium-post-card/medium-post-card';
 import { postCardsListMockArray } from '../mock-data/mock-data-posts';
+import { MediumPostcard } from '#ui/post-cards/medium-post-card/medium-post-card';
 import { ShortPostcard } from '#ui/post-cards/short-post-card/short-post-card';
-import { ITab, MyTabPanel } from '#ui/tabs/tab-panel/tab-panel';
-import { useState, useEffect } from 'react';
-import { Header } from '#features/header/header';
 import { Navigate, useParams } from 'react-router-dom';
+import { Title } from '#ui/title/title';
+import { ITab, MyTabPanel } from '#ui/tabs/tab-panel/tab-panel';
+import { useState } from 'react';
 import { PaginationMain } from '#features/pagination/pagination-main/pagination-main';
 
-type PropsListOfPosts = {
-  cards: IPostCard[];
-};
-
-export const ListOfPosts: React.FC = () => {
-  const [apiModels, setApiModels] = useState<IPostCard[] | null>(null);
-  useEffect(() => {
-    const timerId = setTimeout(() => {
-      setApiModels(postCardsListMockArray);
-    }, 3000);
-    return () => {
-      clearTimeout(timerId);
-    };
-  }, []);
-
-
+export const AllListPosts: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState('all');
 
   const BlogTabsMockArray: ITab[] = [
@@ -43,27 +27,30 @@ export const ListOfPosts: React.FC = () => {
     },
   ];
 
-  const posts = useParams();
+  const postsAll = useParams();
 
-  if (!posts) {
-    return <Navigate to={'/'} />;
+  if (!postsAll) {
+    return <Navigate to={'/'} />
   }
 
   return (
     <MainWrapper>
-      <Header />
       <ContentWithPaddings>
-        {apiModels ? (
-          <Main>
-            <Title>Blog</Title>
-            <MyTabPanel
-              tabItems={BlogTabsMockArray}
-              selectedTab={selectedTab}
-              setSelectedTab={setSelectedTab}
-            ></MyTabPanel>
+        <Main>
 
-            <PostsDiv>
-              <LeftSide>
+          <Title>Blog</Title>
+          <MyTabPanel
+            tabItems={BlogTabsMockArray}
+            selectedTab={selectedTab}
+            setSelectedTab={setSelectedTab}
+          ></MyTabPanel>
+
+          <PostsDiv>
+            <LeftListPosts>
+              <BigPost>
+                <Postcard card={postCardsListMockArray[6]} />
+              </BigPost>
+              <MediumPosts>
                 {postCardsListMockArray.flatMap((item) => {
                   const needToShow =
                     selectedTab !== 'my-favourites' || [2, 5].includes(item.id);
@@ -73,19 +60,19 @@ export const ListOfPosts: React.FC = () => {
                     []
                   );
                 })}
-              </LeftSide>
-              <RightSide>
-                {postCardsListMockArray.map((item) => (
-                  <ShortPostcard key={item.id} card={item} />
-                ))}
-              </RightSide>
-            </PostsDiv>
+              </MediumPosts>
+            </LeftListPosts>
 
-            <PaginationMain />
+            <RightListPosts>
+              {postCardsListMockArray.map((item) => {
+                return <ShortPostcard key={item.id} card={item} />
+              })}
+            </RightListPosts>
+          </PostsDiv>
 
-          </Main>
-        ) : null}
+          <PaginationMain />
 
+        </Main>
         <Footer>
           <FooterDelimiter />
           <Year>{new Date().getFullYear()}</Year>
@@ -120,15 +107,33 @@ const PostsDiv = styled.div`
   margin: auto;
 `;
 
-const LeftSide = styled.div`
-  width: 100%;
+const LeftListPosts = styled.div`
+  display: flex;
+  justify-content: stretch;
+  flex-direction: column;
+  max-width: 60vw;
+`;
+
+const BigPost = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: flex-start;
+`;
+
+const MediumPosts = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
   flex-wrap: wrap;
 `;
 
-const RightSide = styled.div``;
+const RightListPosts = styled.div`
+  display: flex;
+  justify-content: stretch;
+  flex-direction: column;
+  max-width: 40vw;
+`;
 
 const Footer = styled.footer`
   width: 100%;
