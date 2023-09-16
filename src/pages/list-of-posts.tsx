@@ -7,7 +7,7 @@ import { ShortPostcard } from '#ui/post-cards/short-post-card/short-post-card';
 import { ITab, MyTabPanel } from '#ui/tabs/tab-panel/tab-panel';
 import { useState, useEffect } from 'react';
 import { Header } from '#features/header/header';
-import { Navigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { PaginationMain } from '#features/pagination/pagination-main/pagination-main';
 
 type PropsListOfPosts = {
@@ -68,7 +68,9 @@ export const ListOfPosts: React.FC = () => {
                   const needToShow =
                     selectedTab !== 'my-favourites' || [2, 5].includes(item.id);
                   return needToShow ? (
-                    <MediumPostcard key={item.id} card={item} />
+                    <Link to={`/posts/${item.id}`} style={{ all: 'unset', cursor: 'pointer' }}>
+                      <MediumPostcard key={item.id} card={item} />
+                    </Link>
                   ) : (
                     []
                   );
@@ -76,7 +78,9 @@ export const ListOfPosts: React.FC = () => {
               </LeftSide>
               <RightSide>
                 {postCardsListMockArray.map((item) => (
-                  <ShortPostcard key={item.id} card={item} />
+                  <Link to={`/posts/${item.id}`} style={{ all: 'unset', cursor: 'pointer' }}>
+                    <ShortPostcard key={item.id} card={item} />
+                  </Link>
                 ))}
               </RightSide>
             </PostsDiv>
@@ -91,7 +95,7 @@ export const ListOfPosts: React.FC = () => {
           <Year>{new Date().getFullYear()}</Year>
         </Footer>
       </ContentWithPaddings>
-    </MainWrapper>
+    </MainWrapper >
   );
 };
 
