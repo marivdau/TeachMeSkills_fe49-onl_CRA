@@ -11,18 +11,27 @@ export const Initials: React.FC<Props> = ({ firstName, secondName }) => {
     .map((item) => item.charAt(0).toUpperCase())
     .join('');
 
-  return <InitialsWrapper>{initialsLetters}</InitialsWrapper>;
+  return (
+    <InitialsWrapper>
+      <InitialsSpan>{initialsLetters}</InitialsSpan>
+    </InitialsWrapper>
+  );
 };
 
-const InitialsWrapper = styled.span`
-  color: var(--contextual-white-color);
-  padding: 10px;
+const InitialsWrapper = styled.div`
   width: 48px;
   height: 48px;
   background: var(--system-primary2-color);
   margin-right: 10px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const InitialsSpan = styled.span`
+  color: var(--contextual-white-color);
   font-weight: 600;
   font-size: 16px;
   line-height: 34px;
-  border-radius: 2px;
 `;

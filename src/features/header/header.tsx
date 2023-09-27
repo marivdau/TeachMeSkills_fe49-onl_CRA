@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { Hamburger } from '#ui/hamburger/hamburger';
 import { Initials } from '#ui/user/user-initials/user-initials';
 import { Username } from '#ui/user/user-name/username';
+import { ReactComponent as SearchIcon } from '../../images/search-original.svg';
+import { ReactComponent as CancelIcon } from '../../images/Icon-Cancel.svg';
 
 export const Header = () => {
   const onClick = () => console.log('Button clicked!');
@@ -25,30 +27,24 @@ export const Header = () => {
       </NavArea>
       <SearchArea>
         <SearchInput
-          type='text'
-          placeholder='Search...'
+          type="text"
+          placeholder="Search..."
           maxLength={100}
           style={{ visibility: !hamburgerOpen ? 'visible' : 'hidden' }}
         />
         <CloseButton
-          type='button'
+          type="button"
           style={{ visibility: !hamburgerOpen ? 'visible' : 'hidden' }}
         >
-          <CloseImage
-            alt='close'
-            src={require('../../images/close-svgrepo-com.svg').default}
-          />
+          <CancelIcon />
         </CloseButton>
-        <SearchButton type='button'>
-          <SearchImage
-            alt='search'
-            src={require('../../images/search-svgrepo-com.svg').default}
-          />
+        <SearchButton type="button">
+          <SearchIcon />
         </SearchButton>
       </SearchArea>
       <UserWrapper>
-        <Initials firstName='Maryia' secondName='dauhan' />
-        <Username firstName='Maryia' secondName='dauhan' />
+        <Initials firstName="Maryia" secondName="dauhan" />
+        <Username firstName="Maryia" secondName="dauhan" />
       </UserWrapper>
     </HeaderWrapper>
   );
@@ -79,7 +75,7 @@ const SearchArea = styled.div`
 
 const SearchInput = styled.input`
   all: unset;
-  height: 70px;
+  height: 84px;
   width: 1000px;
   color: white;
   border: none;
@@ -96,7 +92,7 @@ const CloseButton = styled.button`
   border: none;
   background-color: var(--system-primary2-color);
   width: 70px;
-  height: 70px;
+  height: 84px;
   cursor: pointer;
 `;
 const CloseImage = styled.img`
@@ -107,18 +103,17 @@ const CloseImage = styled.img`
 
 const SearchButton = styled.button`
   background-color: transparent;
-  width: 69px;
-  height: 69px;
+  width: 84px;
+  height: 84px;
   cursor: pointer;
-  border: 1px solid gray;
-`;
-
-const SearchImage = styled.img`
-  width: 50%;
-  height: 50%;
-  object-fit: contain;
+  border: 1px solid transparent;
+  border-right: 1px solid var(--system-primary2-color);
+  border-left: 1px solid var(--system-primary2-color);
 `;
 
 const UserWrapper = styled.div`
   margin-right: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
