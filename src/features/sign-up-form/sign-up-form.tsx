@@ -1,9 +1,10 @@
 import { useContext, useState } from 'react';
 import { Input } from '#ui/input/input';
 import { Button } from '#ui/button';
-import { Link } from '#ui/link/link';
 import { Span } from '#ui/span-for-form/span-for-form';
 import { AuthorizedContext } from '../../AuthorizedContext';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const SignUpForm: React.FC = () => {
   const isAutorized = useContext(AuthorizedContext);
@@ -52,10 +53,15 @@ export const SignUpForm: React.FC = () => {
       <Button variant="primary" onClick={() => null}>
         Sign Up
       </Button>
-      <div style={{ textAlign: 'center', marginTop: '10px' }}>
+      <SignInTextDiv>
         <Span>Lorem ipsum dolor sit </Span>
-        <Link url="#">Sign in</Link>
-      </div>
+        <Link to={`/sign-in`}>Sign in</Link>
+      </SignInTextDiv>
     </form>
   );
 };
+
+const SignInTextDiv = styled.div`
+  text-align: center;
+  margin-top: 10px;
+`;

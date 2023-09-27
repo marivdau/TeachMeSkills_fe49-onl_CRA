@@ -7,7 +7,7 @@ import { ShortPostcard } from '#ui/post-cards/short-post-card/short-post-card';
 import { ITab, MyTabPanel } from '#ui/tabs/tab-panel/tab-panel';
 import { useState, useEffect } from 'react';
 import { Header } from '#features/header/header';
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { PaginationMain } from '#features/pagination/pagination-main/pagination-main';
 
 type PropsListOfPosts = {
@@ -25,7 +25,6 @@ export const ListOfPosts: React.FC = () => {
     };
   }, []);
 
-
   const [selectedTab, setSelectedTab] = useState('all');
 
   const BlogTabsMockArray: ITab[] = [
@@ -42,12 +41,6 @@ export const ListOfPosts: React.FC = () => {
       title: 'Popular',
     },
   ];
-
-  const posts = useParams();
-
-  if (!posts) {
-    return <Navigate to={'/'} />;
-  }
 
   return (
     <MainWrapper>
@@ -68,7 +61,10 @@ export const ListOfPosts: React.FC = () => {
                   const needToShow =
                     selectedTab !== 'my-favourites' || [2, 5].includes(item.id);
                   return needToShow ? (
-                    <Link to={`/posts/${item.id}`} style={{ all: 'unset', cursor: 'pointer' }}>
+                    <Link
+                      to={`/posts/${item.id}`}
+                      style={{ all: 'unset', cursor: 'pointer' }}
+                    >
                       <MediumPostcard key={item.id} card={item} />
                     </Link>
                   ) : (
@@ -78,7 +74,10 @@ export const ListOfPosts: React.FC = () => {
               </LeftSide>
               <RightSide>
                 {postCardsListMockArray.map((item) => (
-                  <Link to={`/posts/${item.id}`} style={{ all: 'unset', cursor: 'pointer' }}>
+                  <Link
+                    to={`/posts/${item.id}`}
+                    style={{ all: 'unset', cursor: 'pointer' }}
+                  >
                     <ShortPostcard key={item.id} card={item} />
                   </Link>
                 ))}
@@ -86,7 +85,6 @@ export const ListOfPosts: React.FC = () => {
             </PostsDiv>
 
             <PaginationMain />
-
           </Main>
         ) : null}
 
@@ -95,7 +93,7 @@ export const ListOfPosts: React.FC = () => {
           <Year>{new Date().getFullYear()}</Year>
         </Footer>
       </ContentWithPaddings>
-    </MainWrapper >
+    </MainWrapper>
   );
 };
 

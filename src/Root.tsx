@@ -8,7 +8,7 @@ import { SearchResults } from './pages/search-results';
 import { SelectedPost } from './pages/selected-post';
 import { SignIn } from './pages/sign-in';
 import { SignUp } from './pages/sign-up';
-import { Success } from './pages/success-screen';
+import { Success } from './pages/success';
 import { AuthorizedContext } from './AuthorizedContext';
 import { Link, Route, Routes } from 'react-router-dom';
 import { AllListPosts } from './pages/all-posts';
@@ -28,15 +28,21 @@ function Root() {
       </AuthorizedContext.Provider> */}
       <ThemeSwitcher />
       <Routes>
-        <Route index element={<Link to='/sign-up'>Go to Sign up</Link>} />
-        <Route path='/sign-up' element={<SignUp />} />
-        <Route path='/sign-in' element={<SignIn />} />
-        <Route path='/sign-up/confirm-registration' element={<ConfirmRegistration />} />
-        <Route path='/sign-up/success' element={<Success />} />
-        <Route path='/posts' element={<ListOfPosts />}></Route>
-        <Route path='/posts/:postId' element={<SelectedPost />}></Route>
-        <Route path='/posts/all' element={<AllListPosts />}></Route>
-        <Route path='/posts/search-result' element={<SearchResults cards={postCardsListMockArray} />}></Route>
+        <Route index element={<Link to="/sign-up">Go to Sign up</Link>} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route
+          path="/sign-up/confirm-registration"
+          element={<ConfirmRegistration />}
+        />
+        <Route path="/sign-up/success" element={<Success />} />
+        <Route path="/posts" element={<ListOfPosts />}></Route>
+        <Route path="/posts/:postId" element={<SelectedPost />}></Route>
+        <Route path="/posts/all" element={<AllListPosts />}></Route>
+        <Route
+          path="/posts/search-result"
+          element={<SearchResults cards={postCardsListMockArray} />}
+        ></Route>
       </Routes>
     </div>
   );
