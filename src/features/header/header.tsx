@@ -61,11 +61,11 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: var(--system-primary-color);
-  height: 70px;
+  height: 84px;
 `;
 
 const NavArea = styled.div`
-  padding: 20px;
+  /* padding: 20px; */
 `;
 
 const SearchArea = styled.div`

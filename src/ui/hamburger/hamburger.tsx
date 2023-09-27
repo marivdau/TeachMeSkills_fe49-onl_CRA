@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { ReactComponent as BurgerClosed } from '../../images/burger-icon-closed.svg';
+import { ReactComponent as BurgerOpened } from '../../images/burger-icon-opened.svg';
+
 
 type Props = {
   items: Array<{
@@ -19,18 +22,8 @@ export const Hamburger: React.FC<Props> = ({ items, onClick }) => {
   return (
     <HumburgerWrapper>
       <Humburger onClick={toggleHamburger}>
-        <Burger
-          className="burger1"
-          style={{ transform: hamburgerOpen ? 'rotate(45deg)' : 'rotate(0)' }}
-        ></Burger>
-        <Burger
-          className="burger2"
-          style={{ display: hamburgerOpen ? 'none' : 'block' }}
-        ></Burger>
-        <Burger
-          className="burger3"
-          style={{ transform: hamburgerOpen ? 'rotate(-45deg)' : 'rotate(0)' }}
-        ></Burger>
+        <BurgerClosed style={{ display: hamburgerOpen ? 'none' : 'flex' }} />
+        <BurgerOpened style={{ display: hamburgerOpen ? 'block' : 'none' }} />
       </Humburger>
 
       <ListWrapper style={{ display: hamburgerOpen ? 'block' : 'none' }}>
@@ -44,9 +37,11 @@ export const Hamburger: React.FC<Props> = ({ items, onClick }) => {
 
 const HumburgerWrapper = styled.div`
   all: unset;
-  width: 70px;
-  height: 70px;
+  width: 84px;
+  height: 84px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 `;
 
 const ListWrapper = styled.ul`
@@ -70,20 +65,12 @@ const ListLineWrapper = styled.li`
   color: white;
 `;
 
-const Humburger = styled.div`
-  width: 2rem;
-  height: 2rem;
+const Humburger = styled.button`
+  all: unset;
+  width: 83px;
+  height: 83px;
   display: flex;
-  justify-content: space-around;
-  flex-flow: column nowrap;
-  z-index: 10;
-`;
-
-const Burger = styled.div`
-  width: 24px;
-  height: 0.1rem;
-  border-radius: 1px;
-  background-color: white;
-  transform-origin: 1px;
-  transition: all 0.3s linear;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid var(--system-primary2-color);
 `;
