@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { Input } from '#ui/input/input';
 import { Button } from '#ui/button';
-import { Link } from '#ui/link/link';
+import { Link } from 'react-router-dom';
 import { Span } from '#ui/span-for-form/span-for-form';
+import styled from 'styled-components';
 
 export const SignInForm: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -41,24 +42,30 @@ export const SignInForm: React.FC = () => {
         value={password}
         onChange={({ currentTarget }) => setPassword(currentTarget.value)}
       />
-      <div style={{ marginBottom: '25px' }}>
-        <a
-          href="#"
-          style={{
-            textDecoration: 'none',
-            color: 'var(--system-secondary-color)',
-          }}
-        >
-          Forgot password?
-        </a>
-      </div>
+      <ForgotPasswordDiv>
+        <ForgotPasswordLink href="#">Forgot password?</ForgotPasswordLink>
+      </ForgotPasswordDiv>
       <Button variant="primary" onClick={() => null}>
         Sign In
       </Button>
-      <div style={{ textAlign: 'center', marginTop: '10px' }}>
+      <SignUpTextDiv>
         <Span>Lorem ipsum dolor sit </Span>
-        <Link url="#">Sign up</Link>
-      </div>
+        <Link to={`/sign-up`}>Sign up</Link>
+      </SignUpTextDiv>
     </form>
   );
 };
+
+const ForgotPasswordDiv = styled.div`
+  margin-bottom: 25px;
+`;
+
+const ForgotPasswordLink = styled.a`
+  text-decoration: none;
+  color: var(--system-secondary-color);
+`;
+
+const SignUpTextDiv = styled.div`
+  text-align: center;
+  margin-top: 10px;
+`;

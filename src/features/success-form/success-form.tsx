@@ -1,25 +1,30 @@
 import { Button } from '#ui/button';
 import { Span } from '#ui/span-for-form/span-for-form';
+import styled from 'styled-components';
 
 export const SuccessForm: React.FC = () => {
   return (
     <form>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          marginBottom: '20px',
-        }}
-      >
+      <FromText>
         <Span>Lorem ipsum </Span>
         <Span>Lorem ipsum dolor sit </Span>
-      </div>
-      <div style={{ width: '400px' }}>
+      </FromText>
+      <FromDivButton>
         <Button variant="primary" onClick={() => null}>
           Go to the App
         </Button>
-      </div>
+      </FromDivButton>
     </form>
   );
 };
+
+const FromText = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+`;
+
+const FromDivButton = styled.div`
+  width: 400px;
+`;

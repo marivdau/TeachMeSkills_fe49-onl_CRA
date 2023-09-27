@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { postCardsListMockArray } from '../mock-data/mock-data-posts';
 import { MediumPostcard } from '#ui/post-cards/medium-post-card/medium-post-card';
 import { ShortPostcard } from '#ui/post-cards/short-post-card/short-post-card';
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Title } from '#ui/title/title';
 import { ITab, MyTabPanel } from '#ui/tabs/tab-panel/tab-panel';
 import { useState } from 'react';
@@ -27,17 +27,10 @@ export const AllListPosts: React.FC = () => {
     },
   ];
 
-  const postsAll = useParams();
-
-  if (!postsAll) {
-    return <Navigate to={'/'} />
-  }
-
   return (
     <MainWrapper>
       <ContentWithPaddings>
         <Main>
-
           <Title>Blog</Title>
           <MyTabPanel
             tabItems={BlogTabsMockArray}
@@ -48,7 +41,10 @@ export const AllListPosts: React.FC = () => {
           <PostsDiv>
             <LeftListPosts>
               <BigPost>
-                <Link to={`/posts/${5}`} style={{ all: 'unset', cursor: 'pointer' }}>
+                <Link
+                  to={`/posts/${5}`}
+                  style={{ all: 'unset', cursor: 'pointer' }}
+                >
                   <Postcard card={postCardsListMockArray[4]} />
                 </Link>
               </BigPost>
@@ -57,7 +53,10 @@ export const AllListPosts: React.FC = () => {
                   const needToShow =
                     selectedTab !== 'my-favourites' || [2, 5].includes(item.id);
                   return needToShow ? (
-                    <Link to={`/posts/${item.id}`} style={{ all: 'unset', cursor: 'pointer' }}>
+                    <Link
+                      to={`/posts/${item.id}`}
+                      style={{ all: 'unset', cursor: 'pointer' }}
+                    >
                       <MediumPostcard key={item.id} card={item} />
                     </Link>
                   ) : (
@@ -69,7 +68,10 @@ export const AllListPosts: React.FC = () => {
 
             <RightListPosts>
               {postCardsListMockArray.map((item) => (
-                <Link to={`/posts/${item.id}`} style={{ all: 'unset', cursor: 'pointer' }}>
+                <Link
+                  to={`/posts/${item.id}`}
+                  style={{ all: 'unset', cursor: 'pointer' }}
+                >
                   <ShortPostcard key={item.id} card={item} />
                 </Link>
               ))}
@@ -77,14 +79,13 @@ export const AllListPosts: React.FC = () => {
           </PostsDiv>
 
           <PaginationMain />
-
         </Main>
         <Footer>
           <FooterDelimiter />
           <Year>{new Date().getFullYear()}</Year>
         </Footer>
       </ContentWithPaddings>
-    </MainWrapper >
+    </MainWrapper>
   );
 };
 
