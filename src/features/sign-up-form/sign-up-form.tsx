@@ -5,17 +5,26 @@ import { Span } from '#ui/span-for-form/span-for-form';
 import { AuthorizedContext } from '../../AuthorizedContext';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { setConfirmedPassword, setEmail, setName, setPassword } from './sign-up-form.slice';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
 export const SignUpForm: React.FC = () => {
   const isAutorized = useContext(AuthorizedContext);
 
   console.log('SignUpForm', { isAutorized });
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const dispatch = useAppDispatch();
+  const name = useAppSelector((state) => state.signUpForm.name);
+  const email = useAppSelector((state) => state.signUpForm.email);
+  const password = useAppSelector((state) => state.signUpForm.password);
+  const confirmedPassword = useAppSelector(
+    (state) => state.signUpForm.confirmedPassword
+  );
 
-  const [password, setPassword] = useState('');
-  const [confirmedPassword, setConfirmedPassword] = useState('');
+  // const [name, setName] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [confirmedPassword, setConfirmedPassword] = useState('');
 
   return (
     <form>
@@ -24,14 +33,14 @@ export const SignUpForm: React.FC = () => {
         labelText="Name"
         placeholder="Name"
         value={name}
-        onChange={({ currentTarget }) => setName(currentTarget.value)}
+        onChange={({ currentTarget }) => dispatch(setName(currentTarget.value))}
       />
       <Input
         type="email"
         labelText="Email"
         placeholder="Email"
         value={email}
-        onChange={({ currentTarget }) => setEmail(currentTarget.value)}
+        onChange={({ currentTarget }) => dispatch(setEmail(currentTarget.value))}
         error={email ? undefined : `Email shoudn't be empty`}
       />
       <Input
@@ -39,15 +48,15 @@ export const SignUpForm: React.FC = () => {
         labelText="Password"
         placeholder="Password"
         value={password}
-        onChange={({ currentTarget }) => setPassword(currentTarget.value)}
+        onChange={({ currentTarget }) => dispatch(setPassword(currentTarget.value))}
       />
       <Input
         type="password"
         labelText="Confirm password"
         placeholder="Confirm password"
         value={confirmedPassword}
-        onChange={({ currentTarget }) =>
-          setConfirmedPassword(currentTarget.value)
+        onChange={({ currentTarget }) =>dispatch(
+          setConfirmedPassword(currentTarget.value))
         }
       />
       <Button variant="primary" onClick={() => null}>
