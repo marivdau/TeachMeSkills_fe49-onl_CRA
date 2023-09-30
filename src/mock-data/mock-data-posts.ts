@@ -11,6 +11,7 @@ export const postCardsListMockArray: IPostCard[] = [
     author: 1,
     votedUpNum: 45,
     votedDownNum: 3,
+    userVote: 'up',
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ export const postCardsListMockArray: IPostCard[] = [
     author: 1,
     votedUpNum: 0,
     votedDownNum: 0,
+    userVote: null,
   },
   {
     id: 3,
@@ -33,6 +35,7 @@ export const postCardsListMockArray: IPostCard[] = [
     author: 1,
     votedUpNum: 3,
     votedDownNum: 23,
+    userVote: 'down',
   },
   {
     id: 4,
@@ -44,6 +47,7 @@ export const postCardsListMockArray: IPostCard[] = [
     author: 1,
     votedUpNum: 0,
     votedDownNum: 0,
+    userVote: null,
   },
   {
     id: 5,
@@ -55,6 +59,7 @@ export const postCardsListMockArray: IPostCard[] = [
     author: 1,
     votedUpNum: 23,
     votedDownNum: 32,
+    userVote: 'up',
   },
   {
     id: 6,
@@ -66,6 +71,7 @@ export const postCardsListMockArray: IPostCard[] = [
     author: 1,
     votedUpNum: 6,
     votedDownNum: 1,
+    userVote: 'up',
   },
   {
     id: 7,
@@ -77,6 +83,7 @@ export const postCardsListMockArray: IPostCard[] = [
     author: 1,
     votedUpNum: 0,
     votedDownNum: 0,
+    userVote: null,
   },
   {
     id: 8,
@@ -88,6 +95,7 @@ export const postCardsListMockArray: IPostCard[] = [
     author: 1,
     votedUpNum: 3,
     votedDownNum: 5,
+    userVote: 'down',
   },
   {
     id: 9,
@@ -99,6 +107,7 @@ export const postCardsListMockArray: IPostCard[] = [
     author: 1,
     votedUpNum: 100,
     votedDownNum: 2,
+    userVote: null,
   },
   {
     id: 10,
@@ -110,5 +119,6 @@ export const postCardsListMockArray: IPostCard[] = [
     author: 1,
     votedUpNum: 12,
     votedDownNum: 5,
+    userVote: null,
   },
 ];

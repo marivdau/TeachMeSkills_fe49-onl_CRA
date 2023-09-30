@@ -28,7 +28,7 @@ function Root() {
         <SignUp />
       </AuthorizedContext.Provider> */}
       {/* <ThemeSwitcher /> */}
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route index element={<Link to="/sign-up">Go to Sign up</Link>} />
         <Route path="/sign-up" element={<SignUp />} />

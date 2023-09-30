@@ -1,10 +1,9 @@
 import { IPostCard } from '../../../types/post-card';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { ReactComponent as VoteUpImg } from '../../../images/like-svgrepo-com.svg';
-import { ReactComponent as VoteDwnImg } from '../../../images/dislike-svgrepo-com.svg';
 import { ReactComponent as BookmarkImg } from '../../../images/bookmark-svgrepo-com.svg';
 import { ReactComponent as DotsImg } from '../../../images/dots-horizontal-svgrepo-com.svg';
+import { VotingLikeDislikeMain } from '#features/voting-up-down/voting-up-down-main/voting-up-down-main';
 
 type PropsCard = {
   card: IPostCard;
@@ -20,10 +19,6 @@ export const MediumPostcard: React.FC<PropsCard> = (props: PropsCard) => {
     return new Date(dateString).toLocaleDateString([], options);
   };
 
-  const [voteUp, setVoteUp] = useState(props.card.votedUpNum!);
-  const [voteDown, setVoteDown] = useState(props.card.votedDownNum!);
-  const [userVotedLike, setUserVotedLike] = useState(false);
-  const [userVotedDislike, setUserVotedDislike] = useState(false);
   const [addBookmark, setAddBookmark] = useState(false);
 
   return (
@@ -39,64 +34,7 @@ export const MediumPostcard: React.FC<PropsCard> = (props: PropsCard) => {
       </MediumFirstLine>
       <MediumSecondLine>
         <MediumLikeDiv>
-          <VoteButton
-            type="button"
-            onClick={() => {
-              setUserVotedLike(!userVotedLike);
-              if (!userVotedLike && userVotedDislike === true) {
-                setVoteUp(voteUp + 1);
-                setVoteDown(voteDown - 1);
-                setUserVotedDislike(!userVotedDislike);
-              } else if (!userVotedLike && userVotedDislike === false) {
-                setVoteUp(voteUp + 1);
-              } else {
-                setVoteUp(voteUp - 1);
-              }
-            }}
-            className={userVotedLike ? 'votedUp' : 'unvotedDwn'}
-          >
-            <VoteUpImg
-              fill="var(--svg-image-fill-color)"
-              stroke="var(--text-primary-color)"
-              style={{
-                width: '20px',
-                height: '20px',
-                objectFit: 'cover',
-                position: 'relative',
-                top: '1px',
-              }}
-            />
-          </VoteButton>
-          <MediumActionCounter>{voteUp}</MediumActionCounter>
-          <VoteButton
-            type="button"
-            onClick={() => {
-              setUserVotedDislike(!userVotedDislike);
-              if (!userVotedDislike && userVotedLike === true) {
-                setVoteDown(voteDown + 1);
-                setVoteUp(voteUp - 1);
-                setUserVotedLike(!userVotedLike);
-              } else if (!userVotedDislike && userVotedLike === false) {
-                setVoteDown(voteDown + 1);
-              } else {
-                setVoteDown(voteDown - 1);
-              }
-            }}
-            className={userVotedDislike ? 'disVotedUp' : 'disVotedDwn'}
-          >
-            <VoteDwnImg
-              fill="var(--svg-image-fill-color)"
-              stroke="var(--text-primary-color)"
-              style={{
-                width: '20px',
-                height: '20px',
-                objectFit: 'cover',
-                position: 'relative',
-                top: '1px',
-              }}
-            />
-          </VoteButton>
-          <MediumActionCounter>{voteDown}</MediumActionCounter>
+          <VotingLikeDislikeMain cardId={props.card.id}></VotingLikeDislikeMain>
         </MediumLikeDiv>
         <div>
           <Bookmark
@@ -214,49 +152,4 @@ const Bookmark = styled.button`
   &.unselected {
     background-color: transparent;
   }
-`;
-
-const ActionImg = styled.img`
-  width: 20px;
-  height: 20px;
-  object-fit: cover;
-  cursor: pointer;
-`;
-
-const VoteButton = styled.button`
-  border: none;
-  background-color: transparent;
-  margin-right: 2px;
-
-  &.votedUp {
-    background-color: lightgray;
-    border-radius: 10%;
-  }
-
-  &.unvotedDwn {
-    background-color: transparent;
-  }
-
-  &.disVotedUp {
-    background-color: lightgray;
-    border-radius: 10%;
-  }
-
-  &.disVotedDwn {
-    background-color: transparent;
-  }
-`;
-
-const MediumActionImage = styled.img`
-  width: 20px;
-  height: 20px;
-  object-fit: cover;
-  margin-right: 10px;
-  cursor: pointer;
-`;
-
-const MediumActionCounter = styled.span`
-  margin-right: 10px;
-  font-weight: 600;
-  color: var(--text-primary-color);
 `;

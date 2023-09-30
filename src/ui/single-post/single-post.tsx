@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { IPostCard } from '../../types/post-card';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { VotingLikeDislikeSelectedPost } from '#features/voting-up-down/voting-up-down-selected-post/voting-up-down-selected-post';
 
 type PropsCard = {
   card: IPostCard;
@@ -9,10 +9,6 @@ type PropsCard = {
 };
 
 export const Post: React.FC<PropsCard> = (props: PropsCard) => {
-  const [voteUp, setVoteUp] = useState(props.card.votedUpNum!);
-  const [voteDown, setVoteDown] = useState(props.card.votedDownNum!);
-  const [userVotedLike, setUserVotedLike] = useState(false);
-  const [userVotedDislike, setUserVotedDislike] = useState(false);
   const [addBookmark, setAddBookmark] = useState(false);
 
   return (
@@ -30,54 +26,9 @@ export const Post: React.FC<PropsCard> = (props: PropsCard) => {
 
       <ActionLineDiv>
         <VoteDiv>
-          <LikeDiv>
-            <VoteButtonUp
-              type="button"
-              onClick={() => {
-                setUserVotedLike(!userVotedLike);
-                if (!userVotedLike && userVotedDislike === true) {
-                  setVoteUp(voteUp + 1);
-                  setVoteDown(voteDown - 1);
-                  setUserVotedDislike(!userVotedDislike);
-                } else if (!userVotedLike && userVotedDislike === false) {
-                  setVoteUp(voteUp + 1);
-                } else {
-                  setVoteUp(voteUp - 1);
-                }
-              }}
-              className={userVotedLike ? 'votedUp' : 'unvotedDwn'}
-            >
-              <ActionImg
-                alt="like"
-                src={require('../../images/like-svgrepo-com.svg').default}
-              />
-            </VoteButtonUp>
-            {/* <ActionCounter>{voteUp}</ActionCounter> */}
-          </LikeDiv>
-          <DislikeDiv>
-            <VoteButtonDown
-              type="button"
-              onClick={() => {
-                setUserVotedDislike(!userVotedDislike);
-                if (!userVotedDislike && userVotedLike === true) {
-                  setVoteDown(voteDown + 1);
-                  setVoteUp(voteUp - 1);
-                  setUserVotedLike(!userVotedLike);
-                } else if (!userVotedDislike && userVotedLike === false) {
-                  setVoteDown(voteDown + 1);
-                } else {
-                  setVoteDown(voteDown - 1);
-                }
-              }}
-              className={userVotedDislike ? 'disVotedUp' : 'disVotedDwn'}
-            >
-              <ActionImg
-                alt="dislike"
-                src={require('../../images/dislike-svgrepo-com.svg').default}
-              />
-            </VoteButtonDown>
-            {/* <ActionCounter>{voteDown}</ActionCounter> */}
-          </DislikeDiv>
+          <VotingLikeDislikeSelectedPost
+            cardId={props.card.id}
+          ></VotingLikeDislikeSelectedPost>
         </VoteDiv>
 
         <Bookmark
@@ -149,59 +100,6 @@ const Text = styled.text`
   margin-bottom: 48px;
 `;
 
-const LikeDiv = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: 10px;
-`;
-
-const VoteButtonUp = styled.button`
-  border: none;
-  width: 88px;
-  height: 56px;
-  background-color: var(--contextual-light-color);
-  margin-right: 2px;
-
-  &.votedUp {
-    background-color: var(--system-primary2-color);
-  }
-
-  &.unvotedDwn {
-    background-color: var(--contextual-light-color);
-  }
-
-  &:hover {
-    background-color: var(--system-primary2-color);
-  }
-`;
-
-const VoteButtonDown = styled.button`
-  border: none;
-  width: 88px;
-  height: 56px;
-  background-color: var(--contextual-light-color);
-  margin-right: 2px;
-
-  &.disVotedUp {
-    background-color: var(--contextual-error-color);
-  }
-
-  &.disVotedDwn {
-    background-color: var(--contextual-light-color);
-  }
-
-  &:hover {
-    background-color: var(--contextual-error-color);
-  }
-`;
-
-const ActionImg = styled.img`
-  width: 24px;
-  height: 24px;
-  object-fit: cover;
-  cursor: pointer;
-`;
-
 const ActionLineDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -214,10 +112,6 @@ const ActionLineDiv = styled.div`
 const VoteDiv = styled.div`
   display: flex;
   flex-direction: row;
-`;
-
-const DislikeDiv = styled.div`
-  all: unset;
 `;
 
 const Bookmark = styled.button`
@@ -250,9 +144,4 @@ const BookmarkImg = styled.img`
   margin-right: 10px;
   top: 5px;
   width: 24px;
-`;
-
-const ActionCounter = styled.span`
-  margin-right: 10px;
-  font-weight: 600;
 `;
