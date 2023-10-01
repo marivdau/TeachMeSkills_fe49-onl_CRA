@@ -6,13 +6,7 @@ import { postCardsListMockArray } from '../mock-data/mock-data-posts';
 import { ShortPostcard } from '#ui/post-cards/short-post-card/short-post-card';
 import { ITab, MyTabPanel } from '#ui/tabs/tab-panel/tab-panel';
 import { useState, useEffect } from 'react';
-import { Header } from '#features/header/header';
-import { Link } from 'react-router-dom';
 import { PaginationMain } from '#features/pagination/pagination-main/pagination-main';
-
-type PropsListOfPosts = {
-  cards: IPostCard[];
-};
 
 export const ListOfPosts: React.FC = () => {
   const [apiModels, setApiModels] = useState<IPostCard[] | null>(null);
@@ -44,7 +38,6 @@ export const ListOfPosts: React.FC = () => {
 
   return (
     <MainWrapper>
-      <Header />
       <ContentWithPaddings>
         {apiModels ? (
           <Main>
@@ -61,12 +54,7 @@ export const ListOfPosts: React.FC = () => {
                   const needToShow =
                     selectedTab !== 'my-favourites' || [2, 5].includes(item.id);
                   return needToShow ? (
-                    <Link
-                      to={`/posts/${item.id}`}
-                      style={{ all: 'unset', cursor: 'pointer' }}
-                    >
-                      <MediumPostcard key={item.id} card={item} />
-                    </Link>
+                    <MediumPostcard key={item.id} card={item} />
                   ) : (
                     []
                   );
@@ -74,12 +62,7 @@ export const ListOfPosts: React.FC = () => {
               </LeftSide>
               <RightSide>
                 {postCardsListMockArray.map((item) => (
-                  <Link
-                    to={`/posts/${item.id}`}
-                    style={{ all: 'unset', cursor: 'pointer' }}
-                  >
-                    <ShortPostcard key={item.id} card={item} />
-                  </Link>
+                  <ShortPostcard key={item.id} card={item} />
                 ))}
               </RightSide>
             </PostsDiv>

@@ -20,7 +20,6 @@ export const VotingLikeDislikeSelectedPost: React.FC<PropsCard> = ({ cardId }) =
         <VoteButtonUp
           type="button"
           onClick={() => {
-            if (activeLike) return;
             dispatch(setVoteUp({ cardId }));
           }}
           className={activeLike ? 'votedUp' : 'unvotedDwn'}
@@ -43,7 +42,6 @@ export const VotingLikeDislikeSelectedPost: React.FC<PropsCard> = ({ cardId }) =
         <VoteButtonDown
           type="button"
           onClick={() => {
-            if (activeDislike) return;
             dispatch(setVoteDown({ cardId }));
           }}
           className={activeDislike ? 'disVotedUp' : 'disVotedDwn'}

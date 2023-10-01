@@ -1,30 +1,24 @@
 import styled from 'styled-components';
-import { useState } from 'react';
 import { Hamburger } from '#ui/hamburger/hamburger';
 import { Initials } from '#ui/user/user-initials/user-initials';
 import { Username } from '#ui/user/user-name/username';
 import { ReactComponent as SearchIcon } from '../../images/search-original.svg';
 import { ReactComponent as CancelIcon } from '../../images/Icon-Cancel.svg';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { toggle } from './header.slice';
+import { menuMockArray } from '../../mock-data/mock-data-menu';
 
 export const Header = () => {
-  const onClick = () => console.log('Button clicked!');
-  const [hamburgerOpen, setHamburgerOpen] = useState(false);
-
-  const toggleHamburger = () => {
-    setHamburgerOpen(!hamburgerOpen);
-  };
+  const dispatch = useAppDispatch();
+  const { hamburgerOpen } = useAppSelector((state) => state.hamburgerMenu);
 
   return (
     <HeaderWrapper>
-      <NavArea onClick={toggleHamburger}>
-        <Hamburger
-          items={[
-            { id: '1', title: 'Menu item 1' },
-            { id: '2', title: 'Menu item 2' },
-          ]}
-          onClick={onClick}
-        />
-      </NavArea>
+      <Hamburger
+        items={menuMockArray.map((item) => item)}
+        onClick={() => dispatch(toggle())}
+      />
+
       <SearchArea>
         <SearchInput
           type="text"
@@ -60,10 +54,6 @@ const HeaderWrapper = styled.div`
   height: 84px;
 `;
 
-const NavArea = styled.div`
-  /* padding: 20px; */
-`;
-
 const SearchArea = styled.div`
   all: unset;
   display: flex;
@@ -94,11 +84,6 @@ const CloseButton = styled.button`
   width: 70px;
   height: 84px;
   cursor: pointer;
-`;
-const CloseImage = styled.img`
-  width: 50%;
-  height: 50%;
-  object-fit: contain;
 `;
 
 const SearchButton = styled.button`

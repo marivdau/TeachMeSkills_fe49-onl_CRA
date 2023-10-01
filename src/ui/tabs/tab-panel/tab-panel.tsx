@@ -1,21 +1,28 @@
 import styled from 'styled-components';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { setActiveTab } from './tab-panel.slice';
 
 export interface ITab {
-  id: string;    
-  title: string;  
+  id: string;
+  title: string;
   disabled?: boolean;
 }
 
 type MyTabPanelProps = {
   tabItems: ITab[];
   selectedTab: string;
-  setSelectedTab: (id: string) => void;  
+  setSelectedTab: (id: string) => void;
 };
 
-export const MyTabPanel: React.FC<MyTabPanelProps> = (props: MyTabPanelProps) => {
-  const handleClick = (index: string) => {
-    props.setSelectedTab(index);
-  };
+export const MyTabPanel: React.FC<MyTabPanelProps> = (
+  props: MyTabPanelProps
+) => {
+  // const handleClick = (index: string) => {
+  //   props.setSelectedTab(index);
+  // };
+
+  const dispatch = useAppDispatch();
+  const activeId = useAppSelector((state) => state.tabPanel.activeTab) || 'all';
 
   return (
     <TabPanelWrapper>
@@ -23,7 +30,7 @@ export const MyTabPanel: React.FC<MyTabPanelProps> = (props: MyTabPanelProps) =>
         <TabWrapper key={index}>
           <TabButton
             type="button"
-            onClick={() => handleClick(item.id)}
+            onClick={() => dispatch(setActiveTab(item.id))}
             className={props.selectedTab === item.id ? 'active' : 'inactive'}
             disabled={item.disabled}
           >

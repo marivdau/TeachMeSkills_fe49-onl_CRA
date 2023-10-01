@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { ReactComponent as BookmarkImg } from '../../../images/bookmark-svgrepo-com.svg';
 import { ReactComponent as DotsImg } from '../../../images/dots-horizontal-svgrepo-com.svg';
 import { VotingLikeDislikeMain } from '#features/voting-up-down/voting-up-down-main/voting-up-down-main';
+import { Link } from 'react-router-dom';
 
 type PropsCard = {
   card: IPostCard;
@@ -26,8 +27,10 @@ export const Postcard: React.FC<PropsCard> = (props: PropsCard) => {
       <FirstLineDiv>
         <CardInfo>
           <DateDiv>{formatDate(props.card.date)}</DateDiv>
-          <Title>{props.card.title.substring(0, 50) + '...'}</Title>
-          <Text>{props.card.text.substring(0, 400) + '...'}</Text>
+          <Link to={`/posts/${5}`} style={{ cursor: 'pointer' }}>
+            <Title>{props.card.title.substring(0, 50) + '...'}</Title>{' '}
+          </Link>
+          <Text>{props.card.text.substring(0, 400) + '...'}</Text>{' '}
         </CardInfo>
         <ImageParentDiv>
           <Image src={props.card.image} />

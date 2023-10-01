@@ -3,11 +3,16 @@ import styled from 'styled-components';
 import { postCardsListMockArray } from '../mock-data/mock-data-posts';
 import { MediumPostcard } from '#ui/post-cards/medium-post-card/medium-post-card';
 import { ShortPostcard } from '#ui/post-cards/short-post-card/short-post-card';
-import { Link } from 'react-router-dom';
 import { Title } from '#ui/title/title';
 import { ITab, MyTabPanel } from '#ui/tabs/tab-panel/tab-panel';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PaginationMain } from '#features/pagination/pagination-main/pagination-main';
+import {
+  getAllPosts,
+  getAllPostsSuccess,
+  getAllPostsFailure,
+} from '#features/all-posts/all-posts.slice';
+import { useAppDispatch, useAppSelector } from '../hooks';
 
 export const AllListPosts: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState('all');
@@ -16,16 +21,50 @@ export const AllListPosts: React.FC = () => {
     {
       id: 'all',
       title: 'All',
+      disabled: false,
     },
     {
       id: 'my-favourites',
       title: 'My Favourites',
+      disabled: false,
     },
     {
       id: 'popular',
       title: 'Popular',
+      disabled: false,
     },
   ];
+
+  const dispatch = useAppDispatch();
+  const { posts, isLoading, error } = useAppSelector(
+    ({ allPosts }) => allPosts
+  );
+
+  useEffect(() => {
+    dispatch(getAllPosts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      if (Math.random() < 0.5) {
+        dispatch(getAllPostsSuccess({ posts: postCardsListMockArray }));
+      } else {
+        dispatch(getAllPostsFailure({ name: 'Error', mesage: 'SERVER ERROR' }));
+      }
+    }, 2000);
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [dispatch]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: ${error.message}</div>;
+  }
 
   return (
     <MainWrapper>
@@ -41,24 +80,17 @@ export const AllListPosts: React.FC = () => {
           <PostsDiv>
             <LeftListPosts>
               <BigPost>
-                <Link
-                  to={`/posts/${5}`}
-                  style={{ all: 'unset', cursor: 'pointer' }}
-                >
-                  <Postcard card={postCardsListMockArray[4]} />
-                </Link>
+                <Postcard
+                  key={postCardsListMockArray[4].id}
+                  card={postCardsListMockArray[4]}
+                />
               </BigPost>
               <MediumPosts>
                 {postCardsListMockArray.flatMap((item) => {
                   const needToShow =
                     selectedTab !== 'my-favourites' || [2, 5].includes(item.id);
                   return needToShow ? (
-                    <Link
-                      to={`/posts/${item.id}`}
-                      style={{ all: 'unset', cursor: 'pointer' }}
-                    >
-                      <MediumPostcard key={item.id} card={item} />
-                    </Link>
+                    <MediumPostcard key={item.id} card={item} />
                   ) : (
                     []
                   );
@@ -68,12 +100,7 @@ export const AllListPosts: React.FC = () => {
 
             <RightListPosts>
               {postCardsListMockArray.map((item) => (
-                <Link
-                  to={`/posts/${item.id}`}
-                  style={{ all: 'unset', cursor: 'pointer' }}
-                >
-                  <ShortPostcard key={item.id} card={item} />
-                </Link>
+                <ShortPostcard key={item.id} card={item} />
               ))}
             </RightListPosts>
           </PostsDiv>

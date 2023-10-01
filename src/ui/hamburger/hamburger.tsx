@@ -140,7 +140,7 @@ const LogoutButton = styled.button`
   text-align: center;
   margin: auto;
   width: 100%;
-  background-color: var(--background-color-extra-light);
+  background-color: var(--background-color-medium-gray);
   font-weight: 600;
   line-height: 24px;
   font-size: 16px;

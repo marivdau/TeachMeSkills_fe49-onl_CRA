@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { ReactComponent as BookmarkImg } from '../../../images/bookmark-svgrepo-com.svg';
 import { ReactComponent as DotsImg } from '../../../images/dots-horizontal-svgrepo-com.svg';
 import { VotingLikeDislikeMain } from '#features/voting-up-down/voting-up-down-main/voting-up-down-main';
+import { Link } from 'react-router-dom';
 
 type PropsCard = {
   card: IPostCard;
@@ -26,7 +27,9 @@ export const ShortPostcard: React.FC<PropsCard> = (props: PropsCard) => {
       <ShortFirstLine>
         <ShortCardFirstLine>
           <ShortDate>{formatDate(props.card.date)}</ShortDate>
-          <ShortTitle>{props.card.title}</ShortTitle>
+          <Link to={`/posts/${props.card.id}`} style={{ cursor: 'pointer' }}>
+            <ShortTitle>{props.card.title}</ShortTitle>
+          </Link>
         </ShortCardFirstLine>
         <ShortImageParentDiv>
           <Image src={props.card.image} />
