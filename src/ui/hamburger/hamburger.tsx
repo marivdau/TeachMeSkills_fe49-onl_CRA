@@ -41,10 +41,12 @@ export const Hamburger: React.FC<Props> = ({ items, onClick }) => {
         </MenuItemsList>
         <ColorThemeButtonDiv>
           <LightThemeButton>
-            <LightIcon />
+            <LightIcon
+              fill="var(--svg-image-menu-color-light)" />
           </LightThemeButton>
           <DarkThemeButton>
-            <DarkIcon />
+            <DarkIcon
+              fill="var(--svg-image-menu-color-dark)" />
           </DarkThemeButton>
         </ColorThemeButtonDiv>
         <LogoutButton>Log Out</LogoutButton>

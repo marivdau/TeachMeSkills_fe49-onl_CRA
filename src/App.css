@@ -18,6 +18,8 @@
   --border-primary-color: gray;
 
   --svg-image-fill-color: #313037;
+  --svg-image-menu-color-light: #313037;
+  --svg-image-menu-color-dark: #AFB2B6;
 
   &.dark {
     --background-color-gray: #313037;
@@ -31,5 +33,7 @@
     --border-primary-color: gray;
 
     --svg-image-fill-color: #FFFFFF;
+    --svg-image-menu-color-light: #AFB2B6;
+    --svg-image-menu-color-dark: #313037;    
   }
 }

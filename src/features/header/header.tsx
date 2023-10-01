@@ -26,15 +26,17 @@ export const Header = () => {
           maxLength={100}
           style={{ visibility: !hamburgerOpen ? 'visible' : 'hidden' }}
         />
-        <CloseButton
-          type="button"
-          style={{ visibility: !hamburgerOpen ? 'visible' : 'hidden' }}
-        >
-          <CancelIcon />
-        </CloseButton>
-        <SearchButton type="button">
-          <SearchIcon />
-        </SearchButton>
+        <ButtonsDiv>
+          <CloseButton
+            type="button"
+            style={{ visibility: !hamburgerOpen ? 'visible' : 'hidden' }}
+          >
+            <CancelIcon />
+          </CloseButton>
+          <SearchButton type="button">
+            <SearchIcon />
+          </SearchButton>
+        </ButtonsDiv>
       </SearchArea>
       <UserWrapper>
         <Initials firstName="Maryia" secondName="dauhan" />
@@ -58,15 +60,15 @@ const SearchArea = styled.div`
   all: unset;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  max-width: 1500px;
+  justify-content: space-between;
+  width: -webkit-fill-available;
 `;
 
 const SearchInput = styled.input`
   all: unset;
   height: 84px;
-  width: 1000px;
+  width: -webkit-fill-available;
   color: white;
   border: none;
   padding: 0 20px;
@@ -76,6 +78,11 @@ const SearchInput = styled.input`
     color: var(--contextual-light-color);
     font-size: 18px;
   }
+`;
+
+const ButtonsDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 const CloseButton = styled.button`
@@ -97,8 +104,9 @@ const SearchButton = styled.button`
 `;
 
 const UserWrapper = styled.div`
-  margin-right: 20px;
+  margin: 0 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 236px;
 `;
