@@ -50,7 +50,7 @@ export const votingNumberUpDown = createSlice({
       if (!data) return;
 
       if (data.userVote === 'down') {
-        data.voteUpNum--;
+        data.voteDownNum--;
         data.userVote = null;
         return;
       }
