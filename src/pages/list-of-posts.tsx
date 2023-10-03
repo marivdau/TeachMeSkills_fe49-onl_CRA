@@ -7,6 +7,7 @@ import { ShortPostcard } from '#ui/post-cards/short-post-card/short-post-card';
 import { ITab, MyTabPanel } from '#ui/tabs/tab-panel/tab-panel';
 import { useState, useEffect } from 'react';
 import { PaginationMain } from '#features/pagination/pagination-main/pagination-main';
+import { useAppSelector } from '../hooks';
 
 export const ListOfPosts: React.FC = () => {
   const [apiModels, setApiModels] = useState<IPostCard[] | null>(null);
@@ -20,6 +21,9 @@ export const ListOfPosts: React.FC = () => {
   }, []);
 
   const [selectedTab, setSelectedTab] = useState('all');
+
+  const activeId =
+    useAppSelector((state) => state.tabPanel.activeTab) || 'all';
 
   const BlogTabsMockArray: ITab[] = [
     {
@@ -44,7 +48,7 @@ export const ListOfPosts: React.FC = () => {
             <Title>Blog</Title>
             <MyTabPanel
               tabItems={BlogTabsMockArray}
-              selectedTab={selectedTab}
+              // selectedTab={selectedTab}
               setSelectedTab={setSelectedTab}
             ></MyTabPanel>
 
@@ -52,7 +56,7 @@ export const ListOfPosts: React.FC = () => {
               <LeftSide>
                 {postCardsListMockArray.flatMap((item) => {
                   const needToShow =
-                    selectedTab !== 'my-favourites' || [2, 5].includes(item.id);
+                    activeId !== 'my-favourites' || [2, 5].includes(item.id);
                   return needToShow ? (
                     <MediumPostcard key={item.id} card={item} />
                   ) : (

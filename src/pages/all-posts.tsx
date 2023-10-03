@@ -17,6 +17,9 @@ import { useAppDispatch, useAppSelector } from '../hooks';
 export const AllListPosts: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState('all');
 
+  const activeId =
+  useAppSelector((state) => state.tabPanel.activeTab) || 'all';
+
   const BlogTabsMockArray: ITab[] = [
     {
       id: 'all',
@@ -73,7 +76,7 @@ export const AllListPosts: React.FC = () => {
           <Title>Blog</Title>
           <MyTabPanel
             tabItems={BlogTabsMockArray}
-            selectedTab={selectedTab}
+            // selectedTab={selectedTab}
             setSelectedTab={setSelectedTab}
           ></MyTabPanel>
 
@@ -88,7 +91,7 @@ export const AllListPosts: React.FC = () => {
               <MediumPosts>
                 {postCardsListMockArray.flatMap((item) => {
                   const needToShow =
-                    selectedTab !== 'my-favourites' || [2, 5].includes(item.id);
+                  activeId !== 'my-favourites' || [2, 5].includes(item.id);
                   return needToShow ? (
                     <MediumPostcard key={item.id} card={item} />
                   ) : (

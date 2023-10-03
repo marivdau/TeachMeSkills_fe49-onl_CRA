@@ -10,7 +10,7 @@ export interface ITab {
 
 type MyTabPanelProps = {
   tabItems: ITab[];
-  selectedTab: string;
+  // selectedTab: string;
   setSelectedTab: (id: string) => void;
 };
 
@@ -31,7 +31,7 @@ export const MyTabPanel: React.FC<MyTabPanelProps> = (
           <TabButton
             type="button"
             onClick={() => dispatch(setActiveTab(item.id))}
-            className={props.selectedTab === item.id ? 'active' : 'inactive'}
+            className={activeId === item.id ? 'active' : 'inactive'}
             disabled={item.disabled}
           >
             {props.tabItems[index].title}
