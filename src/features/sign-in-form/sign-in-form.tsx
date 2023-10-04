@@ -49,7 +49,7 @@ export const SignInForm: React.FC = () => {
         Sign In
       </Button>
       <SignUpTextDiv>
-        <Span>Lorem ipsum dolor sit </Span>
+        <Span>Don’t have an account? </Span>
         <Link to={`/sign-up`}>Sign up</Link>
       </SignUpTextDiv>
     </form>

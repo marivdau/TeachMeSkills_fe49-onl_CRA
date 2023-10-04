@@ -7,6 +7,7 @@ import createSagaMiddleware from '@redux-saga/core';
 import { configureStore } from '@reduxjs/toolkit';
 import { rootSaga } from './sagas';
 import { registrationReducer } from '#features/auth/registration.slice';
+import { activationReducer } from '#features/auth/activation.slice';
 
 let sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];
@@ -15,6 +16,7 @@ export const allReducers = {};
 
 export const store = configureStore({
   reducer: {
+    activation: activationReducer,
     allPosts: allPostsReducer,
     hamburgerMenu: hamburgerOpenReducer,
     registration: registrationReducer,

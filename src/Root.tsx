@@ -13,6 +13,7 @@ import { AuthorizedContext } from './AuthorizedContext';
 import { Link, Route, Routes } from 'react-router-dom';
 import { AllListPosts } from './pages/all-posts';
 import { Header } from '#features/header/header';
+import { ActivatePage } from './pages/activate';
 
 function Root() {
   const [isAuthorized, setIsAuthorized] = useState(false);
@@ -45,6 +46,7 @@ function Root() {
           path="/posts/search-result"
           element={<SearchResults cards={postCardsListMockArray} />}
         ></Route>
+        <Route path='/activate/:uid/:token' element={<ActivatePage />} />
       </Routes>
     </div>
   );

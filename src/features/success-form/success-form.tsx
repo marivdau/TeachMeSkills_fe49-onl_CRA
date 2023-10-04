@@ -6,8 +6,8 @@ export const SuccessForm: React.FC = () => {
   return (
     <form>
       <FromText>
-        <Span>Lorem ipsum </Span>
-        <Span>Lorem ipsum dolor sit </Span>
+        <Span>Email confirmed.</Span>
+        <Span>Your registration is now completed</Span>
       </FromText>
       <FromDivButton>
         <Button variant="primary" onClick={() => null}>

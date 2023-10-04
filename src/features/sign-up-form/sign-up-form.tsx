@@ -83,6 +83,8 @@ export const SignUpForm: React.FC = () => {
             register({
               username: name,
               password,
+              email,
+              // course_group: 22,
             })
           )
         }
@@ -90,7 +92,7 @@ export const SignUpForm: React.FC = () => {
         Sign Up
       </Button>
       <SignInTextDiv>
-        <Span>Lorem ipsum dolor sit </Span>
+        <Span>Already have an account? </Span>
         <Link to={`/sign-in`}>Sign in</Link>
       </SignInTextDiv>
     </form>

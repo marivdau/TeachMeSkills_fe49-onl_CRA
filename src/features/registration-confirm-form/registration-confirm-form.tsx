@@ -1,18 +1,19 @@
 import { Button } from '#ui/button';
-import { Span } from '#ui/span-for-form/span-for-form';
 import styled from 'styled-components';
 
 export const RegistrationConfirmationForm: React.FC = () => {
   return (
     <form>
       <FromText>
-        <Span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Span>
-        <Span>Lorem ipsum dolor sit </Span>
-        <Span>Lorem ipsum </Span>
+        <Span>Please activate your account with the activation</Span>
+        <Span>
+          link in the email <EmailSpan>example@gmail.com.</EmailSpan>
+        </Span>
+        <Span> Please, check your email</Span>
       </FromText>
       <FromDivButton>
         <Button variant="primary" onClick={() => null}>
-          Success Confirmation
+          Go to home
         </Button>
       </FromDivButton>
     </form>
@@ -28,4 +29,13 @@ const FromText = styled.div`
 
 const FromDivButton = styled.div`
   width: 400px;
+`;
+
+const Span = styled.div`
+  color: var(--text-primary-color);
+  font-weight: 400;
+`;
+
+const EmailSpan = styled.span`
+  font-weight: bold;
 `;
