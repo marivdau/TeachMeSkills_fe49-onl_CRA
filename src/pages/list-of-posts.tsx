@@ -7,7 +7,9 @@ import { ShortPostcard } from '#ui/post-cards/short-post-card/short-post-card';
 import { ITab, MyTabPanel } from '#ui/tabs/tab-panel/tab-panel';
 import { useState, useEffect } from 'react';
 import { PaginationMain } from '#features/pagination/pagination-main/pagination-main';
-import { useAppSelector } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { Modal } from '#features/modal/modal';
+import { getAllPosts } from '#features/all-posts/all-posts.slice';
 
 export const ListOfPosts: React.FC = () => {
   const [apiModels, setApiModels] = useState<IPostCard[] | null>(null);
@@ -20,10 +22,16 @@ export const ListOfPosts: React.FC = () => {
     };
   }, []);
 
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(
+      getAllPosts({ limit: 3, offset: 0, ordering: 'asc', search: 'post' })
+    );
+  }, [dispatch]);
+
   const [selectedTab, setSelectedTab] = useState('all');
 
-  const activeId =
-    useAppSelector((state) => state.tabPanel.activeTab) || 'all';
+  const activeId = useAppSelector((state) => state.tabPanel.activeTab) || 'all';
 
   const BlogTabsMockArray: ITab[] = [
     {
@@ -48,7 +56,6 @@ export const ListOfPosts: React.FC = () => {
             <Title>Blog</Title>
             <MyTabPanel
               tabItems={BlogTabsMockArray}
-              // selectedTab={selectedTab}
               setSelectedTab={setSelectedTab}
             ></MyTabPanel>
 
@@ -80,6 +87,7 @@ export const ListOfPosts: React.FC = () => {
           <Year>{new Date().getFullYear()}</Year>
         </Footer>
       </ContentWithPaddings>
+      <Modal card={postCardsListMockArray} />
     </MainWrapper>
   );
 };

@@ -14,7 +14,9 @@ export const AllPosts: React.FC = () => {
   );
 
   useEffect(() => {
-    dispatch(getAllPosts());
+    dispatch(
+      getAllPosts({ limit: 3, offset: 0, ordering: 'asc', search: 'post' })
+    );
   }, [dispatch]);
 
   useEffect(() => {
@@ -22,7 +24,7 @@ export const AllPosts: React.FC = () => {
       if (Math.random() < 0.5) {
         dispatch(getAllPostsSuccess({ posts: allPosts }));
       } else {
-        dispatch(getAllPostsFailure({name: 'Error', mesage: 'SERVER ERROR'}));
+        dispatch(getAllPostsFailure({ name: 'Error', mesage: 'SERVER ERROR' }));
       }
     }, 3000);
 

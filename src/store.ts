@@ -8,6 +8,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import { rootSaga } from './sagas';
 import { registrationReducer } from '#features/auth/registration.slice';
 import { activationReducer } from '#features/auth/activation.slice';
+import { modalReducer } from '#features/modal/modal.slice';
+import { authorizationreducer } from '#features/auth/authorization.slice';
 
 let sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];
@@ -17,8 +19,10 @@ export const allReducers = {};
 export const store = configureStore({
   reducer: {
     activation: activationReducer,
+    authorization: authorizationreducer,
     allPosts: allPostsReducer,
     hamburgerMenu: hamburgerOpenReducer,
+    modal: modalReducer,
     registration: registrationReducer,
     signUpForm: signUpFormReducer,
     tabPanel: tabPanelReducer,

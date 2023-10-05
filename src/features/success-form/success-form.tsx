@@ -1,5 +1,6 @@
 import { Button } from '#ui/button';
 import { Span } from '#ui/span-for-form/span-for-form';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const SuccessForm: React.FC = () => {
@@ -10,9 +11,11 @@ export const SuccessForm: React.FC = () => {
         <Span>Your registration is now completed</Span>
       </FromText>
       <FromDivButton>
-        <Button variant="primary" onClick={() => null}>
-          Go to the App
-        </Button>
+        <Link to='/sign-in'>
+          <Button variant="primary" onClick={() => null} role='presentation'>
+            Go to the App
+          </Button>
+        </Link>
       </FromDivButton>
     </form>
   );

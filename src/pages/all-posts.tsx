@@ -44,7 +44,9 @@ export const AllListPosts: React.FC = () => {
   );
 
   useEffect(() => {
-    dispatch(getAllPosts());
+    dispatch(
+      getAllPosts({ limit: 3, offset: 0, ordering: 'asc', search: 'post' })
+    );
   }, [dispatch]);
 
   useEffect(() => {

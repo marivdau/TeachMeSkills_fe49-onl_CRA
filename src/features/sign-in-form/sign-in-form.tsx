@@ -4,6 +4,8 @@ import { Button } from '#ui/button';
 import { Link } from 'react-router-dom';
 import { Span } from '#ui/span-for-form/span-for-form';
 import styled from 'styled-components';
+import { useAppDispatch } from '../../hooks';
+import { authorization } from '#features/auth/authorization.slice';
 
 export const SignInForm: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -25,6 +27,8 @@ export const SignInForm: React.FC = () => {
     resizeObserver.observe(ref2);
     return () => resizeObserver.unobserve(ref2);
   }, [ref2]);
+  
+  const dispatch = useAppDispatch();
 
   return (
     <form ref={setRef2}>
@@ -45,7 +49,7 @@ export const SignInForm: React.FC = () => {
       <ForgotPasswordDiv>
         <ForgotPasswordLink href="#">Forgot password?</ForgotPasswordLink>
       </ForgotPasswordDiv>
-      <Button variant="primary" onClick={() => null}>
+      <Button variant="primary" onClick={() => dispatch(authorization({email, password}))}>
         Sign In
       </Button>
       <SignUpTextDiv>

@@ -5,6 +5,7 @@ type Props = {
   children: string;
   disabled?: boolean;
   onClick: () => void;
+  role?: string;
 };
 
 export const Button: React.FC<Props> = ({
@@ -12,6 +13,7 @@ export const Button: React.FC<Props> = ({
   children,
   disabled,
   onClick,
+  role,
 }) => {
   return (
     <ButtonWrapper
@@ -19,6 +21,7 @@ export const Button: React.FC<Props> = ({
       $variant={variant}
       disabled={disabled}
       onClick={() => onClick()}
+      role={role}
     >
       {children}
     </ButtonWrapper>
@@ -41,7 +44,7 @@ const ButtonWrapper = styled.button<{
     return $fitContent ? 'fit-content' : 'calc(100% - 20px)';
   }};
 
-${({ $variant }) => {
+  ${({ $variant }) => {
     switch ($variant) {
       case 'primary': {
         return css`

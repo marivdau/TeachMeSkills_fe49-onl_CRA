@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { AllPostsPayload } from './types';
 
 export interface Post {
   id: number;
@@ -14,8 +15,9 @@ const allPostsSlice = createSlice({
     error: null as Error | null,
   },
   reducers: {
-    getAllPosts(state) {
+    getAllPosts(state, action: { payload: AllPostsPayload}) {
       state.isLoading = true;
+
     },
     getAllPostsSuccess(state, actioin: { payload: { posts: Post[] } }) {
       state.isLoading = false;
