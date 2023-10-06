@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { ReactComponent as ArrowLeft } from '../../../images/arrow-sm-left-svgrepo-com.svg';
 import { ReactComponent as ArrowRight } from '../../../images/arrow-sm-right-svgrepo-com.svg';
 
@@ -7,19 +7,7 @@ export const PaginationMain = () => {
     <PagePagination>
       <Left>
         <PaginationButton type="button">
-          <ArrowLeft
-            fill="white"
-            stroke="var(--text-primary-color)"
-            width="20"
-            height="20"
-            style={{
-              objectFit: 'cover',
-              position: 'relative',
-              top: '5px',
-              cursor: 'pointer',
-            }}
-          />{' '}
-          Back
+          <StyledArrowImageLeft /> Back
         </PaginationButton>
       </Left>
       <JumperDiv>
@@ -30,26 +18,14 @@ export const PaginationMain = () => {
         <JumpButton type="button">6</JumpButton>
       </JumperDiv>
       <Right>
-        <PaginationButton>
-          {' '}
+        <PaginationButton type="button">
           Next
-          <ArrowRight
-            fill="white"
-            stroke="var(--text-primary-color)"
-            width="20"
-            height="20"
-            style={{
-              objectFit: 'cover',
-              position: 'relative',
-              top: '5px',
-              cursor: 'pointer',
-            }}
-          />
+          <StyledArrowImageRight />
         </PaginationButton>
       </Right>
     </PagePagination>
-  )
-}
+  );
+};
 
 const PagePagination = styled.div`
   display: flex;
@@ -99,4 +75,26 @@ const PaginationButton = styled.button`
   &:hover {
     color: var(--system-primary-color);
   }
+`;
+
+const StyledArrowImageLeft = styled(ArrowLeft)`
+  fill: white;
+  stroke: var(--text-primary-color);
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  position: relative;
+  top: 5px;
+  cursor: pointer;
+`;
+
+const StyledArrowImageRight = styled(ArrowRight)`
+  fill: white;
+  stroke: var(--text-primary-color);
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  position: relative;
+  top: 5px;
+  cursor: pointer;
 `;

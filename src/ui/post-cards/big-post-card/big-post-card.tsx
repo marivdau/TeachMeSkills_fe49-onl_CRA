@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { IPostCard } from '../../../types/post-card';
 import styled from 'styled-components';
-import { ReactComponent as BookmarkImg } from '../../../images/bookmark-svgrepo-com.svg';
 import { ReactComponent as DotsImg } from '../../../images/dots-horizontal-svgrepo-com.svg';
 import { VotingLikeDislikeMain } from '#features/voting-up-down/voting-up-down-main/voting-up-down-main';
 import { Link } from 'react-router-dom';
+import { Bookmark } from '#features/bookmark/bookmark';
 
 type PropsCard = {
   card: IPostCard;
@@ -41,34 +41,8 @@ export const Postcard: React.FC<PropsCard> = (props: PropsCard) => {
           <VotingLikeDislikeMain cardId={props.card.id}></VotingLikeDislikeMain>
         </LikeDiv>
         <div>
-          <Bookmark
-            type="button"
-            onClick={() => setAddBookmark(!addBookmark)}
-            className={addBookmark ? 'selected' : 'unselected'}
-          >
-            <BookmarkImg
-              fill="transparent"
-              stroke="var(--text-primary-color)"
-              style={{
-                width: '20px',
-                height: '20px',
-                objectFit: 'cover',
-                position: 'relative',
-                top: '1px',
-              }}
-            />
-          </Bookmark>
-          <DotsImg
-            fill="transparent"
-            stroke="var(--text-primary-color)"
-            style={{
-              width: '20px',
-              height: '20px',
-              objectFit: 'cover',
-              position: 'relative',
-              top: '1px',
-            }}
-          />
+          <Bookmark />
+          <DotsImgStyled />
         </div>
       </SecondLine>
     </PostcardWrapper>
@@ -152,18 +126,12 @@ const LikeDiv = styled.div`
   align-items: center;
 `;
 
-const Bookmark = styled.button`
-  border-color: transparent;
-  border-radius: 5px;
-  padding: 5px;
-  cursor: pointer;
-  margin-right: 10px;
-
-  &.selected {
-    background-color: lightgray;
-  }
-
-  &.unselected {
-    background-color: transparent;
-  }
+const DotsImgStyled = styled(DotsImg)`
+  fill: transparent;
+  stroke: var(--text-primary-color);
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  position: relative;
+  top: 1px;
 `;

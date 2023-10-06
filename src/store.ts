@@ -8,7 +8,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { rootSaga } from './sagas';
 import { registrationReducer } from '#features/auth/registration.slice';
 import { activationReducer } from '#features/auth/activation.slice';
-import { modalReducer } from '#features/modal/modal.slice';
+import { modalReducer } from '#features/dialog-image-preview/dialog-image-preview.slice';
 import { authorizationreducer } from '#features/auth/authorization.slice';
 
 let sagaMiddleware = createSagaMiddleware();

@@ -8,7 +8,7 @@ import { ITab, MyTabPanel } from '#ui/tabs/tab-panel/tab-panel';
 import { useState, useEffect } from 'react';
 import { PaginationMain } from '#features/pagination/pagination-main/pagination-main';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { Modal } from '#features/modal/modal';
+import { DialogImagePreview } from '#features/dialog-image-preview/dialog-image-preview';
 import { getAllPosts } from '#features/all-posts/all-posts.slice';
 
 export const ListOfPosts: React.FC = () => {
@@ -87,7 +87,7 @@ export const ListOfPosts: React.FC = () => {
           <Year>{new Date().getFullYear()}</Year>
         </Footer>
       </ContentWithPaddings>
-      <Modal card={postCardsListMockArray} />
+      <DialogImagePreview card={postCardsListMockArray} />
     </MainWrapper>
   );
 };

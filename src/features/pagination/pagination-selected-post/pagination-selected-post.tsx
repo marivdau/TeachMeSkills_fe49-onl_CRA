@@ -6,18 +6,7 @@ export const Pagination = () => {
   return (
     <PagePagination>
       <Left>
-        <ArrowLeft
-          fill="white"
-          stroke="var(--text-primary-color)"
-          width="20"
-          height="20"
-          style={{
-            objectFit: 'cover',
-            position: 'relative',
-            top: '5px',
-            cursor: 'pointer',
-          }}
-        />
+      <StyledArrowImageLeft />
 
         <LeftPagination>
           <PrevNextSpan>Prev</PrevNextSpan>
@@ -33,18 +22,7 @@ export const Pagination = () => {
             8 Beautiful Villas Belonging to Artists You Need to See
           </PrevNextPostNameSpan>
         </RightPagination>
-        <ArrowRight
-          fill="white"
-          stroke="var(--text-primary-color)"
-          width="20"
-          height="20"
-          style={{
-            objectFit: 'cover',
-            position: 'relative',
-            top: '5px',
-            cursor: 'pointer',
-          }}
-        />
+        <StyledArrowImageRight />
       </Right>
     </PagePagination>
   );
@@ -94,4 +72,24 @@ const PrevNextPostNameSpan = styled.span`
   font-size: 16px;
   line-height: 24px;
   color: var(--text-secondary-color);
+`;
+
+const StyledArrowImageLeft = styled(ArrowLeft)`
+  fill: white;
+  stroke: var(--text-primary-color);
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  position: relative;
+  cursor: pointer;
+`;
+
+const StyledArrowImageRight = styled(ArrowRight)`
+  fill: white;
+  stroke: var(--text-primary-color);
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  position: relative;
+  cursor: pointer;
 `;

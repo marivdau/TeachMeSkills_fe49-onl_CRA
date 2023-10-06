@@ -22,5 +22,5 @@
 
     }
   },
-  "include": ["src"]
+  "include": ["src", "src/features/dialog-image-preview/dialog-image-preview.tsx"]
 }
