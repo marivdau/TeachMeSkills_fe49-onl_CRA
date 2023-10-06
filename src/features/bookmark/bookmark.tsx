@@ -1,17 +1,22 @@
 import styled from 'styled-components';
 import { ReactComponent as BookmarkImg } from '../../images/bookmark-svgrepo-com.svg';
-import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { setFavourite } from './bookmark.slice';
 
-type PropsBookmark = {};
+type PropsBookmark = {
+  cardId: number;
+};
 
-export const Bookmark: React.FC<PropsBookmark> = (props: PropsBookmark) => {
-  const [addBookmark, setAddBookmark] = useState(false);
+export const Bookmark: React.FC<PropsBookmark> = ({ cardId }) => {
+  const dispatch = useAppDispatch();
+  const favouritePost = useAppSelector((state) => state.favouritePost[cardId]);
+  const activeFavourite = favouritePost.favourite === 'yes';
 
   return (
     <BookmarkDiv
       type="button"
-      onClick={() => setAddBookmark(!addBookmark)}
-      className={addBookmark ? 'selected' : 'unselected'}
+      onClick={() => dispatch(setFavourite({ cardId }))}
+      className={activeFavourite ? 'selected' : 'unselected'}
     >
       <BookmarkImgStyled />
     </BookmarkDiv>

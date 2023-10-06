@@ -6,7 +6,7 @@ import { SignUpForm } from '#features/sign-up-form/sign-up-form';
 export const SignUp: React.FC = () => {
   return (
     <MainTemplate
-      header={<header style={{ width: '100%', height: '40px' }}>Header</header>}
+      header={<></>}
       backLink={<BackLink />}
       title={<Title>Sign Up</Title>}
       body={<SignUpForm />}

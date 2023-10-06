@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { IPostCard } from '../../types/post-card';
-import { useState } from 'react';
 import { VotingLikeDislikeSelectedPost } from '#features/voting-up-down/voting-up-down-selected-post/voting-up-down-selected-post';
+import { BookmarkSingle } from '#features/bookmark/bookmark-button-sigle-post';
 
 type PropsCard = {
   card: IPostCard;
@@ -9,8 +9,6 @@ type PropsCard = {
 };
 
 export const Post: React.FC<PropsCard> = (props: PropsCard) => {
-  const [addBookmark, setAddBookmark] = useState(false);
-
   return (
     <PostWrapper key={props.card.id}>
       <BreadcrambsDiv>
@@ -31,17 +29,7 @@ export const Post: React.FC<PropsCard> = (props: PropsCard) => {
           ></VotingLikeDislikeSelectedPost>
         </VoteDiv>
 
-        <Bookmark
-          type="button"
-          onClick={() => setAddBookmark(!addBookmark)}
-          className={addBookmark ? 'selected' : 'unselected'}
-        >
-          <BookmarkImg
-            alt="bookmark"
-            src={require('../../images/bookmark-svgrepo-com.svg').default}
-          />
-          Add to favorites
-        </Bookmark>
+        <BookmarkSingle cardId={props.card.id} />
       </ActionLineDiv>
     </PostWrapper>
   );
@@ -92,7 +80,7 @@ const Image = styled.img`
   object-fit: cover;
 `;
 
-const Text = styled.text`
+const Text = styled.p`
   font-size: 18px;
   font-weight: 400;
   color: var(--text-primary-color);
@@ -112,36 +100,4 @@ const ActionLineDiv = styled.div`
 const VoteDiv = styled.div`
   display: flex;
   flex-direction: row;
-`;
-
-const Bookmark = styled.button`
-  all: unset;
-  width: 237px;
-  height: 56px;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 24px;
-  text-align: center;
-  padding: 3px;
-  cursor: pointer;
-
-  &.selected {
-    background-color: var(--system-primary2-color);
-    color: var(--contextual-white-color);
-  }
-
-  &.unselected {
-    background-color: var(--contextual-light-color);
-  }
-
-  &:hover {
-    background-color: var(--system-primary2-color);
-  }
-`;
-
-const BookmarkImg = styled.img`
-  position: relative;
-  margin-right: 10px;
-  top: 5px;
-  width: 24px;
 `;

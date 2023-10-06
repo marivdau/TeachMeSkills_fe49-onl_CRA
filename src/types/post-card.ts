@@ -9,4 +9,5 @@ export interface IPostCard {
   votedUpNum?: number | null;
   votedDownNum?: number | null;
   userVote?: 'up' | 'down' | null;
+  isFavorite?: 'yes' | null;
 }

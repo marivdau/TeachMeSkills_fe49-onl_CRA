@@ -10,6 +10,7 @@ import { registrationReducer } from '#features/auth/registration.slice';
 import { activationReducer } from '#features/auth/activation.slice';
 import { modalReducer } from '#features/dialog-image-preview/dialog-image-preview.slice';
 import { authorizationreducer } from '#features/auth/authorization.slice';
+import { settingFavouriteReducer } from '#features/bookmark/bookmark.slice';
 
 let sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];
@@ -21,6 +22,7 @@ export const store = configureStore({
     activation: activationReducer,
     authorization: authorizationreducer,
     allPosts: allPostsReducer,
+    favouritePost: settingFavouriteReducer,
     hamburgerMenu: hamburgerOpenReducer,
     modal: modalReducer,
     registration: registrationReducer,

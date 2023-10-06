@@ -1,7 +1,5 @@
 import { IPostCard } from '../../../types/post-card';
-import { useState } from 'react';
 import styled from 'styled-components';
-import { ReactComponent as BookmarkImg } from '../../../images/bookmark-svgrepo-com.svg';
 import { ReactComponent as DotsImg } from '../../../images/dots-horizontal-svgrepo-com.svg';
 import { VotingLikeDislikeMain } from '#features/voting-up-down/voting-up-down-main/voting-up-down-main';
 import { Link } from 'react-router-dom';
@@ -21,8 +19,6 @@ export const ShortPostcard: React.FC<PropsCard> = (props: PropsCard) => {
     return new Date(dateString).toLocaleDateString([], options);
   };
 
-  const [addBookmark, setAddBookmark] = useState(false);
-
   return (
     <ShortPostcardWrapper key={props.card.id}>
       <ShortFirstLine>
@@ -41,7 +37,7 @@ export const ShortPostcard: React.FC<PropsCard> = (props: PropsCard) => {
           <VotingLikeDislikeMain cardId={props.card.id}></VotingLikeDislikeMain>
         </ShortLikeDiv>
         <div>
-          <Bookmark />
+          <Bookmark cardId={props.card.id} />
           <DotsImgStyled />
         </div>
       </ShortSecondLine>

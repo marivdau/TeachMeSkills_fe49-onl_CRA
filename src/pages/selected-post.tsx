@@ -20,8 +20,7 @@ export const SelectedPost: React.FC = () => {
   }
 
   return (
-    <MainTemplateWrapper>
-      <div>Header</div>
+    <MainTemplateWrapper>      
       <ContentWithPaddings>
         <Main>
           <BodyContainer>

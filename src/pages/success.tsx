@@ -14,7 +14,7 @@ export const Success: React.FC = () => {
 
   return (
     <MainTemplate
-      header={<header style={{ width: '100%', height: '40px' }}>Header</header>}
+      header={<></>}
       backLink={<BackLink />}
       title={<Title>Success</Title>}
       body={<SuccessForm />}

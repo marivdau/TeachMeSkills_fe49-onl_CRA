@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { IPostCard } from '../../../types/post-card';
 import styled from 'styled-components';
 import { ReactComponent as DotsImg } from '../../../images/dots-horizontal-svgrepo-com.svg';
@@ -20,8 +19,6 @@ export const Postcard: React.FC<PropsCard> = (props: PropsCard) => {
     return new Date(dateString).toLocaleDateString([], options);
   };
 
-  const [addBookmark, setAddBookmark] = useState(false);
-
   return (
     <PostcardWrapper key={props.card.id}>
       <FirstLineDiv>
@@ -41,7 +38,7 @@ export const Postcard: React.FC<PropsCard> = (props: PropsCard) => {
           <VotingLikeDislikeMain cardId={props.card.id}></VotingLikeDislikeMain>
         </LikeDiv>
         <div>
-          <Bookmark />
+          <Bookmark cardId={props.card.id} />
           <DotsImgStyled />
         </div>
       </SecondLine>

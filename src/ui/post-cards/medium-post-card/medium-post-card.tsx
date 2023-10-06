@@ -1,5 +1,4 @@
 import { IPostCard } from '../../../types/post-card';
-import { useState } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as DotsImg } from '../../../images/dots-horizontal-svgrepo-com.svg';
 import { VotingLikeDislikeMain } from '#features/voting-up-down/voting-up-down-main/voting-up-down-main';
@@ -20,8 +19,6 @@ export const MediumPostcard: React.FC<PropsCard> = (props: PropsCard) => {
     return new Date(dateString).toLocaleDateString([], options);
   };
 
-  const [addBookmark, setAddBookmark] = useState(false);
-
   return (
     <MediumPostcardWrapper key={props.card.id}>
       <MediumFirstLine>
@@ -40,7 +37,7 @@ export const MediumPostcard: React.FC<PropsCard> = (props: PropsCard) => {
           <VotingLikeDislikeMain cardId={props.card.id}></VotingLikeDislikeMain>
         </MediumLikeDiv>
         <div>
-          <Bookmark />
+          <Bookmark cardId={props.card.id} />
           <DotsImgStyled />
         </div>
       </MediumSecondLine>

@@ -6,7 +6,7 @@ import { SignInForm } from '#features/sign-in-form/sign-in-form';
 export const SignIn: React.FC = () => {
   return (
     <MainTemplate
-      header={<header style={{ width: '100%', height: '40px' }}>Header</header>}
+      header={<></>}
       backLink={<BackLink />}
       title={<Title>Sign In</Title>}
       body={<SignInForm />}

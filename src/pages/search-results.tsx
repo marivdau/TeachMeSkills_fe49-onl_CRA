@@ -16,7 +16,6 @@ export const SearchResults: React.FC<PropsSearchResultPosts> = (
 ) => {
   return (
     <MainWrapper>
-      <Header />
       <ContentWithPaddings>
         <Main>
           <Title>Search results ‘Astronauts’</Title>
