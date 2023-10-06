@@ -24,17 +24,7 @@ export const VotingLikeDislikeMain: React.FC<PropsCard> = ({ cardId }) => {
           }}
           className={activeLike ? 'votedUp' : 'unvotedDwn'}
         >
-          <VoteUpImg
-            fill="var(--svg-image-fill-color)"
-            stroke="var(--text-primary-color)"
-            style={{
-              width: '20px',
-              height: '20px',
-              objectFit: 'cover',
-              position: 'relative',
-              top: '1px',
-            }}
-          />
+          <VoteUpImgStyled />
         </VoteButton>
         <ActionCounter>{rating.voteUpNum}</ActionCounter>
       </LikeDiv>
@@ -46,17 +36,7 @@ export const VotingLikeDislikeMain: React.FC<PropsCard> = ({ cardId }) => {
           }}
           className={activeDislike ? 'disVotedUp' : 'disVotedDwn'}
         >
-          <VoteDwnImg
-            fill="var(--svg-image-fill-color)"
-            stroke="var(--text-primary-color)"
-            style={{
-              width: '20px',
-              height: '20px',
-              objectFit: 'cover',
-              position: 'relative',
-              top: '1px',
-            }}
-          />
+          <VoteDwnImgStyled />
         </VoteButton>
         <ActionCounter>{rating.voteDownNum}</ActionCounter>
       </DislikeDiv>
@@ -106,4 +86,24 @@ const VoteDiv = styled.div`
 
 const DislikeDiv = styled.div`
   all: unset;
+`;
+
+const VoteDwnImgStyled = styled(VoteDwnImg)`
+  fill: var(--svg-image-fill-color);
+  stroke: var(--text-primary-color);
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  position: relative;
+  top: 1px;
+`;
+
+const VoteUpImgStyled = styled(VoteUpImg)`
+  fill: var(--svg-image-fill-color);
+  stroke: var(--text-primary-color);
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  position: relative;
+  top: 1px;
 `;
