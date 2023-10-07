@@ -8,8 +8,8 @@ import { ITab, MyTabPanel } from '#ui/tabs/tab-panel/tab-panel';
 import { useState, useEffect } from 'react';
 import { PaginationMain } from '#features/pagination/pagination-main/pagination-main';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { DialogImagePreview } from '#features/dialog-image-preview/dialog-image-preview';
 import { getAllPosts } from '#features/all-posts/all-posts.slice';
+import { DialogImagePreview } from '#features/dialog-image-preview/dialog-image-preview';
 
 export const ListOfPosts: React.FC = () => {
   const [apiModels, setApiModels] = useState<IPostCard[] | null>(null);
@@ -46,7 +46,11 @@ export const ListOfPosts: React.FC = () => {
       id: 'popular',
       title: 'Popular',
     },
-  ];
+  ]; 
+
+  const { showingDialogImagePreview } = useAppSelector(
+    (state) => state.dialogImagePreview
+  );
 
   return (
     <MainWrapper>
@@ -87,7 +91,7 @@ export const ListOfPosts: React.FC = () => {
           <Year>{new Date().getFullYear()}</Year>
         </Footer>
       </ContentWithPaddings>
-      <DialogImagePreview card={postCardsListMockArray} />
+      <DialogImagePreview open={showingDialogImagePreview} />
     </MainWrapper>
   );
 };

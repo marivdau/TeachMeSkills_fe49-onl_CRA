@@ -1,30 +1,41 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { postCardsListMockArray } from '../../mock-data/mock-data-posts';
 import { IPostCard } from '../../types/post-card';
 
 type Payload = {
   cardId: number;
 };
 
-type PropsCard = {
-  card: IPostCard[];
+type ImageToShow = {
+  cardId: number;
+  image?: string;
 };
 
-const modalSlice = createSlice({
-  name: 'modalSlice',
+const imageArray: ImageToShow[] = postCardsListMockArray.map((item) => {
+  return { cardId: item.id, image: item.image };
+});
+
+export const dialogImagePreviewSlice = createSlice({
+  name: 'dialogImagePreviewSlice',
   initialState: {
-    isOpen: false,
+    showingDialogImagePreview: false,
+    allImages: imageArray,
+    imageToShow: imageArray[1].image,
   },
   reducers: {
-    opening(state) {
-      state.isOpen = true;
+    showing(state, action: { payload: Payload }) {
+      state.showingDialogImagePreview = true;
+      state.imageToShow = state.allImages.find(
+        (elem) => elem.cardId === action.payload.cardId
+      )?.image;
     },
-    closing(state) {
-      state.isOpen = false;
+    hiding(state) {
+      state.showingDialogImagePreview = false;
     },
   },
 });
 
 export const {
-  actions: { opening, closing },
-  reducer: modalReducer,
-} = modalSlice;
+  actions: { showing, hiding },
+  reducer: dialogImagePreviewReducer,
+} = dialogImagePreviewSlice;

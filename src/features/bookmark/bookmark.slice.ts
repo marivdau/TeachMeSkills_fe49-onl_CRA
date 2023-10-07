@@ -22,7 +22,7 @@ const fromMockArrayForFavourite = postCardsListMockArray.reduce(
 );
 
 export const settingFavourite = createSlice({
-  name: 'votingNumberUpDown',
+  name: 'settingFavourite',
   initialState: fromMockArrayForFavourite as Record<number, Favourite>,
   reducers: {
     setFavourite(state, action: { payload: Payload }) {

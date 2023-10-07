@@ -2,53 +2,51 @@ import React from 'react';
 import styled from 'styled-components';
 import { ReactComponent as CloseImg } from '../../images/close-svgrepo-com.svg';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { closing, opening } from './dialog-image-preview.slice';
 import { IPostCard } from '../../types/post-card';
 import { ReactComponent as ArrowLeft } from '../../images/arrow-sm-left-svgrepo-com.svg';
 import { ReactComponent as ArrowRight } from '../../images/arrow-sm-right-svgrepo-com.svg';
+import { hiding } from './dialog-image-preview.slice';
 
-type PropsCard = {
-  card: IPostCard[];
+type PropsDialog = {  
+  open: boolean;
 };
 
-export const DialogImagePreview: React.FC<PropsCard> = (props: PropsCard) => {
+export const DialogImagePreview: React.FC<PropsDialog> = ({  open }) => {
   const dispatch = useAppDispatch();
-  const open = useAppSelector((state) => state.modal.isOpen);
+  const { imageToShow } = useAppSelector((state) => state.dialogImagePreview);
+
   return (
-    <>
-      <button type="button" onClick={() => dispatch(opening())}>
-        Click
-      </button>
-      <DialogElement open={open} onClose={() => dispatch(closing())}>
-        <CloseButton onClick={() => dispatch(closing())}>
-          <CloseImg style={{ width: '100%', height: '100%' }} />
-        </CloseButton>
+    <DialogElement open={open} onClose={() => dispatch(hiding())}>
+      <CloseButton onClick={() => dispatch(hiding())}>
+        <CloseImg style={{ width: '100%', height: '100%' }} />
+      </CloseButton>
 
-        <ImageDiv>
-          <Image src={props.card[1].image} alt="modal image" />
-        </ImageDiv>
+      <ImageDiv>
+        <Image src={imageToShow} alt="modal image" />
+      </ImageDiv>
 
-        <PaginationDiv>
-          <LeftPagination>
-            <PaginationButton type="button">
-              <StyledArrowImageLeft />
-              Back
-            </PaginationButton>
-          </LeftPagination>
-          <RightPagination>
-            <PaginationButton type="button">
-              Next
-              <StyledArrowImageRight />
-            </PaginationButton>
-          </RightPagination>
-        </PaginationDiv>
-      </DialogElement>
-    </>
+      <PaginationDiv>
+        <LeftPagination>
+          <PaginationButton type="button">
+            <StyledArrowImageLeft />
+            Back
+          </PaginationButton>
+        </LeftPagination>
+        <RightPagination>
+          <PaginationButton type="button">
+            Next
+            <StyledArrowImageRight />
+          </PaginationButton>
+        </RightPagination>
+      </PaginationDiv>
+    </DialogElement>
   );
 };
 
 const DialogElement = styled.dialog`
   cursor: default;
+  position: absolute;
+  top: 20%;
   border: none;
   padding: 100px 250px;
   z-index: 7;

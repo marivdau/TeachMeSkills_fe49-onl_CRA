@@ -8,7 +8,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { rootSaga } from './sagas';
 import { registrationReducer } from '#features/auth/registration.slice';
 import { activationReducer } from '#features/auth/activation.slice';
-import { modalReducer } from '#features/dialog-image-preview/dialog-image-preview.slice';
+import { dialogImagePreviewReducer } from '#features/dialog-image-preview/dialog-image-preview.slice';
 import { authorizationreducer } from '#features/auth/authorization.slice';
 import { settingFavouriteReducer } from '#features/bookmark/bookmark.slice';
 
@@ -24,7 +24,7 @@ export const store = configureStore({
     allPosts: allPostsReducer,
     favouritePost: settingFavouriteReducer,
     hamburgerMenu: hamburgerOpenReducer,
-    modal: modalReducer,
+    dialogImagePreview: dialogImagePreviewReducer,
     registration: registrationReducer,
     signUpForm: signUpFormReducer,
     tabPanel: tabPanelReducer,

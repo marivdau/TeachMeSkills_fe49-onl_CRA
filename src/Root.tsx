@@ -14,7 +14,6 @@ import { Link, Route, Routes } from 'react-router-dom';
 import { AllListPosts } from './pages/all-posts';
 import { Header } from '#features/header/header';
 import { ActivatePage } from './pages/activate';
-import { DialogImagePreview } from '#features/dialog-image-preview/dialog-image-preview';
 
 function Root() {
   const [isAuthorized, setIsAuthorized] = useState(false);
@@ -31,7 +30,6 @@ function Root() {
       </AuthorizedContext.Provider> */}
       {/* <ThemeSwitcher /> */}
       <Header />
-      <DialogImagePreview card={postCardsListMockArray} />
       <Routes>
         <Route index element={<Link to="/sign-up">Go to Sign up</Link>} />
         <Route path="/sign-up" element={<SignUp />} />

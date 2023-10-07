@@ -13,8 +13,13 @@ import {
   getAllPostsFailure,
 } from '#features/all-posts/all-posts.slice';
 import { useAppDispatch, useAppSelector } from '../hooks';
+import { DialogImagePreview } from '#features/dialog-image-preview/dialog-image-preview';
 
 export const AllListPosts: React.FC = () => {
+
+  const { showingDialogImagePreview } = useAppSelector(
+    (state) => state.dialogImagePreview
+  );
   const [selectedTab, setSelectedTab] = useState('all');
 
   const activeId =
@@ -71,6 +76,8 @@ export const AllListPosts: React.FC = () => {
     return <div>Error: ${error.message}</div>;
   }
 
+
+
   return (
     <MainWrapper>
       <ContentWithPaddings>
@@ -117,6 +124,7 @@ export const AllListPosts: React.FC = () => {
           <Year>{new Date().getFullYear()}</Year>
         </Footer>
       </ContentWithPaddings>
+      <DialogImagePreview open={showingDialogImagePreview} />
     </MainWrapper>
   );
 };

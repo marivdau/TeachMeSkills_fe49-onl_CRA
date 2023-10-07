@@ -4,6 +4,8 @@ import { ReactComponent as DotsImg } from '../../../images/dots-horizontal-svgre
 import { VotingLikeDislikeMain } from '#features/voting-up-down/voting-up-down-main/voting-up-down-main';
 import { Link } from 'react-router-dom';
 import { Bookmark } from '#features/bookmark/bookmark';
+import { useDispatch } from 'react-redux';
+import { showing } from '#features/dialog-image-preview/dialog-image-preview.slice';
 
 type PropsCard = {
   card: IPostCard;
@@ -19,6 +21,8 @@ export const Postcard: React.FC<PropsCard> = (props: PropsCard) => {
     return new Date(dateString).toLocaleDateString([], options);
   };
 
+  const dispatch = useDispatch();
+  
   return (
     <PostcardWrapper key={props.card.id}>
       <FirstLineDiv>
@@ -29,7 +33,7 @@ export const Postcard: React.FC<PropsCard> = (props: PropsCard) => {
           </Link>
           <Text>{props.card.text.substring(0, 400) + '...'}</Text>{' '}
         </CardInfo>
-        <ImageParentDiv>
+        <ImageParentDiv onClick={() => dispatch(showing({ cardId: props.card.id }))}>
           <Image src={props.card.image} />
         </ImageParentDiv>
       </FirstLineDiv>
@@ -103,6 +107,7 @@ const Text = styled.p`
 const ImageParentDiv = styled.div`
   width: 256px;
   height: 244px;
+  cursor: pointer;
 `;
 
 const Image = styled.img`
