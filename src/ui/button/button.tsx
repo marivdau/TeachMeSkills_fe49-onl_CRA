@@ -36,13 +36,13 @@ const ButtonWrapper = styled.button<{
 }>`
   all: unset;
   cursor: pointer;
-  border-radius: 4px;
-  padding: 10px 10px;
   text-align: center;
   font-weight: 500;
-  width: ${({ $fitContent }) => {
+  width: 120px;
+  height: 30px;
+  /* width: ${({ $fitContent }) => {
     return $fitContent ? 'fit-content' : 'calc(100% - 20px)';
-  }};
+  }}; */
 
   ${({ $variant }) => {
     switch ($variant) {
@@ -68,18 +68,18 @@ const ButtonWrapper = styled.button<{
       }
       case 'secondary': {
         return css`
-          border: 1px solid white;
+          border: 1px solid rgba(169, 169, 169, 0.8);
           padding: 5px 10px;
           background: var(--system-primary-color);
           color: var(--contextual-white-color);
           font-weight: 600;
 
-          background: rgb(169, 169, 169, 0.8);
+          background: rgba(169, 169, 169, 0.8);
           color: var(--text-primary-color);
           font-weight: 600;
 
           &:active {
-            background: rgb(169, 169, 169, 1);
+            opacity: 0.33;
           }
 
           &:disabled {
@@ -95,10 +95,12 @@ const ButtonWrapper = styled.button<{
           border: 1px solid transparent;
           background: none;
           color: red;
+          padding: 5px 0;
+          text-align: left;
           font-weight: 600;
 
           &:active {
-            border: 1px solid rgb(169, 169, 169, 0.8);
+            opacity: 0.33;
           }
 
           &:disabled {

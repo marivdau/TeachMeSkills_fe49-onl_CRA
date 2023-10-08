@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & {
@@ -7,37 +6,23 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
   disabled?: boolean;
 };
 
-export const Input: React.FC<Props> = ({
+export const InputFile: React.FC<Props> = ({
   labelText,
   disabled,
   error,
   ...restProps
 }) => {
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  
-  const [value, setValue] = useState('');
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
-  const onChange = (e: any) => {
-    setValue(e.target.value);
-  };
-
   return (
     <Label>
       <LabelText>{labelText}</LabelText>
-      <InputWrapper
-        ref={inputRef}
-        type="text"
+      <InputUpload
+        type="file"
         name="name"
-        onChange={onChange}
-        value={value}
         disabled={disabled}
-        placeholder="Add your text"
-        maxLength={100}
         $borderColor={error ? 'red' : undefined}
         {...restProps}
       />
+
       <Error>{error}</Error>
     </Label>
   );
@@ -45,7 +30,6 @@ export const Input: React.FC<Props> = ({
 
 const Label = styled.label`
   display: block;
-  /* width: fit-content; */
   color: var(--text-primary-color);
 `;
 
@@ -57,10 +41,10 @@ const LabelText = styled.div`
   color: var(--text-primary-color);
 `;
 
-const InputWrapper = styled.input<{ $borderColor?: string }>`
+const InputUpload = styled.input<{ $borderColor?: string }>`
   all: unset;
   width: 100%;
-  padding: 10px;
+  padding: 5px;
   box-sizing: border-box;
   background-color: white;
   border: 1px solid ${({ $borderColor }) => $borderColor || 'gray'};
@@ -82,6 +66,17 @@ const InputWrapper = styled.input<{ $borderColor?: string }>`
     opacity: 0.67;
     background: lightgray;
     color: gray;
+  }
+
+  &::file-selector-button {
+    all: unset;
+    border: 1px solid var(--background-color-medium-gray);
+    background-color: var(--background-color-medium-gray);
+    border-radius: 2px;
+    padding: 3px;
+    position: relative;
+    left: 70%;
+    color: var(--text-primary-color);
   }
 `;
 

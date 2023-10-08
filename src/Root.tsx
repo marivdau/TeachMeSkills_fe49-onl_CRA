@@ -14,6 +14,7 @@ import { Link, Route, Routes } from 'react-router-dom';
 import { AllListPosts } from './pages/all-posts';
 import { Header } from '#features/header/header';
 import { ActivatePage } from './pages/activate';
+import { AddPost } from './pages/add-post';
 
 function Root() {
   const [isAuthorized, setIsAuthorized] = useState(false);
@@ -47,6 +48,7 @@ function Root() {
           element={<SearchResults cards={postCardsListMockArray} />}
         ></Route>
         <Route path="/activate/:uid/:token" element={<ActivatePage />} />
+        <Route path='/posts/add-post' element={<AddPost />} />
       </Routes>
     </div>
   );
