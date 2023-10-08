@@ -11,6 +11,7 @@ import { activationReducer } from '#features/auth/activation.slice';
 import { dialogImagePreviewReducer } from '#features/dialog-image-preview/dialog-image-preview.slice';
 import { authorizationreducer } from '#features/auth/authorization.slice';
 import { settingFavouriteReducer } from '#features/bookmark/bookmark.slice';
+import { themeSwitcherReducer } from '#features/theme-switcher/theme-switcher.slice';
 
 let sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];
@@ -28,6 +29,7 @@ export const store = configureStore({
     registration: registrationReducer,
     signUpForm: signUpFormReducer,
     tabPanel: tabPanelReducer,
+    themeSwitcher: themeSwitcherReducer,
     voteUpDown: voteUpDownReducer,
   },
   middleware: (getDefaultMiddleware) =>

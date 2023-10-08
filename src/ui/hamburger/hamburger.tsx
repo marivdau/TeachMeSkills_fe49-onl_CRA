@@ -6,6 +6,7 @@ import { Initials } from '#ui/user/user-initials/user-initials';
 import { Username } from '#ui/user/user-name/username';
 import { ReactComponent as LightIcon } from '../../images/Icon-Sun.svg';
 import { ReactComponent as DarkIcon } from '../../images/Icon-Moon.svg';
+import { ThemeSwitcher } from '#features/theme-switcher/theme-switcher';
 
 type Props = {
   items: Array<{
@@ -39,16 +40,7 @@ export const Hamburger: React.FC<Props> = ({ items, onClick }) => {
             <ListLineWrapper key={id}>{title}</ListLineWrapper>
           ))}
         </MenuItemsList>
-        <ColorThemeButtonDiv>
-          <LightThemeButton>
-            <LightIcon
-              fill="var(--svg-image-menu-color-light)" />
-          </LightThemeButton>
-          <DarkThemeButton>
-            <DarkIcon
-              fill="var(--svg-image-menu-color-dark)" />
-          </DarkThemeButton>
-        </ColorThemeButtonDiv>
+        <ThemeSwitcher />
         <LogoutButton>Log Out</LogoutButton>
       </ListWrapper>
     </HumburgerWrapper>
@@ -87,7 +79,7 @@ const ListLineWrapper = styled.li`
   justify-content: center;
   align-items: center;
   height: 83px;
-  color: var(--system-secondary-color);
+  color: var(--text-primary-color);
   border-bottom: 1px solid var(--contextual-light-color);
 `;
 
@@ -146,4 +138,12 @@ const LogoutButton = styled.button`
   font-weight: 600;
   line-height: 24px;
   font-size: 16px;
+`;
+
+const LightIconStyle = styled(LightIcon)`
+  fill: var(--svg-image-menu-color-light);
+`;
+
+const DarkIconStyle = styled(DarkIcon)`
+  fill: var(--svg-image-menu-color-dark);
 `;
