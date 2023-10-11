@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { Input } from '#ui/input/input';
 import { Button } from '#ui/button';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { Span } from '#ui/span-for-form/span-for-form';
 import styled from 'styled-components';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { authorization } from '#features/auth/authorization.slice';
 
 export const SignInForm: React.FC = () => {
@@ -13,7 +13,7 @@ export const SignInForm: React.FC = () => {
 
   const ref = useRef<HTMLFormElement | null>(null);
   const [ref2, setRef2] = useState<HTMLFormElement | null>(null);
-  console.log('current ref value', ref.current?.tagName);
+  // console.log('current ref value', ref.current?.tagName);
 
   useEffect(() => {
     if (!ref2) {
@@ -21,14 +21,20 @@ export const SignInForm: React.FC = () => {
     }
     const resizeObserver = new ResizeObserver(([entry]) => {
       if (entry.contentRect.width < 400) {
-        console.log('Not enough width!');
+        // console.log('Not enough width!');
       }
     });
     resizeObserver.observe(ref2);
     return () => resizeObserver.unobserve(ref2);
   }, [ref2]);
-  
+
+  const isCompleted = useAppSelector(
+    (state) => state.authorization.isInComplete
+  );
   const dispatch = useAppDispatch();
+  if (isCompleted) {
+    return <Navigate to={'/posts'} />;
+  }
 
   return (
     <form ref={setRef2}>
@@ -49,7 +55,10 @@ export const SignInForm: React.FC = () => {
       <ForgotPasswordDiv>
         <ForgotPasswordLink href="#">Forgot password?</ForgotPasswordLink>
       </ForgotPasswordDiv>
-      <Button variant="primary" onClick={() => dispatch(authorization({email, password}))}>
+      <Button
+        variant="primary"
+        onClick={() => dispatch(authorization({ email, password }))}
+      >
         Sign In
       </Button>
       <SignUpTextDiv>

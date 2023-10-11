@@ -16,14 +16,12 @@ import { useAppDispatch, useAppSelector } from '../hooks';
 import { DialogImagePreview } from '#features/dialog-image-preview/dialog-image-preview';
 
 export const AllListPosts: React.FC = () => {
-
   const { showingDialogImagePreview } = useAppSelector(
     (state) => state.dialogImagePreview
   );
   const [selectedTab, setSelectedTab] = useState('all');
 
-  const activeId =
-  useAppSelector((state) => state.tabPanel.activeTab) || 'all';
+  const activeId = useAppSelector((state) => state.tabPanel.activeTab) || 'all';
 
   const BlogTabsMockArray: ITab[] = [
     {
@@ -44,6 +42,7 @@ export const AllListPosts: React.FC = () => {
   ];
 
   const dispatch = useAppDispatch();
+  const  data = useAppSelector((state) => state.allPosts.posts)
   const { posts, isLoading, error } = useAppSelector(
     ({ allPosts }) => allPosts
   );
@@ -54,19 +53,19 @@ export const AllListPosts: React.FC = () => {
     );
   }, [dispatch]);
 
-  useEffect(() => {
-    const timerId = setTimeout(() => {
-      if (Math.random() < 0.5) {
-        dispatch(getAllPostsSuccess({ posts: postCardsListMockArray }));
-      } else {
-        dispatch(getAllPostsFailure({ name: 'Error', mesage: 'SERVER ERROR' }));
-      }
-    }, 2000);
+  // useEffect(() => {
+  //   const timerId = setTimeout(() => {
+  //     if (Math.random() < 0.5) {
+  //       dispatch(getAllPostsSuccess({ data: data }));
+  //     } else {
+  //       dispatch(getAllPostsFailure({ name: 'Error', mesage: 'SERVER ERROR' }));
+  //     }
+  //   }, 2000);
 
-    return () => {
-      clearTimeout(timerId);
-    };
-  }, [dispatch]);
+  //   return () => {
+  //     clearTimeout(timerId);
+  //   };
+  // }, [dispatch]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -75,8 +74,6 @@ export const AllListPosts: React.FC = () => {
   if (error) {
     return <div>Error: ${error.message}</div>;
   }
-
-
 
   return (
     <MainWrapper>
@@ -100,7 +97,7 @@ export const AllListPosts: React.FC = () => {
               <MediumPosts>
                 {postCardsListMockArray.flatMap((item) => {
                   const needToShow =
-                  activeId !== 'my-favourites' || [2, 5].includes(item.id);
+                    activeId !== 'my-favourites' || [2, 5].includes(item.id);
                   return needToShow ? (
                     <MediumPostcard key={item.id} card={item} />
                   ) : (

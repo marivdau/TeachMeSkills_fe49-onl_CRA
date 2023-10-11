@@ -3,11 +3,19 @@ import { AuthorizationPayload } from './types';
 
 const authorizationSlice = createSlice({
   name: 'authorizationSlice',
-  initialState: {},
+  initialState: {
+    isInProgress: false,
+    isInComplete: false,
+  },
   reducers: {
-    authorization(state, action: {payload: AuthorizationPayload}) {},
-    authorizationSuccess(state) {},
-    authorizationFailure(state) {},
+    authorization(state, action: { payload: AuthorizationPayload }) {},
+    authorizationSuccess(state) {
+      state.isInComplete = true;
+      state.isInProgress = false;
+    },
+    authorizationFailure(state) {
+      state.isInProgress = false;
+    },
   },
 });
 

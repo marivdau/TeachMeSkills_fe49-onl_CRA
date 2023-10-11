@@ -19,19 +19,19 @@ export const AllPosts: React.FC = () => {
     );
   }, [dispatch]);
 
-  useEffect(() => {
-    const timerId = setTimeout(() => {
-      if (Math.random() < 0.5) {
-        dispatch(getAllPostsSuccess({ posts: allPosts }));
-      } else {
-        dispatch(getAllPostsFailure({ name: 'Error', mesage: 'SERVER ERROR' }));
-      }
-    }, 3000);
+  // useEffect(() => {
+  //   const timerId = setTimeout(() => {
+  //     if (Math.random() < 0.5) {
+  //       dispatch(getAllPostsSuccess({ data: allPosts }));
+  //     } else {
+  //       dispatch(getAllPostsFailure({ name: 'Error', mesage: 'SERVER ERROR' }));
+  //     }
+  //   }, 3000);
 
-    return () => {
-      clearTimeout(timerId);
-    };
-  }, [dispatch]);
+  //   return () => {
+  //     clearTimeout(timerId);
+  //   };
+  // }, [dispatch]);
 
   if (isLoading) {
     return <div>Loading...</div>;
