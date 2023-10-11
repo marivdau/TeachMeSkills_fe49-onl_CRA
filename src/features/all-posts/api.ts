@@ -1,4 +1,5 @@
 import { baseUrl, jsonContentTypeHeaders } from '../../api/constants';
+import { request } from '../../api/request';
 import { getTokens } from '../../api/tokens';
 import { AllPostsPayload, AllPostsResponse } from './types';
 
@@ -8,7 +9,7 @@ export const api = {
     Object.entries(payload).forEach(([key, value]) => {
       searchParams.set(key, value.toString());
     });
-    return fetch(baseUrl + 'blog/posts/?' + searchParams.toString(), {
+    return request(baseUrl + 'blog/posts/?' + searchParams.toString(), {
       method: 'GET',
       headers: {
         ...jsonContentTypeHeaders,

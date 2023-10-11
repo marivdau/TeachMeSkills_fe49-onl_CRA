@@ -1,4 +1,5 @@
 import { baseUrl, jsonContentTypeHeaders } from '../../api/constants';
+import { request } from '../../api/request';
 import {
   ActivationPayload,
   ActivationResponse,
@@ -9,7 +10,7 @@ import {
 
 export const api = {
   activation: (payload: ActivationPayload): Promise<string> => {
-    return fetch(baseUrl + 'auth/users/activation/', {
+    return request(baseUrl + 'auth/users/activation/', {
       method: 'POST',
       body: JSON.stringify(payload),
       headers: { ...jsonContentTypeHeaders },
@@ -21,8 +22,10 @@ export const api = {
     });
   },
 
-  autorization: (payload: AuthorizationPayload): Promise<AuthorizationResponse> => {
-    return fetch(baseUrl + 'auth/jwt/create/', {
+  autorization: (
+    payload: AuthorizationPayload
+  ): Promise<AuthorizationResponse> => {
+    return request(baseUrl + 'auth/jwt/create/', {
       method: 'POST',
       body: JSON.stringify(payload),
       headers: { ...jsonContentTypeHeaders },
@@ -31,11 +34,11 @@ export const api = {
         throw new Error('SERVER_ERROR');
       }
       return response.json();
-    })
+    });
   },
 
   register: (payload: RegistrationPayload) => {
-    return fetch(baseUrl + 'auth/users/', {
+    return request(baseUrl + 'auth/users/', {
       method: 'POST',
       body: JSON.stringify(payload),
       headers: { ...jsonContentTypeHeaders },
