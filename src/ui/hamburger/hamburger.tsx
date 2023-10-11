@@ -4,14 +4,14 @@ import { ReactComponent as BurgerClosed } from '../../images/burger-icon-closed.
 import { ReactComponent as BurgerOpened } from '../../images/burger-icon-opened.svg';
 import { Initials } from '#ui/user/user-initials/user-initials';
 import { Username } from '#ui/user/user-name/username';
-import { ReactComponent as LightIcon } from '../../images/Icon-Sun.svg';
-import { ReactComponent as DarkIcon } from '../../images/Icon-Moon.svg';
 import { ThemeSwitcher } from '#features/theme-switcher/theme-switcher';
+import { Link as MenuLink } from 'react-router-dom';
 
 type Props = {
   items: Array<{
     id: string;
     title: string;
+    link: string;
   }>;
   onClick: () => void;
 };
@@ -36,8 +36,12 @@ export const Hamburger: React.FC<Props> = ({ items, onClick }) => {
           <Username firstName="Maryia" secondName="dauhan" />
         </UserWrapper>
         <MenuItemsList>
-          {items.map(({ id, title }) => (
-            <ListLineWrapper key={id}>{title}</ListLineWrapper>
+          {items.map(({ id, title, link }) => (
+            <MenuLinkItem to={link}>
+              <ListLineWrapper key={id}>
+                <MenuButton>{title}</MenuButton>{' '}
+              </ListLineWrapper>
+            </MenuLinkItem>
           ))}
         </MenuItemsList>
         <ThemeSwitcher />
@@ -83,6 +87,19 @@ const ListLineWrapper = styled.li`
   border-bottom: 1px solid var(--contextual-light-color);
 `;
 
+const MenuLinkItem = styled(MenuLink)`
+  all: unset;
+  color: var(--text-primary-color);
+
+  &:hover {
+    color: var(--system-primary2-color);
+  }
+`;
+
+const MenuButton = styled.button`
+  all: unset;
+`;
+
 const Humburger = styled.button`
   all: unset;
   width: 83px;
@@ -102,32 +119,6 @@ const UserWrapper = styled.div`
   background-color: var(--system-primary-color);
 `;
 
-const ColorThemeButtonDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`;
-
-const LightThemeButton = styled.button`
-  all: unset;
-  height: 83px;
-  width: 100%;
-  border-right: 1px solid var(--contextual-light-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const DarkThemeButton = styled.button`
-  all: unset;
-  height: 83px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 const LogoutButton = styled.button`
   all: unset;
   height: 83px;
@@ -138,12 +129,4 @@ const LogoutButton = styled.button`
   font-weight: 600;
   line-height: 24px;
   font-size: 16px;
-`;
-
-const LightIconStyle = styled(LightIcon)`
-  fill: var(--svg-image-menu-color-light);
-`;
-
-const DarkIconStyle = styled(DarkIcon)`
-  fill: var(--svg-image-menu-color-dark);
 `;

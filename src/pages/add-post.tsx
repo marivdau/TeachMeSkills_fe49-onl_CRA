@@ -3,9 +3,16 @@ import { Input } from '#ui/input/input';
 import { InputFile } from '#ui/input/input-file';
 import { Textarea } from '#ui/textarea/textarea';
 import { Title } from '#ui/title/title';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 export const AddPost: React.FC = () => {
+  const [title, setTitle] = useState('');
+  const [lessonNumber, setLessonNumber] = useState('');
+  const [image, setImage] = useState('');
+  const [description, setDescription] = useState('');
+  const [text, setText] = useState('');
+
   return (
     <MainTemplateWrapper>
       <ContentWithPaddings>
@@ -13,21 +20,47 @@ export const AddPost: React.FC = () => {
           <Title>Add post</Title>
           <BodyContainer>
             <TitleInputDiv>
-              <Input labelText="Title" />
+              <Input
+                labelText="Title"
+                value={title}
+                onChange={({ currentTarget }) => setTitle(currentTarget.value)}
+              />
             </TitleInputDiv>
             <LessonAreaDiv>
               <LableTextDiv>
-                <Input labelText="Lesson number" />
+                <Input
+                  labelText="Lesson number"
+                  value={lessonNumber}
+                  onChange={({ currentTarget }) =>
+                    setLessonNumber(currentTarget.value)
+                  }
+                />
               </LableTextDiv>
               <UpladAreaDiv>
-                <InputFile labelText="Image" />
+                <InputFile
+                  labelText="Image"
+                  value={image}
+                  onChange={({ currentTarget }) =>
+                    setImage(currentTarget.value)
+                  }
+                />
               </UpladAreaDiv>
             </LessonAreaDiv>
             <DescriptionInputDiv>
-              <Input labelText="Description" />
+              <Input
+                labelText="Description"
+                value={description}
+                onChange={({ currentTarget }) =>
+                  setDescription(currentTarget.value)
+                }
+              />
             </DescriptionInputDiv>
             <TextareaDiv>
-              <Textarea labelText="Text" />
+              <Textarea
+                labelText="Text"
+                value={text}
+                onChange={({ currentTarget }) => setText(currentTarget.value)}
+              />
             </TextareaDiv>
 
             <ButtonsDiv>
