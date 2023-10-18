@@ -37,9 +37,9 @@ export const Hamburger: React.FC<Props> = ({ items, onClick }) => {
         </UserWrapper>
         <MenuItemsList>
           {items.map(({ id, title, link }) => (
-            <MenuLinkItem to={link}>
+            <MenuLinkItem key={id} to={link}>
               <ListLineWrapper key={id}>
-                <MenuButton>{title}</MenuButton>{' '}
+                <MenuButton key={id}>{title}</MenuButton>{' '}
               </ListLineWrapper>
             </MenuLinkItem>
           ))}

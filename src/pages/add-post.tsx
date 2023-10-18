@@ -5,6 +5,8 @@ import { Textarea } from '#ui/textarea/textarea';
 import { Title } from '#ui/title/title';
 import { useState } from 'react';
 import styled from 'styled-components';
+import { useAppDispatch } from '../hooks';
+import { addNewPost } from '#features/add-post/add-post.slice';
 
 export const AddPost: React.FC = () => {
   const [title, setTitle] = useState('');
@@ -12,6 +14,8 @@ export const AddPost: React.FC = () => {
   const [image, setImage] = useState('');
   const [description, setDescription] = useState('');
   const [text, setText] = useState('');
+
+  const dispatch = useAppDispatch();
 
   return (
     <MainTemplateWrapper>
@@ -31,6 +35,9 @@ export const AddPost: React.FC = () => {
                 <Input
                   labelText="Lesson number"
                   value={lessonNumber}
+                  type='number'
+                  inputMode='numeric'
+                  min={0}
                   onChange={({ currentTarget }) =>
                     setLessonNumber(currentTarget.value)
                   }
@@ -56,7 +63,7 @@ export const AddPost: React.FC = () => {
               />
             </DescriptionInputDiv>
             <TextareaDiv>
-              <Textarea
+              <Input
                 labelText="Text"
                 value={text}
                 onChange={({ currentTarget }) => setText(currentTarget.value)}
@@ -80,7 +87,12 @@ export const AddPost: React.FC = () => {
                 </ButtonCancelDiv>
                 <ButtonAddDiv>
                   {' '}
-                  <Button variant="primary" onClick={() => {}}>
+                  <Button
+                    variant="primary"                    
+                    onClick={() => {
+                      dispatch(addNewPost({ title, description, text }));
+                    }}
+                  >
                     Add post
                   </Button>
                 </ButtonAddDiv>

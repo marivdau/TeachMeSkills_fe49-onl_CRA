@@ -9,7 +9,8 @@ export const Textarea: React.FC<Props> = ({ labelText }) => {
     <TextAreaLabel>
       <TextAreaLabelText>{labelText}</TextAreaLabelText>
       <TextAreaWrapper
-        placeholder='Add your text'
+        name="text"
+        placeholder="Add your text"
         rows={4}
         cols={40}
         maxLength={1000}

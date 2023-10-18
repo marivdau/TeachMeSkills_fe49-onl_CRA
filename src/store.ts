@@ -12,6 +12,7 @@ import { dialogImagePreviewReducer } from '#features/dialog-image-preview/dialog
 import { authorizationreducer } from '#features/auth/authorization.slice';
 import { settingFavouriteReducer } from '#features/bookmark/bookmark.slice';
 import { themeSwitcherReducer } from '#features/theme-switcher/theme-switcher.slice';
+import { addNewPostReducer } from '#features/add-post/add-post.slice';
 
 let sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];
@@ -21,6 +22,7 @@ export const allReducers = {};
 export const store = configureStore({
   reducer: {
     activation: activationReducer,
+    addPost: addNewPostReducer,
     authorization: authorizationreducer,
     allPosts: allPostsReducer,
     favouritePost: settingFavouriteReducer,
