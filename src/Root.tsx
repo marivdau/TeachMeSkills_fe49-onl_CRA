@@ -29,7 +29,6 @@ function Root() {
       {/* <AuthorizedContext.Provider value={isAuthorized}>
         <SignUp />
       </AuthorizedContext.Provider> */}
-      {/* <ThemeSwitcher /> */}
       <Header />
       <Routes>
         <Route index element={<Link to="/sign-up">Go to Sign up</Link>} />
@@ -42,7 +41,6 @@ function Root() {
         <Route path="/sign-up/success" element={<Success />} />
         <Route path="/posts" element={<ListOfPosts />}></Route>
         <Route path="/posts/:postId" element={<SelectedPost />}></Route>
-        {/* <Route path="/posts/all" element={<AllListPosts />}></Route> */}
         <Route
           path="/posts/search-result"
           element={<SearchResults cards={postCardsListMockArray} />}

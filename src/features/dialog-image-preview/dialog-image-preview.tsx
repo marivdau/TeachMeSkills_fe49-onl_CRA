@@ -5,19 +5,19 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { IPostCard } from '../../types/post-card';
 import { ReactComponent as ArrowLeft } from '../../images/arrow-sm-left-svgrepo-com.svg';
 import { ReactComponent as ArrowRight } from '../../images/arrow-sm-right-svgrepo-com.svg';
-import { hiding } from './dialog-image-preview.slice';
+import { hide } from './dialog-image-preview.slice';
 
-type PropsDialog = {  
+type PropsDialog = {
   open: boolean;
 };
 
-export const DialogImagePreview: React.FC<PropsDialog> = ({  open }) => {
+export const DialogImagePreview: React.FC<PropsDialog> = ({ open }) => {
   const dispatch = useAppDispatch();
   const { imageToShow } = useAppSelector((state) => state.dialogImagePreview);
 
   return (
-    <DialogElement open={open} onClose={() => dispatch(hiding())}>
-      <CloseButton onClick={() => dispatch(hiding())}>
+    <DialogElement open={open} onClose={() => dispatch(hide())}>
+      <CloseButton onClick={() => dispatch(hide())}>
         <CloseImg style={{ width: '100%', height: '100%' }} />
       </CloseButton>
 

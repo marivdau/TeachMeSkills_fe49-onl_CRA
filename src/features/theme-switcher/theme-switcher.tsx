@@ -38,7 +38,8 @@ const ColorThemeButtonDiv = styled.div`
 `;
 
 const LightThemeButton = styled.button`
-  all: unset;
+  border-color: transparent;
+  background-color: var(--contextual-white-color);
   height: 83px;
   width: 100%;
   border-right: 1px solid var(--contextual-light-color);
@@ -48,7 +49,8 @@ const LightThemeButton = styled.button`
 `;
 
 const DarkThemeButton = styled.button`
-  all: unset;
+  border-color: transparent;
+  background-color: var(--contextual-white-color);
   height: 83px;
   width: 100%;
   display: flex;

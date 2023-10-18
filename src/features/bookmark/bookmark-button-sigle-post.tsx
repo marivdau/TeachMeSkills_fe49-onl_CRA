@@ -18,14 +18,17 @@ export const BookmarkSingle: React.FC<PropsBookmark> = ({ cardId }) => {
       setButtonText('In favourites');
     } else {
       setButtonText('Add to favourites');
-    } 
+    }
   }
 
   return (
     <div>
       <BookmarkSinglePost
         type="button"
-        onClick={() => {dispatch(setFavourite({ cardId })); handleClick()}}
+        onClick={() => {
+          dispatch(setFavourite({ cardId }));
+          handleClick();
+        }}
         className={activeFavourite ? 'selected' : 'unselected'}
       >
         <BookmarkImg
@@ -50,7 +53,7 @@ const BookmarkSinglePost = styled.button`
   cursor: pointer;
 
   &.selected {
-    background-color: var(--system-primary2-color);
+    background-color: var(--system-primary-second-color);
     color: var(--contextual-white-color);
   }
 
@@ -59,7 +62,7 @@ const BookmarkSinglePost = styled.button`
   }
 
   &:hover {
-    background-color: var(--system-primary2-color);
+    background-color: var(--system-primary-second-color);
   }
 `;
 

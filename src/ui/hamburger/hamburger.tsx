@@ -62,22 +62,23 @@ const HumburgerWrapper = styled.div`
 
 const ListWrapper = styled.div`
   all: unset;
-  position: fixed;
+  position: absolute;
   top: 84px;
   left: 0;
   z-index: 30;
   width: 236px;
   border-radius: 0;
-  border-top: 1px solid var(--system-primary2-color);
+  border-top: 1px solid var(--system-primary-second-color);
 `;
 
 const MenuItemsList = styled.ul`
-  all: unset;
   background-color: var(--contextual-white-color);
+  padding-inline-start: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
 `;
 
 const ListLineWrapper = styled.li`
-  all: unset;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -92,7 +93,7 @@ const MenuLinkItem = styled(MenuLink)`
   color: var(--text-primary-color);
 
   &:hover {
-    color: var(--system-primary2-color);
+    color: var(--system-primary-second-color);
   }
 `;
 
@@ -107,7 +108,7 @@ const Humburger = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-right: 1px solid var(--system-primary2-color);
+  border-right: 1px solid var(--system-primary-second-color);
 `;
 
 const UserWrapper = styled.div`

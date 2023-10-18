@@ -60,7 +60,7 @@ const VoteButtonUp = styled.button`
   margin-right: 2px;
 
   &.votedUp {
-    background-color: var(--system-primary2-color);
+    background-color: var(--system-primary-second-color);
   }
 
   &.unvotedDwn {
@@ -68,7 +68,7 @@ const VoteButtonUp = styled.button`
   }
 
   &:hover {
-    background-color: var(--system-primary2-color);
+    background-color: var(--system-primary-second-color);
   }
 `;
 

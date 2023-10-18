@@ -29,13 +29,13 @@ export const dialogImagePreviewSlice = createSlice({
         (elem) => elem.cardId === action.payload.cardId
       )?.image;
     },
-    hiding(state) {
+    hide(state) {
       state.showingDialogImagePreview = false;
     },
   },
 });
 
 export const {
-  actions: { showing, hiding },
+  actions: { showing, hide },
   reducer: dialogImagePreviewReducer,
 } = dialogImagePreviewSlice;

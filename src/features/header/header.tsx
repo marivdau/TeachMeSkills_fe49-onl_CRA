@@ -7,6 +7,7 @@ import { ReactComponent as CancelIcon } from '../../images/Icon-Cancel.svg';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { toggle } from './header.slice';
 import { menuMockArray } from '../../mock-data/mock-data-menu';
+import { Search } from '#features/search/search';
 
 export const Header = () => {
   const dispatch = useAppDispatch();
@@ -20,7 +21,8 @@ export const Header = () => {
       />
 
       <SearchArea>
-        <SearchInput
+        <Search />
+        {/* <SearchInput
           type="text"
           placeholder="Search..."
           maxLength={100}
@@ -36,7 +38,7 @@ export const Header = () => {
           <SearchButton type="button">
             <SearchIcon />
           </SearchButton>
-        </ButtonsDiv>
+        </ButtonsDiv> */}
       </SearchArea>
       <UserWrapper>
         <Initials firstName="Maryia" secondName="dauhan" />
@@ -62,17 +64,17 @@ const SearchArea = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: -webkit-fill-available;
+  width: 100%;
 `;
 
 const SearchInput = styled.input`
   all: unset;
   height: 84px;
-  width: -webkit-fill-available;
+  width: 100%;
   color: white;
   border: none;
   padding: 0 20px;
-  background-color: var(--system-primary2-color);
+  background-color: var(--system-primary-second-color);
 
   &::placeholder {
     color: var(--contextual-light-color);
@@ -87,7 +89,7 @@ const ButtonsDiv = styled.div`
 
 const CloseButton = styled.button`
   border: none;
-  background-color: var(--system-primary2-color);
+  background-color: var(--system-primary-second-color);
   width: 70px;
   height: 84px;
   cursor: pointer;
@@ -99,8 +101,8 @@ const SearchButton = styled.button`
   height: 84px;
   cursor: pointer;
   border: 1px solid transparent;
-  border-right: 1px solid var(--system-primary2-color);
-  border-left: 1px solid var(--system-primary2-color);
+  border-right: 1px solid var(--system-primary-second-color);
+  border-left: 1px solid var(--system-primary-second-color);
 `;
 
 const UserWrapper = styled.div`

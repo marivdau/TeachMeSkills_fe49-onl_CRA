@@ -13,6 +13,7 @@ import { authorizationreducer } from '#features/auth/authorization.slice';
 import { settingFavouriteReducer } from '#features/bookmark/bookmark.slice';
 import { themeSwitcherReducer } from '#features/theme-switcher/theme-switcher.slice';
 import { addNewPostReducer } from '#features/add-post/add-post.slice';
+import { searchReducer } from '#features/search/search.slice';
 
 let sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];
@@ -29,6 +30,7 @@ export const store = configureStore({
     hamburgerMenu: hamburgerOpenReducer,
     dialogImagePreview: dialogImagePreviewReducer,
     registration: registrationReducer,
+    search: searchReducer,
     signUpForm: signUpFormReducer,
     tabPanel: tabPanelReducer,
     themeSwitcher: themeSwitcherReducer,

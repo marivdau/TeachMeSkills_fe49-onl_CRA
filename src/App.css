@@ -4,7 +4,7 @@
   --background-color-extra-light: #F3F3F3;
 
   --system-primary-color: #2231AA;
-  --system-primary2-color: #5360CD;
+  --system-primary-second-color: #5360CD;
   --system-secondary-color: #313037;
 
   --contextual-error-color: #FD3419;
@@ -22,6 +22,7 @@
   --svg-image-menu-color-dark: #313037;
 
   &.dark {
+    --contextual-white-color: #313037;
     --background-color-gray: #313037;
     --background-color-medium-gray: #DADADA;
     --background-color-extra-light: #313037;
@@ -34,6 +35,6 @@
 
     --svg-image-fill-color: #FFFFFF;
     --svg-image-menu-color-light: #AFB2B6;
-    --svg-image-menu-color-dark: #313037;    
+    --svg-image-menu-color-dark: #313037;
   }
 }

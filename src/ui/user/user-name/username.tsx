@@ -15,7 +15,7 @@ export const Username: React.FC<Props> = ({ firstName, secondName }) => {
 };
 
 const UsernameWrapper = styled.span`
-  color: var(--contextual-white-color);
+  color: var(--contextual-light-color);
   font-weight: 600;
   font-size: 16px;
   line-height: 34px;

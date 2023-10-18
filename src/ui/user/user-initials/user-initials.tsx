@@ -21,7 +21,7 @@ export const Initials: React.FC<Props> = ({ firstName, secondName }) => {
 const InitialsWrapper = styled.div`
   width: 48px;
   height: 48px;
-  background: var(--system-primary2-color);
+  background: var(--system-primary-second-color);
   margin-right: 10px;
   border-radius: 2px;
   display: flex;
@@ -30,7 +30,7 @@ const InitialsWrapper = styled.div`
 `;
 
 const InitialsSpan = styled.span`
-  color: var(--contextual-white-color);
+  color: var(--contextual-light-color);
   font-weight: 600;
   font-size: 16px;
   line-height: 34px;
