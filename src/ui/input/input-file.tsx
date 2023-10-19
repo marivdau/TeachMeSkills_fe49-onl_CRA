@@ -42,7 +42,8 @@ const LabelText = styled.div`
 `;
 
 const InputUpload = styled.input<{ $borderColor?: string }>`
-  all: unset;
+  cursor: pointer;
+  height: 43px;
   width: 100%;
   padding: 5px;
   box-sizing: border-box;

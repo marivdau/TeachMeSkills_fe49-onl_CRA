@@ -6,10 +6,9 @@ import { getTokens } from '../../api/tokens';
 export const api = {
   addNewPost: (payload: AddNewPostType): Promise<Response> => {
     const formData = new FormData();
-    formData.set('title', payload.title);
-    formData.set('text', payload.text);
-    formData.set('description', payload.description);
-    // formData.append('lesson_num', payload.lesson_num);
+    Object.entries(payload).forEach(([key, value]) => {
+      formData.set(key, typeof value === 'number' ? value.toString() : value);
+    });
 
     return request(baseUrl + 'blog/posts/', {
       method: 'POST',

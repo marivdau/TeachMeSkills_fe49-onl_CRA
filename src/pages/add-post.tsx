@@ -3,7 +3,7 @@ import { Input } from '#ui/input/input';
 import { InputFile } from '#ui/input/input-file';
 import { Textarea } from '#ui/textarea/textarea';
 import { Title } from '#ui/title/title';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useAppDispatch } from '../hooks';
 import { addNewPost } from '#features/add-post/add-post.slice';
@@ -11,11 +11,21 @@ import { addNewPost } from '#features/add-post/add-post.slice';
 export const AddPost: React.FC = () => {
   const [title, setTitle] = useState('');
   const [lessonNumber, setLessonNumber] = useState('');
-  const [image, setImage] = useState('');
+  const [file, setFile] = useState<File | null>(null);
   const [description, setDescription] = useState('');
   const [text, setText] = useState('');
+  const [previewImg, setPreviewImg] = useState('');
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (previewImg) {
+      URL.revokeObjectURL(previewImg);
+    }
+    if (file !== null) {
+      setPreviewImg(URL.createObjectURL(file));
+    }
+  }, [file]);
 
   return (
     <MainTemplateWrapper>
@@ -34,24 +44,27 @@ export const AddPost: React.FC = () => {
               <LableTextDiv>
                 <Input
                   labelText="Lesson number"
+                  accept="image/*"
                   value={lessonNumber}
-                  type='number'
-                  inputMode='numeric'
+                  type="number"
+                  inputMode="numeric"
                   min={0}
                   onChange={({ currentTarget }) =>
                     setLessonNumber(currentTarget.value)
                   }
                 />
               </LableTextDiv>
-              <UpladAreaDiv>
+              <UploadAreaDiv>
                 <InputFile
                   labelText="Image"
-                  value={image}
                   onChange={({ currentTarget }) =>
-                    setImage(currentTarget.value)
+                    setFile(currentTarget.files![0])
                   }
                 />
-              </UpladAreaDiv>
+              </UploadAreaDiv>
+              <ImagePreviewSrc>
+                <ImgPreview src={previewImg} alt="" />
+              </ImagePreviewSrc>
             </LessonAreaDiv>
             <DescriptionInputDiv>
               <Input
@@ -88,9 +101,19 @@ export const AddPost: React.FC = () => {
                 <ButtonAddDiv>
                   {' '}
                   <Button
-                    variant="primary"                    
+                    variant="primary"
                     onClick={() => {
-                      dispatch(addNewPost({ title, description, text }));
+                      if (file) {
+                        dispatch(
+                          addNewPost({
+                            title,
+                            description: '',
+                            text,
+                            lesson_num: 50,
+                            image: file,
+                          })
+                        );
+                      }
                     }}
                   >
                     Add post
@@ -149,17 +172,31 @@ const LessonAreaDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 `;
 
-const LableTextDiv = styled.div``;
+const LableTextDiv = styled.div`
+  margin-right: 20px;
+`;
 
-const UploadDiv = styled.div``;
-
-const UpladAreaDiv = styled.div`
+const UploadAreaDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+`;
+
+const ImagePreviewSrc = styled.div`
+  height: 100px;
+  width: 100px;
+  margin: 20px;
+`;
+
+const ImgPreview = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: transparent;
 `;
 
 const UploadButtonDiv = styled.div``;
