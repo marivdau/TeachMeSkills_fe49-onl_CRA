@@ -2,26 +2,58 @@ import styled from 'styled-components';
 import { ReactComponent as ArrowLeft } from '../../../images/arrow-sm-left-svgrepo-com.svg';
 import { ReactComponent as ArrowRight } from '../../../images/arrow-sm-right-svgrepo-com.svg';
 
-export const PaginationMain = () => {
+type Props = {
+  pageCount: number;
+  currentPage: number;
+  onPageChange: (arg: number) => void;
+};
+
+export const PaginationMain: React.FC<Props> = ({
+  pageCount,
+  currentPage,
+  onPageChange,
+}) => {
   return (
     <PagePagination>
-      <Left>
-        <PaginationButton type="button">
-          <StyledArrowImageLeft /> Back
-        </PaginationButton>
-      </Left>
+      {currentPage !== 1 ? (
+        <Left>
+          <PaginationButton
+            type="button"
+            onClick={() => onPageChange(currentPage - 1)}
+          >
+            <StyledArrowImageLeft /> Back
+          </PaginationButton>
+        </Left>
+      ) : null}
       <JumperDiv>
-        <JumpButton type="button">1</JumpButton>
-        <JumpButton type="button">2</JumpButton>
-        <JumpButton type="button">3</JumpButton>
-        <JumpButton>...</JumpButton>
-        <JumpButton type="button">6</JumpButton>
+        {currentPage !== 1 ? (
+          <JumpButton type="button" onClick={() => onPageChange(1)}>
+            1
+          </JumpButton>
+        ) : null}
+        {currentPage > 2 ? <JumpButton type="button">...</JumpButton> : null}
+        <JumpButton type="button" onClick={() => onPageChange(currentPage)}>
+          {currentPage}
+        </JumpButton>
+        {pageCount - currentPage > 1 ? (
+          <JumpButton type="button">...</JumpButton>
+        ) : null}
+        {currentPage !== pageCount ? (
+          <JumpButton type="button" onClick={() => onPageChange(pageCount)}>
+            {pageCount}
+          </JumpButton>
+        ) : null}
       </JumperDiv>
       <Right>
-        <PaginationButton type="button">
-          Next
-          <StyledArrowImageRight />
-        </PaginationButton>
+        {pageCount !== currentPage ? (
+          <PaginationButton
+            type="button"
+            onClick={() => onPageChange(currentPage + 1)}
+          >
+            Next
+            <StyledArrowImageRight />
+          </PaginationButton>
+        ) : null}
       </Right>
     </PagePagination>
   );
@@ -30,7 +62,7 @@ export const PaginationMain = () => {
 const PagePagination = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   padding: 20px 0;
 `;
 

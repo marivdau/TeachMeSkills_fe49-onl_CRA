@@ -2,7 +2,7 @@ import { postCardsListMockArray } from '../mock-data/mock-data-posts';
 import { Post } from '#ui/single-post/single-post';
 import styled from 'styled-components';
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { Pagination } from '#features/pagination/pagination-selected-post/pagination-selected-post';
+import { PaginationSelectedPost } from '#ui/pagination/pagination-selected-post/pagination-selected-post';
 
 export const SelectedPost: React.FC = () => {
   const { postId } = useParams();
@@ -36,7 +36,7 @@ export const SelectedPost: React.FC = () => {
 
           <PostDelimiter />
 
-          <Pagination />
+          <PaginationSelectedPost  />
         </Main>
 
         <Footer>

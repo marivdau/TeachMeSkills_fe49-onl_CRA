@@ -6,7 +6,6 @@ import { ShortPostcard } from '#ui/post-cards/short-post-card/short-post-card';
 import { Title } from '#ui/title/title';
 import { ITab, MyTabPanel } from '#ui/tabs/tab-panel/tab-panel';
 import { useEffect, useState } from 'react';
-import { PaginationMain } from '#features/pagination/pagination-main/pagination-main';
 import {
   getAllPosts,
   getAllPostsSuccess,
@@ -113,8 +112,7 @@ export const AllListPosts: React.FC = () => {
               ))}
             </RightListPosts>
           </PostsDiv>
-
-          <PaginationMain />
+          
         </Main>
         <Footer>
           <FooterDelimiter />

@@ -3,7 +3,7 @@ export interface IPostCard {
   image?: string;
   text: string;
   date: string;
-  lesson_num: number;
+  lesson_num?: number;
   title: string;
   author: number;
   votedUpNum?: number | null;

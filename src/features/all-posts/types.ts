@@ -6,6 +6,7 @@ export type AllPostsPayload = {
 };
 
 export type AllPostsResponse = {
+  count: number;
   results: Array<{
     id: number;
     image?: string;

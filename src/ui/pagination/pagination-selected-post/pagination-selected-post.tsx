@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { ReactComponent as ArrowLeft } from '../../../images/arrow-sm-left-svgrepo-com.svg';
 import { ReactComponent as ArrowRight } from '../../../images/arrow-sm-right-svgrepo-com.svg';
 
-export const Pagination = () => {
+export const PaginationSelectedPost = () => {
   return (
     <PagePagination>
       <Left>

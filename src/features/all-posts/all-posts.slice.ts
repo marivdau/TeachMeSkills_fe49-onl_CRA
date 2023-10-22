@@ -10,6 +10,7 @@ export interface Post {
 const allPostsSlice = createSlice({
   name: 'allPostsSlice',
   initialState: {
+    count: 3,
     posts: [] as Post[],
     isLoading: false,
     error: null as Error | null,
@@ -19,8 +20,10 @@ const allPostsSlice = createSlice({
       state.isLoading = true;
     },
     getAllPostsSuccess(state, action: { payload: { data: AllPostsResponse } }) {
+      state.isLoading = false;
       const data = action.payload;
       const allPostsFromApi = data.data.results;
+      state.count = data.data.count;
       state.posts = allPostsFromApi;
     },
     getAllPostsFailure(state, error: { payload: unknown }) {

@@ -6,12 +6,20 @@ import { postCardsListMockArray } from '../mock-data/mock-data-posts';
 import { ShortPostcard } from '#ui/post-cards/short-post-card/short-post-card';
 import { ITab, MyTabPanel } from '#ui/tabs/tab-panel/tab-panel';
 import { useState, useEffect } from 'react';
-import { PaginationMain } from '#features/pagination/pagination-main/pagination-main';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { getAllPosts } from '#features/all-posts/all-posts.slice';
 import { DialogImagePreview } from '#features/dialog-image-preview/dialog-image-preview';
+import { PaginationMain } from '#ui/pagination/pagination-main/pagination-main';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export const ListOfPosts: React.FC = () => {
+  const elementsPerPage = 3;
+  const [params] = useSearchParams();
+  const [currentPage, setCurrentPage] = useState(
+    (Number(params.get('offset')) || 0) / elementsPerPage + 1
+  );
+  const pageCounter = useAppSelector((state) => state.allPosts.count);
+
   const [apiModels, setApiModels] = useState<IPostCard[] | null>(null);
   useEffect(() => {
     const timerId = setTimeout(() => {
@@ -22,12 +30,28 @@ export const ListOfPosts: React.FC = () => {
     };
   }, []);
 
+  const navigate = useNavigate();
+
   const dispatch = useAppDispatch();
   useEffect(() => {
+    const searchParams = new URLSearchParams();
+    const limit = elementsPerPage;
+    const offset = (currentPage - 1) * elementsPerPage;
+    searchParams.set('limit', limit.toString());
+    searchParams.set('offset', offset.toString());
+    navigate('/posts?' + searchParams.toString());
+  }, [currentPage]);
+
+  useEffect(() => {
     dispatch(
-      getAllPosts({ limit: 3, offset: 0, ordering: 'asc', search: 'post' })
+      getAllPosts({
+        limit: elementsPerPage,
+        offset: Number(params.get('offset')) || 0,
+        ordering: 'asc',
+        search: 'post',
+      })
     );
-  }, [dispatch]);
+  }, [params]);
 
   const [selectedTab, setSelectedTab] = useState('all');
 
@@ -46,7 +70,7 @@ export const ListOfPosts: React.FC = () => {
       id: 'popular',
       title: 'Popular',
     },
-  ]; 
+  ];
 
   const { showingDialogImagePreview } = useAppSelector(
     (state) => state.dialogImagePreview
@@ -82,7 +106,11 @@ export const ListOfPosts: React.FC = () => {
               </RightSide>
             </PostsDiv>
 
-            <PaginationMain />
+            <PaginationMain
+              pageCount={pageCounter}
+              currentPage={currentPage}
+              onPageChange={(x) => setCurrentPage(x)}
+            />
           </Main>
         ) : null}
 
