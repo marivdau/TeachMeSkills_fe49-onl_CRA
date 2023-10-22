@@ -1,12 +1,11 @@
 import { Button } from '#ui/button';
 import { Input } from '#ui/input/input';
-import { InputFile } from '#ui/input/input-file';
-import { Textarea } from '#ui/textarea/textarea';
 import { Title } from '#ui/title/title';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { useAppDispatch } from '../hooks';
 import { addNewPost } from '#features/add-post/add-post.slice';
+import { ImageUploader } from '#ui/image-uploader/image-uploader';
 
 export const AddPost: React.FC = () => {
   const [title, setTitle] = useState('');
@@ -14,18 +13,8 @@ export const AddPost: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [description, setDescription] = useState('');
   const [text, setText] = useState('');
-  const [previewImg, setPreviewImg] = useState('');
 
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (previewImg) {
-      URL.revokeObjectURL(previewImg);
-    }
-    if (file !== null) {
-      setPreviewImg(URL.createObjectURL(file));
-    }
-  }, [file]);
 
   return (
     <MainTemplateWrapper>
@@ -54,17 +43,7 @@ export const AddPost: React.FC = () => {
                   }
                 />
               </LableTextDiv>
-              <UploadAreaDiv>
-                <InputFile
-                  labelText="Image"
-                  onChange={({ currentTarget }) =>
-                    setFile(currentTarget.files![0])
-                  }
-                />
-              </UploadAreaDiv>
-              <ImagePreviewSrc>
-                <ImgPreview src={previewImg} alt="" />
-              </ImagePreviewSrc>
+             <ImageUploader file={file} onFileChange={(file) => setFile(file)}  />
             </LessonAreaDiv>
             <DescriptionInputDiv>
               <Input
