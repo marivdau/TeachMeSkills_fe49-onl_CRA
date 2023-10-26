@@ -11,3 +11,7 @@ export function getTokens(): Tokens | null {
   }
   return null;
 }
+
+export function resetTokens() {
+  localStorage.removeItem('tokens');
+}

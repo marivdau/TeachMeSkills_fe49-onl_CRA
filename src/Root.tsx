@@ -15,6 +15,7 @@ import { AllListPosts } from './pages/all-posts';
 import { Header } from '#features/header/header';
 import { ActivatePage } from './pages/activate';
 import { AddPost } from './pages/add-post';
+import { Main } from './pages/main';
 
 function Root() {
   const [isAuthorized, setIsAuthorized] = useState(false);
@@ -31,7 +32,7 @@ function Root() {
       </AuthorizedContext.Provider> */}
       <Header />
       <Routes>
-        <Route index element={<Link to="/sign-up">Go to Sign up</Link>} />
+        <Route index element={<Main />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route

@@ -16,10 +16,22 @@ const authorizationSlice = createSlice({
     authorizationFailure(state) {
       state.isInProgress = false;
     },
+    authorizationLogout(state) {
+
+    },
+    authorizationLogoutSuccess(state) {
+      state.isInComplete = false;
+    }
   },
 });
 
 export const {
-  actions: { authorization, authorizationSuccess, authorizationFailure },
+  actions: {
+    authorization,
+    authorizationSuccess,
+    authorizationFailure,
+    authorizationLogout,
+    authorizationLogoutSuccess,
+  },
   reducer: authorizationreducer,
 } = authorizationSlice;

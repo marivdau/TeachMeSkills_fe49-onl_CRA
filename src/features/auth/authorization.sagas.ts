@@ -1,12 +1,13 @@
 import { call, put, takeLatest } from 'typed-redux-saga';
-
 import { api } from './api';
 import {
   authorization,
   authorizationFailure,
+  authorizationLogout,
+  authorizationLogoutSuccess,
   authorizationSuccess,
 } from './authorization.slice';
-import { setTokens } from '../../api/tokens';
+import { resetTokens, setTokens } from '../../api/tokens';
 
 export function* authorizationSaga() {
   yield takeLatest(authorization, function* ({ payload }) {
@@ -17,5 +18,12 @@ export function* authorizationSaga() {
     } else {
       yield put(authorizationFailure());
     }
+  });
+}
+
+export function* authorizationLogoutSaga() {
+  yield takeLatest(authorizationLogout, function* ({ payload }) {
+    yield call(resetTokens);
+    yield put(authorizationLogoutSuccess());
   });
 }

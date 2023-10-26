@@ -6,6 +6,7 @@ import { Initials } from '#ui/user/user-initials/user-initials';
 import { Username } from '#ui/user/user-name/username';
 import { ThemeSwitcher } from '#features/theme-switcher/theme-switcher';
 import { Link as MenuLink } from 'react-router-dom';
+import { LogoutBtn } from '#features/auth/logout';
 
 type Props = {
   items: Array<{
@@ -45,7 +46,7 @@ export const Hamburger: React.FC<Props> = ({ items, onClick }) => {
           ))}
         </MenuItemsList>
         <ThemeSwitcher />
-        <LogoutButton>Log Out</LogoutButton>
+        <LogoutBtn />
       </ListWrapper>
     </HumburgerWrapper>
   );
@@ -118,16 +119,4 @@ const UserWrapper = styled.div`
   justify-content: center;
   height: 83px;
   background-color: var(--system-primary-color);
-`;
-
-const LogoutButton = styled.button`
-  all: unset;
-  height: 83px;
-  text-align: center;
-  margin: auto;
-  width: 100%;
-  background-color: var(--background-color-medium-gray);
-  font-weight: 600;
-  line-height: 24px;
-  font-size: 16px;
 `;
